@@ -1,5 +1,10 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.baseline
 
 object Constants {
-    val PACKAGE_NAME = "app.lawnchair"
+    // hammock: Hammock application ID
+    val PACKAGE_NAME = "io.github.taidaru.hammock"
 }

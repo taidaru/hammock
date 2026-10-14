@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.qsb.providers
 
 import app.lawnchair.animateToAllApps
@@ -12,7 +16,8 @@ data object Startpage : QsbSearchProvider(
     icon = R.drawable.ic_startpage,
     themingMethod = ThemingMethod.TINT,
     packageName = "",
-    website = "https://startpage.com/?segment=startpage.lawnchair",
+    // hammock: removed the Lawnchair partner segment
+    website = "https://startpage.com/",
     type = QsbSearchProviderType.LOCAL,
     sponsored = false,
 ) {

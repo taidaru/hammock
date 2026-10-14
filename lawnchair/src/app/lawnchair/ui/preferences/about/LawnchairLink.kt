@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package app.lawnchair.ui.preferences.about
@@ -25,12 +27,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,7 +41,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import app.lawnchair.ui.preferences.components.layout.PreferenceTemplate
 
 @Composable
 fun LawnchairLink(
@@ -83,39 +81,4 @@ fun LawnchairLink(
     }
 }
 
-@Composable
-fun HorizontalLawnchairLink(
-    @DrawableRes iconResId: Int,
-    label: String,
-    url: String,
-    modifier: Modifier = Modifier,
-) {
-    val context = LocalContext.current
-
-    PreferenceTemplate(
-        modifier = modifier.clickable {
-            val webpage = url.toUri()
-            val intent = Intent(Intent.ACTION_VIEW, webpage)
-            if (intent.resolveActivity(context.packageManager) != null) {
-                context.startActivity(intent)
-            }
-        },
-        title = {
-            Text(label)
-        },
-        startWidget = {
-            Surface(
-                shape = CircleShape,
-                color = MaterialTheme.colorScheme.secondaryContainer,
-                modifier = Modifier.requiredSize(32.dp),
-            ) {
-                Image(
-                    painterResource(id = iconResId),
-                    contentDescription = null,
-                    colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSecondaryContainer),
-                    modifier = Modifier.requiredSize(20.dp),
-                )
-            }
-        },
-    )
-}
+// hammock: removed HorizontalLawnchairLink, the about screen no longer lists community links

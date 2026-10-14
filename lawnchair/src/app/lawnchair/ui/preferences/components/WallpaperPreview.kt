@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.preferences.components
 
 import android.annotation.SuppressLint
@@ -32,7 +36,6 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import app.lawnchair.ui.util.isPlayStoreFlavor
 import app.lawnchair.util.FileAccessManager
 import app.lawnchair.util.FileAccessState
 import app.lawnchair.util.scaleDownToDisplaySize
@@ -58,7 +61,8 @@ fun ColumnScope.WithWallpaper(
 
     content(wallpaperDrawable)
 
-    if (displayWallpaperButton && !hasPermission && !isPlayStoreFlavor()) {
+    // hammock: no Play Store flavor, Hammock ships only the github channel
+    if (displayWallpaperButton && !hasPermission) {
         Row(
             horizontalArrangement = Arrangement.Center,
             modifier = modifier

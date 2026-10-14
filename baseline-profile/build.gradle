@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 plugins {
     alias(libs.plugins.android.test)
     alias(libs.plugins.androidx.baselineprofile)
@@ -18,7 +22,7 @@ android {
         lawn { dimension = "app" }
         withQuickstep { dimension = "recents" }
         github { dimension = "channel" }
-        play { dimension = "channel" }
+        // hammock: removed the play flavor, Hammock ships only the github channel
     }
 
     testOptions.managedDevices.localDevices {

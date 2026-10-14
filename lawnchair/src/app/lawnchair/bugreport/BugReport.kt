@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.bugreport
 
 import android.content.ClipData
@@ -17,8 +21,7 @@ data class BugReport(
     val type: String,
     val description: String,
     val contents: String,
-    val link: String?,
-    val uploadError: Boolean = false,
+    // hammock: removed link and uploadError, bug reports are no longer uploaded
     val file: File?,
 ) : Parcelable {
 
@@ -28,8 +31,7 @@ data class BugReport(
         type,
         description,
         contents,
-        null,
-        false,
+        // hammock: removed link and uploadError arguments, bug reports are no longer uploaded
         file,
     )
 
@@ -54,7 +56,8 @@ data class BugReport(
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 putExtra(Intent.EXTRA_STREAM, fileUri)
             } else {
-                putExtra(Intent.EXTRA_TEXT, link ?: contents)
+                // hammock: share the report text, there is no upload link anymore
+                putExtra(Intent.EXTRA_TEXT, contents)
             }
             type = "text/plain"
         }

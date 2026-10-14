@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.util
 
 import android.Manifest
@@ -6,7 +10,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Environment
 import androidx.core.content.ContextCompat
-import app.lawnchair.ui.util.isPlayStoreFlavor
 import com.android.launcher3.util.MainThreadInitializedObject
 import com.android.launcher3.util.SafeCloseable
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -187,11 +190,7 @@ class FileAccessManager private constructor(private val context: Context) : Safe
 
     private fun getCurrentAllFilesAccessState(): FileAccessState {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (isPlayStoreFlavor()) {
-                // MANAGE_EXTERNAL_STORAGE is disabled for Play Store releases
-                return FileAccessState.Denied
-            }
-
+            // hammock: removed the Play Store denial, Hammock ships only the github channel
             if (Environment.isExternalStorageManager()) {
                 return FileAccessState.Full
             }

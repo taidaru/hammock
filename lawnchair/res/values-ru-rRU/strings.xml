@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: rename Lawnchair to Hammock in user-facing strings -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -61,7 +64,7 @@
     <string name="time_weeks_ago">%dw</string>
     <string name="time_months_ago">%dmo</string>
     <string name="time_years_ago">%dy</string>
-    <string name="managed_by_lawnchair">Управляется Lawnchair</string>
+    <string name="managed_by_lawnchair">Управляется Hammock</string>
     <!-- When mentioning settings UI -->
     <string name="smartspace_preferences">Настройки</string>
     <string name="settings_button_text">Настройки лаунчера</string>
@@ -117,7 +120,7 @@
     <string name="folders_filter_duplicates">Показывать только неповторяющиеся приложения</string>
     <string name="my_folder_label">Моя папка</string>
     <!-- A11y description -->
-    <string name="accessibility_service_description">Для выполнения определённых действий (например, блокировки телефона) с помощью жестов, Lawnchair требуется доступ к спец. возможностям.\n\nLawnchair не отслеживает действий пользователя, хотя это требуется для всех служб спец. возможностей. Lawnchair не учитывает любые системные события.\n\nЧтобы заблокировать телефон или открыть Экран недавних приложений, Lawnchair использует службу спец. возможностей PerformGlobalAction.</string>
+    <string name="accessibility_service_description">Для выполнения определённых действий (например, блокировки телефона) с помощью жестов, Hammock требуется доступ к спец. возможностям.\n\nHammock не отслеживает действий пользователя, хотя это требуется для всех служб спец. возможностей. Hammock не учитывает любые системные события.\n\nЧтобы заблокировать телефон или открыть Экран недавних приложений, Hammock использует службу спец. возможностей PerformGlobalAction.</string>
     <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d × %2$d</string>
     <string name="x_and_y">%1$s и %2$s</string>
@@ -152,7 +155,7 @@
     <string name="quickstep_description">Кнопка \"Очистить всё\", радиус углов</string>
     <string name="about_label">О программе</string>
     <string name="app_info_drop_target_label">О приложении</string>
-    <string name="debug_restart_launcher">Перезапустить Lawnchair</string>
+    <string name="debug_restart_launcher">Перезапустить Hammock</string>
     <string name="experimental_features_label">Эксперимент. функции</string>
     <!-- Experimental features -->
     <string name="workspace_label">Рабочее пространство</string>
@@ -193,7 +196,7 @@
     Notifications
 
     -->
-    <string name="set_default_launcher_tip">Для доступа к ярлыкам и доп. функциям, установите Lawnchair в качестве лаунчера по умолчанию</string>
+    <string name="set_default_launcher_tip">Для доступа к ярлыкам и доп. функциям, установите Hammock в качестве лаунчера по умолчанию</string>
     <string name="notification_dots">Включить Точки уведомлений</string>
     <string name="show_notification_count">Отображать счётчик уведомлений</string>
     <string name="notification_dots_color">Цвет Точек уведомлений</string>
@@ -368,11 +371,11 @@
     <string name="smartspace_now_playing">Сейчас играет</string>
     <string name="smartspace_onboarding">Onboarding</string>
     <!-- Onboarding strings -->
-    <string name="onboarding_open_settings_title">Configure your Lawnchair</string>
+    <string name="onboarding_open_settings_title">Configure your Hammock</string>
     <string name="onboarding_open_settings_subtitle">Long-press on the Home Screen to open Settings</string>
-    <string name="onboarding_major_upgrade_title">Welcome to Lawnchair <xliff:g example="16" id="next_major_version">%1$d</xliff:g>!</string>
+    <string name="onboarding_major_upgrade_title">Welcome to Hammock <xliff:g example="16" id="next_major_version">%1$d</xliff:g>!</string>
     <string name="onboarding_major_upgrade_subtitle">See what\'s new!</string>
-    <string name="onboarding_welcome">Welcome to Lawnchair!</string>
+    <string name="onboarding_welcome">Welcome to Hammock!</string>
     <string name="onboarding_swipe_up">Swipe up to open the App Drawer</string>
     <!-- Smartspacer strings -->
     <string name="maximum_number_of_targets">Макс. кол-во целей</string>
@@ -383,7 +386,7 @@
     <string name="event_provider_missing_notification_dots">Чтобы использовать провайдер событий <xliff:g example="My Provider" id="providerName">%1$s</xliff:g>, включите Точки уведомлений.</string>
     <!-- Toggle button for enabling Smartspace -->
     <string name="smartspace_widget_toggle_label">Показывать на глав. экране</string>
-    <string name="smartspace_widget_toggle_description">Данные виджета \"Самое главное\" можно добавить на глав. экран вручную с помощью виджета \"Lawnchair\"</string>
+    <string name="smartspace_widget_toggle_description">Данные виджета \"Самое главное\" можно добавить на глав. экран вручную с помощью виджета \"Hammock\"</string>
     <!-- List of available providers -->
     <string name="smartspace_mode_label">Провайдер виджета \"Самое главное\"</string>
     <string name="smartspace_mode_google">Google</string>
@@ -415,7 +418,7 @@
     <string name="contributor_status_active">Активные участники</string>
     <string name="update_check_failed">Ошибка проверки обновлений</string>
     <string name="major_update_label">Breaking change!</string>
-    <string name="major_update_description">You are about to update from Lawnchair <xliff:g example="15" id="current_major_version">%1$s</xliff:g> to Lawnchair <xliff:g example="16" id="next_major_version">%2$s</xliff:g>, please consider carefully as newer major version may be unstable than current version.</string>
+    <string name="major_update_description">You are about to update from Hammock <xliff:g example="15" id="current_major_version">%1$s</xliff:g> to Hammock <xliff:g example="16" id="next_major_version">%2$s</xliff:g>, please consider carefully as newer major version may be unstable than current version.</string>
     <string name="pro_disabled_by_unknown">Cannot update!</string>
     <string name="pro_disabled_by_major_is_newer">Cannot update, This build is way too new!</string>
     <string name="updater">Updater</string>
@@ -460,21 +463,21 @@
     <string name="gesture_handler_open_assistant">Открыть приложение-ассистент</string>
     <string name="pick_app_for_gesture">Выбрать приложение</string>
     <string name="dt2s_admin_hint_title">Необходимы права администратора</string>
-    <string name="dt2s_admin_hint">To put the device to sleep, set Lawnchair as a device admin app. Tap \"Open settings\", then tap \"Activate this device admin app.\"</string>
+    <string name="dt2s_admin_hint">To put the device to sleep, set Hammock as a device admin app. Tap \"Open settings\", then tap \"Activate this device admin app.\"</string>
     <string name="dt2s_admin_warning">Gestures to put the device to sleep will be turned off.</string>
     <string name="d2ts_recents_a11y_hint_title">Включить службу спец. возможностей</string>
     <string name="sleep_a11y_hint">put the device to sleep</string>
     <string name="notifications_fallback_a11y_hint">open the notification panel</string>
     <string name="quick_settings_a11y_hint">open the Quick Settings panel</string>
     <string name="recents_screen_a11y_hint">open the Recents screen</string>
-    <string name="generic_a11y_hint">To %1$s, turn on the Lawnchair accessibility service. Tap \"Open settings\", select \"Lawnchair\" and turn on \"Use Lawnchair.\"</string>
-    <string name="generic_a11y_disclaimer">Lawnchair uses Accessibility\'s `performGlobalAction` method to perform this action. This is a sensitive permission that allows monitoring other apps. However, Lawnchair is not configured for that functionality and receives no events.</string>
+    <string name="generic_a11y_hint">To %1$s, turn on the Hammock accessibility service. Tap \"Open settings\", select \"Hammock\" and turn on \"Use Hammock.\"</string>
+    <string name="generic_a11y_disclaimer">Hammock uses Accessibility\'s `performGlobalAction` method to perform this action. This is a sensitive permission that allows monitoring other apps. However, Hammock is not configured for that functionality and receives no events.</string>
     <!--
 
     Bug reporting
 
     -->
-    <string name="lawnchair_bug_report">Отчет об ошибках Lawnchair</string>
+    <string name="lawnchair_bug_report">Отчет об ошибках Hammock</string>
     <string name="crash_report_notif_title">%1$s - произошел сбой</string>
     <string name="action_upload_crash_report">Отправить лог ошибки</string>
     <string name="action_upload_error">Отправка не удалась</string>
@@ -604,7 +607,7 @@
     <string name="max_folder_columns">Макс. кол-во столбцов в папке</string>
     <string name="max_folder_rows">Макс. кол-во строк в папке</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">Эти настройки будут проигнорированы, так как Lawnchair не установлен в качестве провайдера Экрана недавних приложений</string>
+    <string name="quickswitch_ignored_warning">Эти настройки будут проигнорированы, так как Hammock не установлен в качестве провайдера Экрана недавних приложений</string>
     <string name="quickstep_incompatible">Несовместимая системная интеграция</string>
     <string name="quickstep_incompatible_description">Ваше устройство настроено на использование системных жестов (известных как Quickstep), предоставляемых %1$s, но эта версия %1$s не совместима с вашей версией Android. Чтобы продолжить использование вашего устройства, удалите обновления %1$s или отключите %1$s как поставщика системных жестов.</string>
     <string name="translucent_background">Полупрозрачный фон</string>

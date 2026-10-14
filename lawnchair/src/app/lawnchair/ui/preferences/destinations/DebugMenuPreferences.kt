@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.preferences.destinations
 
 import androidx.compose.runtime.Composable
@@ -17,11 +21,8 @@ import app.lawnchair.ui.preferences.components.controls.SwitchPreference
 import app.lawnchair.ui.preferences.components.controls.TextPreference
 import app.lawnchair.ui.preferences.components.layout.PreferenceGroup
 import app.lawnchair.ui.preferences.components.layout.PreferenceLayout
-import app.lawnchair.ui.preferences.data.liveinfo.liveInformationManager
-import app.lawnchair.ui.preferences.data.liveinfo.model.LiveInformation
 import app.lawnchair.ui.preferences.navigation.FeatureFlags
 import com.patrykmichalik.opto.domain.Preference
-import kotlinx.coroutines.runBlocking
 
 /**
  * A screen to house unfinished preferences and debug flags
@@ -32,7 +33,7 @@ fun DebugMenuPreferences(
 ) {
     val prefs = preferenceManager()
     val prefs2 = preferenceManager2()
-    val liveInfoManager = liveInformationManager()
+    // hammock: removed liveInfoManager, announcements from lawnchair.app are removed
     val flags = remember { prefs.debugFlags }
     val flags2 = remember { prefs2.debugFlags }
     val textFlags = remember { prefs2.textFlags }
@@ -57,15 +58,7 @@ fun DebugMenuPreferences(
                     label = "Crash launcher",
                     onClick = { throw RuntimeException("User triggered crash") },
                 )
-                ClickablePreference(
-                    label = "Reset live information",
-                    onClick = {
-                        runBlocking {
-                            liveInfoManager.liveInformation.set(LiveInformation())
-                            liveInfoManager.dismissedAnnouncementIds.set(emptySet())
-                        }
-                    },
-                )
+                // hammock: removed resetting live information, announcements from lawnchair.app are removed
             }
 
             PreferenceGroup(heading = "Debug flags") {

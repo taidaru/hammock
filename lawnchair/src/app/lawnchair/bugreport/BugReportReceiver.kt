@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.bugreport
 
 import android.app.Notification
@@ -11,7 +15,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Icon
-import android.net.Uri
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import app.lawnchair.util.requireSystemService
@@ -22,39 +25,30 @@ class BugReportReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val report = intent.getParcelableExtra<BugReport>("report")!!
-        when (intent.action) {
-            COPY_ACTION -> copyReport(context, report)
-            UPLOAD_ACTION -> startUpload(context, report)
-            UPLOAD_COMPLETE_ACTION -> notify(context, report)
-        }
+        // hammock: only the copy action is left, bug reports are no longer uploaded
+        if (intent.action == COPY_ACTION) copyReport(context, report)
     }
 
     private fun copyReport(context: Context, report: BugReport) {
-        val clipData = ClipData.newPlainText(context.getString(R.string.lawnchair_bug_report), report.link ?: report.contents)
+        // hammock: copy the report text, there is no upload link anymore
+        val clipData = ClipData.newPlainText(context.getString(R.string.lawnchair_bug_report), report.contents)
         context.requireSystemService<ClipboardManager>().setPrimaryClip(clipData)
         Toast.makeText(context, R.string.copied_toast, Toast.LENGTH_LONG).show()
     }
 
-    private fun startUpload(context: Context, report: BugReport) {
-        notify(context, report, true)
-        context.startService(
-            Intent(context, UploaderService::class.java)
-                .putExtra("report", report),
-        )
-    }
-
+    // hammock: removed startUpload, bug reports are no longer uploaded
     companion object {
         const val NOTIFICATION_CHANNEL_ID = "${BuildConfig.APPLICATION_ID}.BugReport"
-        const val STATUS_CHANNEL_ID = "${BuildConfig.APPLICATION_ID}.status"
+        // hammock: removed STATUS_CHANNEL_ID, it was used only by the uploader
 
         private const val GROUP_KEY = "${BuildConfig.APPLICATION_ID}.crashes"
         private const val GROUP_ID = 0
 
         private const val COPY_ACTION = "${BuildConfig.APPLICATION_ID}.bugreport.COPY"
-        private const val UPLOAD_ACTION = "${BuildConfig.APPLICATION_ID}.bugreport.UPLOAD"
-        const val UPLOAD_COMPLETE_ACTION = "${BuildConfig.APPLICATION_ID}.bugreport.UPLOAD_COMPLETE"
+        // hammock: removed upload actions, bug reports are no longer uploaded
 
-        fun notify(context: Context, report: BugReport, uploading: Boolean = false) {
+        // hammock: removed the uploading parameter, bug reports are no longer uploaded
+        fun notify(context: Context, report: BugReport) {
             val manager: NotificationManager = context.requireSystemService()
             val notificationId = report.id
             val builder = Notification.Builder(context, NOTIFICATION_CHANNEL_ID)
@@ -87,16 +81,8 @@ class BugReportReceiver : BroadcastReceiver() {
                 .setGroup(GROUP_KEY)
 
             val fileUri = report.getFileUri(context)
-            if (report.link != null) {
-                val openIntent = Intent(Intent.ACTION_VIEW, Uri.parse(report.link))
-                val pendingOpenIntent = PendingIntent.getActivity(
-                    context,
-                    notificationId,
-                    openIntent,
-                    FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE,
-                )
-                builder.setContentIntent(pendingOpenIntent)
-            } else if (fileUri != null) {
+            // hammock: removed opening the upload link, bug reports are no longer uploaded
+            if (fileUri != null) {
                 val openIntent = Intent(Intent.ACTION_VIEW)
                     .setDataAndType(fileUri, "text/plain")
                     .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -123,7 +109,8 @@ class BugReportReceiver : BroadcastReceiver() {
             )
             builder.addAction(shareActionBuilder.build())
 
-            if (report.link != null || fileUri == null) {
+            // hammock: there is no upload link, copy only when there is no file
+            if (fileUri == null) {
                 val copyIntent = Intent(COPY_ACTION)
                     .setPackage(BuildConfig.APPLICATION_ID)
                     .putExtra("report", report)
@@ -133,39 +120,18 @@ class BugReportReceiver : BroadcastReceiver() {
                     copyIntent,
                     FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE,
                 )
-                val copyText = if (report.link != null) R.string.action_copy_link else R.string.action_copy
+                // hammock: removed the copy link label, there is no upload link anymore
                 val copyIcon = Icon.createWithResource(context, R.drawable.ic_copy)
                 val copyActionBuilder = Notification.Action.Builder(
                     copyIcon,
-                    context.getString(copyText),
+                    // hammock: always copy the report text
+                    context.getString(R.string.action_copy),
                     pendingCopyIntent,
                 )
                 builder.addAction(copyActionBuilder.build())
             }
 
-            if (uploading) {
-                builder.setOngoing(true)
-                builder.setProgress(0, 0, true)
-            } else if (report.link == null && UploaderUtils.IS_ALIVE_AVAILABLE) {
-                val uploadIntent = Intent(UPLOAD_ACTION)
-                    .setPackage(BuildConfig.APPLICATION_ID)
-                    .putExtra("report", report)
-                val pendingUploadIntent = PendingIntent.getBroadcast(
-                    context,
-                    notificationId,
-                    uploadIntent,
-                    FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE,
-                )
-                val uploadText = if (report.uploadError) R.string.action_upload_error else R.string.action_upload_crash_report
-                val uploadIcon = Icon.createWithResource(context, R.drawable.ic_upload)
-                val uploadActionBuilder = Notification.Action.Builder(
-                    uploadIcon,
-                    context.getString(uploadText),
-                    pendingUploadIntent,
-                )
-                builder.addAction(uploadActionBuilder.build())
-            }
-
+            // hammock: removed the upload action and progress, bug reports are no longer uploaded
             manager.notify(notificationId, builder.build())
             manager.notify(GROUP_ID, groupBuilder.build())
         }

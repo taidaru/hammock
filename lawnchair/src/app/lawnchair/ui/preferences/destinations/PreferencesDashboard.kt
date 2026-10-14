@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.preferences.destinations
 
 import android.app.Activity
@@ -49,7 +53,6 @@ import app.lawnchair.preferences.preferenceManager
 import app.lawnchair.preferences2.preferenceManager2
 import app.lawnchair.ui.OverflowMenu
 import app.lawnchair.ui.preferences.LocalNavController
-import app.lawnchair.ui.preferences.components.AnnouncementPreference
 import app.lawnchair.ui.preferences.components.controls.PreferenceCategory
 import app.lawnchair.ui.preferences.components.controls.WarningPreference
 import app.lawnchair.ui.preferences.components.layout.ClickableIcon
@@ -57,7 +60,6 @@ import app.lawnchair.ui.preferences.components.layout.DividerColumn
 import app.lawnchair.ui.preferences.components.layout.PreferenceDivider
 import app.lawnchair.ui.preferences.components.layout.PreferenceLayout
 import app.lawnchair.ui.preferences.components.layout.PreferenceTemplate
-import app.lawnchair.ui.preferences.data.liveinfo.SyncLiveInformation
 import app.lawnchair.ui.preferences.navigation.About
 import app.lawnchair.ui.preferences.navigation.AppDrawer
 import app.lawnchair.ui.preferences.navigation.CreateBackup
@@ -87,7 +89,7 @@ fun PreferencesDashboard(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    SyncLiveInformation()
+    // hammock: removed SyncLiveInformation, announcements from lawnchair.app are removed
     val pref2 = preferenceManager2()
 
     PreferenceLayout(
@@ -97,9 +99,8 @@ fun PreferencesDashboard(
         backArrowVisible = false,
         actions = { PreferencesOverflowMenu(currentRoute = currentRoute, onNavigate = onNavigate) },
     ) {
-        AnnouncementPreference()
-
-        if (BuildConfig.APPLICATION_ID.contains("nightly") || BuildConfig.DEBUG) {
+        // hammock: removed announcements from lawnchair.app and the nightly channel check
+        if (BuildConfig.DEBUG) {
             PreferencesDebugWarning()
             Spacer(modifier = Modifier.height(8.dp))
         }

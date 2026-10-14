@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.preferences.components.search
 
 import android.Manifest
@@ -16,7 +20,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -47,7 +50,6 @@ import app.lawnchair.ui.preferences.components.layout.ExpandAndShrink
 import app.lawnchair.ui.preferences.components.layout.PreferenceGroup
 import app.lawnchair.ui.preferences.components.layout.PreferenceTemplate
 import app.lawnchair.ui.theme.dividerColor
-import app.lawnchair.ui.util.isPlayStoreFlavor
 import app.lawnchair.util.FileAccessManager
 import app.lawnchair.util.FileAccessState
 import app.lawnchair.util.openAppPermissionSettings
@@ -194,7 +196,8 @@ private fun ManageExternalStorageSetting(
                     showPermissionDialog = true
                 }
             },
-            switchEnabled = !isPlayStoreFlavor() && (accessState != FileAccessState.Denied),
+            // hammock: no Play Store flavor, Hammock ships only the github channel
+            switchEnabled = accessState != FileAccessState.Denied,
             modifier = modifier,
         )
     }
@@ -433,34 +436,19 @@ private fun FileAccessPermissionDialog(
     val context = LocalContext.current
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        if (!isPlayStoreFlavor()) {
-            PermissionDialog(
-                title = stringResource(R.string.permissions_manage_storage),
-                modifier = modifier,
-                text = rationale,
-                isPermanentlyDenied = true,
-                onConfirm = { },
-                onDismiss = onDismiss,
-                onGoToSettings = {
-                    onPermissionRequest()
-                    context.requestManageAllFilesAccessPermission()
-                },
-            )
-        } else {
-            AlertDialog(
-                onDismissRequest = onDismiss,
-                modifier = modifier,
-                title = {
-                    Text(stringResource(R.string.manage_storage_access_denied_title))
-                },
-                text = {
-                    Text(stringResource(R.string.manage_storage_access_denied_description, stringResource(id = R.string.derived_app_name)))
-                },
-                confirmButton = {
-                    FilledTonalButton(onClick = onDismiss) { Text(stringResource(R.string.dismiss)) }
-                },
-            )
-        }
+        // hammock: removed the Play Store branch, Hammock ships only the github channel
+        PermissionDialog(
+            title = stringResource(R.string.permissions_manage_storage),
+            modifier = modifier,
+            text = rationale,
+            isPermanentlyDenied = true,
+            onConfirm = { },
+            onDismiss = onDismiss,
+            onGoToSettings = {
+                onPermissionRequest()
+                context.requestManageAllFilesAccessPermission()
+            },
+        )
     } else {
         val permission = rememberPermissionState(Manifest.permission.READ_EXTERNAL_STORAGE)
 

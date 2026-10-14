@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.search.algorithms.engine.provider.web
 
 import android.net.Uri
@@ -218,8 +222,7 @@ object StartPageWebSearchProvider : WebSearchProvider {
         @GET("suggestions")
         suspend fun getSuggestions(
             @Query("q") query: String,
-            @Query("segment") segment: String = "startpage.lawnchair", // Identify our app
-            @Query("partner") partner: String = "lawnchair",
+            // hammock: removed the Lawnchair segment and partner parameters
             @Query("format") format: String = "opensearch",
         ): Response<String>
     }

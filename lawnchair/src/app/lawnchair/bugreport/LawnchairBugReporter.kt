@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.bugreport
 
 import android.app.NotificationChannel
@@ -28,13 +32,7 @@ class LawnchairBugReporter(private val context: Context) {
                 NotificationManager.IMPORTANCE_HIGH,
             ),
         )
-        notificationManager.createNotificationChannel(
-            NotificationChannel(
-                BugReportReceiver.STATUS_CHANNEL_ID,
-                context.getString(R.string.status_channel_name),
-                NotificationManager.IMPORTANCE_NONE,
-            ),
-        )
+        // hammock: removed the status notification channel, it was used only by the uploader
 
         val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->

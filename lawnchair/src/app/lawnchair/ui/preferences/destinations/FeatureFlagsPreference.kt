@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.preferences.destinations
 
 import android.content.Intent
@@ -76,7 +80,8 @@ fun FeatureFlagsPreference(modifier: Modifier = Modifier) {
 
         preferenceCategory(
             "Workspace grid layout",
-            "To share your current workspace, use Lawnchair's backup and restore system.",
+            // hammock: Hammock app name
+            "To share your current workspace, use Hammock's backup and restore system.",
         )
         item(key = "open_backup_system") {
             val navController = LocalNavController.current

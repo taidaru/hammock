@@ -12,7 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
+// hammock: about screen without Lawnchair team, community links, privacy policy and updater
 
 package app.lawnchair.ui.preferences.about
 
@@ -28,16 +31,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -46,8 +42,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import app.lawnchair.ui.preferences.LocalIsExpandedScreen
 import app.lawnchair.ui.preferences.components.NavigationActionPreference
 import app.lawnchair.ui.preferences.components.controls.ClickablePreference
@@ -55,44 +49,15 @@ import app.lawnchair.ui.preferences.components.layout.PreferenceDivider
 import app.lawnchair.ui.preferences.components.layout.PreferenceGroupHeading
 import app.lawnchair.ui.preferences.components.layout.PreferenceGroupItem
 import app.lawnchair.ui.preferences.components.layout.PreferenceLayoutLazyColumn
-import app.lawnchair.ui.preferences.components.layout.preferenceGroupItems
 import app.lawnchair.ui.preferences.navigation.AboutLicenses
 import com.android.launcher3.BuildConfig
 import com.android.launcher3.R
-import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun About(
     modifier: Modifier = Modifier,
-    viewModel: AboutViewModel = viewModel(),
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
-
-    val sheetState = rememberModalBottomSheetState(true)
-    var openBottomSheet by remember { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
-
-    if (openBottomSheet) {
-        val updateState = uiState.updateState
-        if (updateState is UpdateState.Available) {
-            ChangesDialog(
-                changelogState = updateState.changelogState,
-                onDismiss = {
-                    scope.launch {
-                        sheetState.hide()
-                    }.invokeOnCompletion {
-                        openBottomSheet = false
-                    }
-                },
-                onDownload = {
-                    viewModel.downloadUpdate()
-                },
-                sheetState = sheetState,
-            )
-        }
-    }
 
     PreferenceLayoutLazyColumn(
         label = stringResource(id = R.string.about_label),
@@ -143,30 +108,12 @@ fun About(
                         .combinedClickable(
                             onClick = {},
                             onLongClick = {
-                                val commitUrl =
-                                    "https://github.com/LawnchairLauncher/lawnchair/commit/${BuildConfig.COMMIT_HASH}"
+                                val commitUrl = "$REPOSITORY_URL/commit/${BuildConfig.COMMIT_HASH}"
                                 context.startActivity(Intent(Intent.ACTION_VIEW, commitUrl.toUri()))
                             },
                         ),
                 )
             }
-        }
-        item {
-            Spacer(modifier = Modifier.height(8.dp))
-        }
-        item {
-            UpdateSection(
-                updateState = uiState.updateState,
-                onInstall = {
-                    viewModel.installUpdate(it)
-                },
-                onViewChanges = {
-                    openBottomSheet = true
-                    scope.launch {
-                        sheetState.show()
-                    }
-                },
-            )
         }
         item {
             Spacer(modifier = Modifier.requiredHeight(16.dp))
@@ -177,47 +124,13 @@ fun About(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
             ) {
-                uiState.topLinks.forEach { link ->
-                    LawnchairLink(
-                        iconResId = link.iconResId,
-                        label = stringResource(id = link.labelResId),
-                        modifier = Modifier.weight(weight = 1f),
-                        url = link.url,
-                    )
-                }
+                LawnchairLink(
+                    iconResId = R.drawable.ic_github,
+                    label = stringResource(id = R.string.github),
+                    modifier = Modifier.weight(weight = 1f),
+                    url = REPOSITORY_URL,
+                )
             }
-        }
-        preferenceGroupItems(
-            items = uiState.coreTeam,
-            key = { _, it -> it.name },
-            isFirstChild = false,
-            heading = { stringResource(id = R.string.product) },
-        ) { _, it ->
-            ContributorRow(
-                member = it,
-            )
-        }
-        preferenceGroupItems(
-            items = uiState.supportAndPr,
-            key = { _, it -> it.name },
-            isFirstChild = false,
-            heading = { stringResource(id = R.string.support_and_pr) },
-        ) { _, it ->
-            ContributorRow(
-                member = it,
-            )
-        }
-        preferenceGroupItems(
-            items = uiState.bottomLinks,
-            key = { _, it -> it.labelResId },
-            isFirstChild = false,
-            heading = { stringResource(id = R.string.community) },
-        ) { _, it ->
-            HorizontalLawnchairLink(
-                iconResId = it.iconResId,
-                label = stringResource(id = it.labelResId),
-                url = it.url,
-            )
         }
         item {
             PreferenceGroupHeading(
@@ -242,10 +155,9 @@ fun About(
             ) {
                 PreferenceDivider()
                 ClickablePreference(
-                    label = stringResource(id = R.string.privacy_policy),
+                    label = stringResource(id = R.string.based_on_lawnchair),
                     onClick = {
-                        val webpage = PRIVACY_POLICY.toUri()
-                        val intent = Intent(Intent.ACTION_VIEW, webpage)
+                        val intent = Intent(Intent.ACTION_VIEW, LAWNCHAIR_URL.toUri())
                         if (intent.resolveActivity(context.packageManager) != null) {
                             context.startActivity(intent)
                         }
@@ -256,4 +168,5 @@ fun About(
     }
 }
 
-private const val PRIVACY_POLICY = "https://lawnchair.app/privacy_policy"
+private const val REPOSITORY_URL = "https://github.com/taidaru/hammock"
+private const val LAWNCHAIR_URL = "https://github.com/LawnchairLauncher/lawnchair"

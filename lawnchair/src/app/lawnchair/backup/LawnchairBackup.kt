@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.backup
 
 import android.annotation.SuppressLint
@@ -127,7 +131,8 @@ class LawnchairBackup(
         )
 
         fun generateBackupFileName(): String {
-            val fileName = "Lawnchair_Backup ${SimpleDateFormat.getDateTimeInstance().format(Date())}"
+            // hammock: Hammock backup file name
+            val fileName = "Hammock_Backup ${SimpleDateFormat.getDateTimeInstance().format(Date())}"
             return "$fileName.lawnchairbackup"
         }
 

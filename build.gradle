@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 import app.cash.licensee.SpdxId
 import com.android.build.gradle.api.AndroidBasePlugin
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
@@ -173,7 +177,8 @@ android {
     applicationVariants.configureEach { variant ->
         variant.outputs.configureEach {
             def channel = variant.productFlavors.last().name
-            outputFileName = "Lawnchair.${variant.versionName}.$channel.${variant.buildType.name}.apk"
+            // hammock: Hammock APK name
+            outputFileName = "Hammock.${variant.versionName}.$channel.${variant.buildType.name}.apk"
         }
     }
 
@@ -230,25 +235,19 @@ android {
         all {
             signingConfig releaseSigning
 
-            applicationVariants.configureEach { variant ->
-                variant.outputs.configureEach {
-                    def channel = variant.productFlavors.last().name
-                    // Override signingConfig to debug if the "nightly" flavor is selected
-                    if (channel.any { it == "nightly" }) {
-                        signingConfig = signingConfigs.debug
-                    }
-                }
-            }
+            // hammock: removed debug signing for the nightly flavor, Hammock has no nightly channel
             pseudoLocalesEnabled true
         }
 
         debug {
             applicationIdSuffix ".debug"
-            resValue("string", "derived_app_name", "Lawnchair (Debug)")
+            // hammock: Hammock app name
+            resValue("string", "derived_app_name", "Hammock (Debug)")
         }
 
         release {
-            resValue("string", "derived_app_name", "Lawnchair")
+            // hammock: Hammock app name
+            resValue("string", "derived_app_name", "Hammock")
             minifyEnabled true
             shrinkResources true
             proguardFiles proguardFilesFromAosp + "proguard.pro"
@@ -278,20 +277,12 @@ android {
         }
 
         github {
-            applicationId 'app.lawnchair'
+            // hammock: Hammock application ID
+            applicationId 'io.github.taidaru.hammock'
             dimension "channel"
         }
 
-        nightly {
-            applicationId 'app.lawnchair.nightly'
-            dimension "channel"
-        }
-
-        play {
-            applicationId "app.lawnchair.play"
-            dimension "channel"
-            isDefault true
-        }
+        // hammock: removed the nightly and play flavors, Hammock ships only the github channel
 
         configureEach {
             resValue("string", "launcher_component", "${applicationId}/app.lawnchair.LawnchairLauncher")
@@ -325,21 +316,13 @@ android {
             manifest.srcFile "github/AndroidManifest.xml"
         }
 
-        nightly {
-            manifest.srcFile "nightly/AndroidManifest.xml"
-        }
+        // hammock: removed the nightly source set, Hammock ships only the github channel
 
         lawnWithQuickstepGithub {
             manifest.srcFile "quickstep/AndroidManifest-launcher.xml"
         }
 
-        lawnWithQuickstepNightly {
-            manifest.srcFile "quickstep/AndroidManifest-launcher.xml"
-        }
-
-        lawnWithQuickstepPlay {
-            manifest.srcFile "quickstep/AndroidManifest-launcher.xml"
-        }
+        // hammock: removed the nightly and play source sets, Hammock ships only the github channel
 
         withQuickstep {
             res.srcDirs = ['quickstep/res', 'quickstep/recents_ui_overrides/res']

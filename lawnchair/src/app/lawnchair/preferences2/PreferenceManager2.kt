@@ -12,12 +12,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package app.lawnchair.preferences2
 
 import android.content.Context
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.datastore.preferences.core.Preferences
@@ -49,7 +50,6 @@ import app.lawnchair.theme.color.ColorStyle
 import app.lawnchair.ui.popup.LauncherOptionsPopup
 import app.lawnchair.ui.popup.toOptionOrderString
 import app.lawnchair.ui.preferences.components.HiddenAppsInSearch
-import app.lawnchair.ui.preferences.data.liveinfo.LiveInformationManager
 import app.lawnchair.util.kotlinxJson
 import app.lawnchair.views.overlay.FullScreenOverlayMode
 import com.android.launcher3.InvariantDeviceProfile
@@ -78,8 +78,7 @@ class PreferenceManager2 private constructor(private val context: Context) :
 
     private val scope = MainScope()
     private val resourceProvider = DynamicResource.provider(context)
-    private var liveInformationManager: LiveInformationManager =
-        LiveInformationManager.getInstance(context)
+    // hammock: removed liveInformationManager, there are no remote defaults from lawnchair.app
 
     private fun idpPreference(
         key: Preferences.Key<Int>,
@@ -221,9 +220,8 @@ class PreferenceManager2 private constructor(private val context: Context) :
 
     val hotseatQsbProvider = preference(
         key = stringPreferencesKey(name = "dock_search_bar_provider"),
-        defaultValue = getRemoteDefault("dock_search_bar_provider")?.let {
-            QsbSearchProvider.fromId(it)
-        } ?: QsbSearchProvider.resolveDefault(context),
+        // hammock: local default only, remote defaults from lawnchair.app are removed
+        defaultValue = QsbSearchProvider.resolveDefault(context),
         parse = { QsbSearchProvider.fromId(it) },
         save = { it.id },
         onSet = { reloadHelper.recreate() },
@@ -501,8 +499,8 @@ class PreferenceManager2 private constructor(private val context: Context) :
     val webSuggestionProvider = preference(
         key = stringPreferencesKey(name = "web_suggestion_provider"),
         defaultValue = WebSearchProvider.fromString(
-            getRemoteDefault("web_suggestion_provider")
-                ?: context.resources.getString(R.string.config_default_web_suggestion_provider),
+            // hammock: local default only, remote defaults from lawnchair.app are removed
+            context.resources.getString(R.string.config_default_web_suggestion_provider),
         ),
         parse = { WebSearchProvider.fromString(it) },
         save = { it.toString() },
@@ -783,17 +781,7 @@ class PreferenceManager2 private constructor(private val context: Context) :
     override fun close() {
     }
 
-    private fun getRemoteDefault(key: String): String? = liveInformationManager.liveInformation
-        .firstBlocking()
-        .features[key]
-        .also { value ->
-            if (value == null) {
-                Log.d(TAG, "getRemoteDefault: $key -> no remote default")
-            } else {
-                Log.d(TAG, "getRemoteDefault: $key -> $value")
-            }
-        }
-
+    // hammock: removed getRemoteDefault, there are no remote defaults from lawnchair.app
     companion object {
         private val Context.preferencesDataStore by preferencesDataStore(
             name = "preferences",
@@ -805,8 +793,7 @@ class PreferenceManager2 private constructor(private val context: Context) :
 
         @JvmStatic
         fun getInstance(context: Context) = INSTANCE.get(context)!!
-
-        private const val TAG = "PreferenceManager2"
+        // hammock: removed TAG, it was used only by getRemoteDefault
     }
 }
 
