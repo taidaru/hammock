@@ -141,6 +141,8 @@ Tasks:
 
 Acceptance: 1 and many (6+) sections, swipe and tab switching, search, install and uninstall of an app,
 work profile pause, Private Space, rotation, launcher restart.
+Passed on a Pixel 9 Pro (Android 17) on 2026-10-16, except Private Space: the test device has none.
+An uninstalled app keeps its section row, so reinstalling it brings it back to its section.
 
 ## Phase 4. Optional app drawer
 
