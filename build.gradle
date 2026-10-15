@@ -419,7 +419,8 @@ dependencies {
     implementation libs.bundles.room
     ksp libs.room.compiler
 
-    implementation libs.libsu.service
+    // hammock: libsu is used only by Quickstep's ImageActionUtils now, it goes away with Quickstep
+    withQuickstepImplementation libs.libsu.core
 
     // Persian Date
     implementation libs.persian.date
@@ -467,7 +468,7 @@ licensee {
     allow(SpdxId.BSD_3_Clause)
     allow(SpdxId.GPL_20_or_later)
     allowDependency(libs.libsu.core)
-    allowDependency(libs.libsu.service)
+    // hammock: removed libsu-service, Hammock has no root features
     allowUrl("https://github.com/patrykmichalik/opto/blob/master/LICENSE")
     allowUrl("https://github.com/RikkaApps/HiddenApiRefinePlugin/blob/main/LICENSE")
     allowUrl("https://opensource.org/licenses/mit-license.php")

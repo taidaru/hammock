@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package app.lawnchair.preferences
@@ -62,7 +64,7 @@ class PreferenceManager private constructor(private val context: Context) :
     val launcherTheme = StringPref("pref_launcherTheme", "system")
     val overrideWindowCornerRadius = BoolPref("pref_overrideWindowCornerRadius", false, recreate)
     val windowCornerRadius = IntPref("pref_windowCornerRadius", 80, recreate)
-    val autoLaunchRoot = BoolPref("pref_autoLaunchRoot", false)
+    // hammock: removed autoLaunchRoot, Hammock has no root features
     val wallpaperScrolling = BoolPref("pref_wallpaperScrolling", true)
     val infiniteScrolling = BoolPref("pref_infiniteScrolling", false)
     val enableDebugMenu = BoolPref("pref_enableDebugMenu", false)

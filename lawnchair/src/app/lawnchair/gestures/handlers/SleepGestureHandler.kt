@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package app.lawnchair.gestures.handlers
@@ -43,7 +45,6 @@ import app.lawnchair.util.requireSystemService
 import app.lawnchair.views.ComposeBottomSheet
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
-import com.topjohnwu.superuser.Shell
 
 class SleepGestureHandler(context: Context) : GestureHandler(context) {
 
@@ -52,7 +53,7 @@ class SleepGestureHandler(context: Context) : GestureHandler(context) {
     }
 
     private val methods = listOf(
-        SleepMethodRoot(context),
+        // hammock: removed the root sleep method, Hammock has no root features
         SleepMethodPieAccessibility(context),
         SleepMethodDeviceAdmin(context),
     )
@@ -63,15 +64,7 @@ class SleepGestureHandler(context: Context) : GestureHandler(context) {
     }
 }
 
-class SleepMethodRoot(context: Context) : SleepGestureHandler.SleepMethod(context) {
-
-    override suspend fun isSupported() = Shell.getShell().isRoot
-
-    override suspend fun sleep(launcher: LawnchairLauncher) {
-        Shell.cmd("input keyevent 26").exec()
-    }
-}
-
+// hammock: removed SleepMethodRoot, Hammock has no root features
 class SleepMethodPieAccessibility(context: Context) : SleepGestureHandler.SleepMethod(context) {
     override suspend fun isSupported() = Utilities.ATLEAST_P
 
