@@ -1,107 +1,102 @@
 package app.lawnchair.sections
 
-import android.animation.ObjectAnimator
 import android.content.Context
+import android.text.TextUtils
 import android.util.AttributeSet
-import android.view.MotionEvent
 import android.view.View
-import android.view.ViewConfiguration
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.android.launcher3.workprofile.PersonalWorkSlidingTabStrip
-import kotlin.math.abs
 import kotlin.math.roundToInt
 
 /**
- * The drawer tab strip. Tabs share the width equally while their titles fit; otherwise every tab
- * takes its natural width and the strip scrolls horizontally, keeping the active tab in view.
+ * The drawer tab strip. It shows a window of at most [MAX_VISIBLE_TABS] equal tabs that follows
+ * the pager and keeps the active tab centered where the strip edges allow it. Tabs outside the
+ * window wait beyond the screen edges and slide in and out like the app pages.
  */
 class DrawerSectionTabStrip(context: Context, attrs: AttributeSet?) : PersonalWorkSlidingTabStrip(context, attrs) {
 
-    private val touchSlop = ViewConfiguration.get(context).scaledTouchSlop
     private val titlePadding = (TITLE_PADDING_DP * resources.displayMetrics.density).roundToInt()
-    private var contentWidth = 0
-    private var downX = 0f
-    private var lastX = 0f
-    private var dragging = false
-    private var activePage = 0
+    private val location = IntArray(2)
 
-    private val maxScroll get() = (contentWidth - width).coerceAtLeast(0)
+    /** Pager position in pages, e.g. 1.5 halfway between the second and the third page. */
+    private var pageProgress = 0f
+
+    private val visibleTabs get() = (0 until childCount).map { getChildAt(it) }.filter { it.visibility != View.GONE }
+
+    init {
+        clipToPadding = false
+    }
+
+    override fun onViewAdded(child: View) {
+        super.onViewAdded(child)
+        (child as? TextView)?.apply {
+            maxLines = 1
+            ellipsize = TextUtils.TruncateAt.END
+            setPaddingRelative(
+                paddingStart.coerceAtLeast(titlePadding),
+                paddingTop,
+                paddingEnd.coerceAtLeast(titlePadding),
+                paddingBottom,
+            )
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val tabs = (0 until childCount).map { getChildAt(it) }.filter { it.visibility != View.GONE }
-        val unspecified = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
-        val naturalWidths = tabs.map { tab ->
-            tab.measure(unspecified, unspecified)
-            val lp = tab.layoutParams as LinearLayout.LayoutParams
-            tab.measuredWidth + 2 * titlePadding + lp.marginStart + lp.marginEnd
-        }
-        // Equal widths first, to learn the width the strip gets.
+        val tabs = visibleTabs
         tabs.forEach { setTabWidth(it, width = 0, weight = 1f) }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val available = measuredWidth - paddingStart - paddingEnd
-        if (naturalWidths.sum() <= available) {
-            contentWidth = measuredWidth
-        } else {
-            tabs.forEach { tab ->
-                tab.measure(unspecified, unspecified)
-                setTabWidth(tab, width = tab.measuredWidth + 2 * titlePadding, weight = 0f)
-            }
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-            contentWidth = naturalWidths.sum() + paddingStart + paddingEnd
+        if (tabs.size <= MAX_VISIBLE_TABS) return
+
+        // Every tab gets the width it would have with exactly MAX_VISIBLE_TABS equal tabs.
+        val margins = tabs.sumOf {
+            val lp = it.layoutParams as LinearLayout.LayoutParams
+            lp.marginStart + lp.marginEnd
         }
+        val gap = margins / (tabs.size - 1)
+        val tabWidth = (measuredWidth - paddingStart - paddingEnd - gap * (MAX_VISIBLE_TABS - 1)) / MAX_VISIBLE_TABS
+        tabs.forEach { setTabWidth(it, tabWidth, weight = 0f) }
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)
-        scrollX = scrollX.coerceIn(0, maxScroll)
+        followPages()
     }
 
-    override fun setActiveMarker(activePage: Int) {
-        super.setActiveMarker(activePage)
-        this.activePage = activePage
-        post { scrollToActiveTab() }
-    }
-
-    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-        if (maxScroll == 0) return false
-        when (ev.actionMasked) {
-            MotionEvent.ACTION_DOWN -> {
-                downX = ev.x
-                lastX = ev.x
-                dragging = false
-            }
-
-            MotionEvent.ACTION_MOVE -> if (abs(ev.x - downX) > touchSlop) {
-                dragging = true
-                lastX = ev.x
-                parent?.requestDisallowInterceptTouchEvent(true)
-            }
+    override fun setScroll(currentScroll: Int, totalScroll: Int) {
+        super.setScroll(currentScroll, totalScroll)
+        val lastPage = visibleTabs.size - 1
+        pageProgress = if (totalScroll > 0 && lastPage > 0) {
+            currentScroll.toFloat() / totalScroll * lastPage
+        } else {
+            0f
         }
-        return dragging
+        followPages()
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (maxScroll == 0) return super.onTouchEvent(event)
-        when (event.actionMasked) {
-            MotionEvent.ACTION_MOVE -> {
-                scrollX = (scrollX + (lastX - event.x).toInt()).coerceIn(0, maxScroll)
-                lastX = event.x
+    // ponytail: LTR only; in RTL the window does not move and extra tabs stay out of view
+    private fun followPages() {
+        val tabs = visibleTabs
+        if (tabs.size <= MAX_VISIBLE_TABS || isLayoutRtl) {
+            tabs.forEach { it.translationX = 0f }
+            return
+        }
+        val windowStart = (pageProgress - (MAX_VISIBLE_TABS - 1) / 2).coerceIn(0f, (tabs.size - MAX_VISIBLE_TABS).toFloat())
+        val step = (tabs[1].left - tabs[0].left).toFloat()
+        // Distances from the window edges to the screen edges: past them a tab is out of view.
+        getLocationInWindow(location)
+        val insetStart = location[0] + paddingStart
+        val insetEnd = rootView.width - location[0] - width + paddingEnd
+        tabs.forEachIndexed { i, tab ->
+            val slot = i - windowStart
+            val beyond = when {
+                slot < 0 -> -insetStart * (-slot).coerceAtMost(1f)
+                slot > MAX_VISIBLE_TABS - 1 -> insetEnd * (slot - (MAX_VISIBLE_TABS - 1)).coerceAtMost(1f)
+                else -> 0f
             }
-
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> dragging = false
+            tab.translationX = -windowStart * step + beyond
         }
-        return true
-    }
-
-    private fun scrollToActiveTab() {
-        if (maxScroll == 0) return
-        val tab = getChildAt(activePage) ?: return
-        val target = when {
-            tab.left - paddingStart < scrollX -> tab.left - paddingStart
-            tab.right + paddingEnd > scrollX + width -> tab.right + paddingEnd - width
-            else -> return
-        }
-        ObjectAnimator.ofInt(this, "scrollX", target.coerceIn(0, maxScroll)).start()
     }
 
     private fun setTabWidth(tab: View, width: Int, weight: Float) {
@@ -112,7 +107,9 @@ class DrawerSectionTabStrip(context: Context, attrs: AttributeSet?) : PersonalWo
     }
 
     private companion object {
-        /** Space between a tab title and the tab edge, on each side. */
-        const val TITLE_PADDING_DP = 12
+        /** The least space between a tab title and the tab edge, on each side. */
+        const val TITLE_PADDING_DP = 16
+
+        const val MAX_VISIBLE_TABS = 3
     }
 }
