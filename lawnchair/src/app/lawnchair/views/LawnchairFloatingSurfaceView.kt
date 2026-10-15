@@ -147,9 +147,10 @@ class LawnchairFloatingSurfaceView @JvmOverloads constructor(
 
         viewsToAnimate.forEach(
             Consumer { view: View? ->
+                // hammock: the AOSP duration, Lawnchair's 3x made the home screen settle for a second
                 val scaleAnim =
                     ObjectAnimator.ofFloat<View?>(view, LauncherAnimUtils.SCALE_PROPERTY, *scales)
-                        .setDuration(CONTENT_SCALE_DURATION.toLong() * 3)
+                        .setDuration(CONTENT_SCALE_DURATION.toLong())
                 scaleAnim.interpolator = Interpolators.DECELERATE_1_5
                 launcherAnimator.play(scaleAnim)
             },
