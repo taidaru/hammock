@@ -20,14 +20,33 @@ Phases are done in order. A phase is done when its acceptance criteria are verif
 Without root a third-party launcher never gets Recents, gesture navigation or remote transitions,
 so this code never runs. Removing it first gives a smaller codebase to build the features on.
 
-- [ ] Inventory everything that depends on `quickstep/`: `LawnchairLauncher extends QuickstepLauncher`,
-      taskbar, overview, recents-related settings and gesture actions, accessibility "open Recents" action.
-- [ ] Make `LawnchairLauncher` extend `Launcher`; build through `src_no_quickstep/`.
-- [ ] Replace the `withQuickstep` flavor dimension; the variant becomes `lawnGithubDebug`.
-- [ ] Remove root features: QuickSwitch, `RootHelperManager`.
-- [ ] Remove modules that only Quickstep needed (`quickstep/`, `wmshell/`, `systemUI/`, `hidden-api/`, `prebuilts/`),
+- [x] Inventory everything that depends on `quickstep/` (see below).
+- [ ] Remove root features: `root/` (`RootHelperManager`, `autoLaunchRoot`).
+- [ ] Remove Lawnchair code that only works as the Recents provider: `overview/`, `RecentHelper`,
+      `TaskIconUtils`, `TaskUtilLockState`, `LawnchairLockedStateController`, the Quickstep settings screen,
+      the QuickSwitch check in `LawnchairApp`; `isRecentsEnabled` branches keep their "false" side.
+- [ ] Cut the Launcher3 core (`src/`, `res/`) loose from `quickstep/`.
+- [ ] Make `LawnchairLauncher` extend `Launcher`.
+- [ ] Build through `src_no_quickstep/` without the `withQuickstep` flavor dimension; the variant becomes `lawnGithubDebug`.
+- [ ] Remove modules that only Quickstep needed (`quickstep/`, `wmshell/`, `systemUI/`, `hidden-api/`, `prebuilts/`, `compatLib/`),
       each only after checking nothing else uses it.
 - [ ] Remove settings and strings that only made sense with Quickstep.
+
+Inventory (as of the Phase 0 base). Each step above keeps the build green; Quickstep still compiles until the build switch.
+- Core `src/`: `LauncherState` (`uioverrides.states`, stubs exist in `src_no_quickstep/`), `DeviceProfile`
+  (`uioverrides.ApiWrapper`), `Hotseat` (`taskbar.BlurredBitmapDrawable`), `Launcher`
+  (`QuickstepLauncher`), `FloatingIconView` and `ClipIconView` (`TaskView`).
+  `res/layout/floating_{split_select,app_pair,widget}_view.xml` inflate `com.android.quickstep.views`.
+- Lawnchair: `LawnchairLauncher` (base class, Overview/BackgroundApp states, `QuickStepContract` window corner
+  radius, `LawnchairQuickstepCompat` launch options), `LawnchairApp` (`RecentsActivity`), `LawnchairProcessInitializer`,
+  `ReloadHelper` (`TouchInteractionService`), `LawnchairFloatingSurfaceView` (`QuickstepTransitionManager`),
+  `LawnchairUtils`, `LawnchairASISearchAlgorithm`, `res/layout-v28,v31/task_desktop.xml`.
+- Modules used outside Quickstep and kept: `flags` (`com.android.launcher3.Flags`), `plugin` and `plugincore`
+  (Launcher3 plugin interfaces). `hidden-api` is used only for `android.app.search.SearchTarget`
+  (`LawnchairASISearchAlgorithm`, `SearchTargetCompat`).
+- Not a Quickstep dependency: the "Open Recents" gesture uses `AccessibilityService.GLOBAL_ACTION_RECENTS`
+  and stays. Gesture Nav Contract (`handleGestureContract`) is how Pixel Launcher animates the swipe home
+  into a third-party launcher and stays.
 
 Acceptance: no references to Quickstep classes; app launch and close animations, widgets, drag and drop,
 work profile, Private Space and predictive back on home all work as before.
