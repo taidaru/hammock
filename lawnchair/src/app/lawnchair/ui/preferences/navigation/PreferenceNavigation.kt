@@ -20,6 +20,7 @@ import app.lawnchair.backup.ui.restoreBackupGraph
 import app.lawnchair.backup.ui.restoreNovaBackupGraph
 import app.lawnchair.preferences.BasePreferenceManager
 import app.lawnchair.preferences.preferenceManager
+import app.lawnchair.sections.DrawerSectionsPreferences
 import app.lawnchair.ui.preferences.LocalIsExpandedScreen
 import app.lawnchair.ui.preferences.about.About
 import app.lawnchair.ui.preferences.about.acknowledgements.Acknowledgements
@@ -118,6 +119,8 @@ fun PreferenceNavigation(
 
         composable<AppDrawer> { AppDrawerPreferences() }
         composable<AppDrawerHiddenApps> { HiddenAppsPreferences() }
+        // hammock: the drawer sections screen
+        composable<AppDrawerSections> { DrawerSectionsPreferences() }
         // hammock: removed the drawer folder routes, drawer sections replace drawer folders
 
         composable<Search> { backStackEntry ->

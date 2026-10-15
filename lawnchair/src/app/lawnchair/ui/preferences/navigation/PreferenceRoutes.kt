@@ -102,6 +102,10 @@ data object DockSearchProvider : PreferenceRoute
 @Serializable
 data object AppDrawerHiddenApps : PreferenceRoute
 
+// hammock: the drawer sections screen
+@Serializable
+data object AppDrawerSections : PreferenceRoute
+
 // hammock: removed the drawer folder routes, drawer sections replace drawer folders
 
 // Search section routes

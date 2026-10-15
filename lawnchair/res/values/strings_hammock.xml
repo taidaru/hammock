@@ -2,4 +2,17 @@
 <resources>
     <string name="based_on_lawnchair">Based on Lawnchair</string>
     <string name="move_to_section">Move to…</string>
+    <string name="drawer_sections_label">Sections</string>
+    <plurals name="drawer_sections_count">
+        <item quantity="one">%d section</item>
+        <item quantity="other">%d sections</item>
+    </plurals>
+    <string name="drawer_main_section">Main section</string>
+    <string name="drawer_main_section_description">New apps and apps not moved to another section go here. This section can\'t be deleted.</string>
+    <string name="drawer_extra_sections">Other sections</string>
+    <string name="drawer_section_add">Add section</string>
+    <string name="drawer_section_new">New section</string>
+    <string name="drawer_section_rename">Rename section</string>
+    <string name="drawer_section_delete">Delete section</string>
+    <string name="drawer_section_delete_description">Apps from “%1$s” will move to “%2$s”.</string>
 </resources>

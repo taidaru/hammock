@@ -20,6 +20,7 @@ package app.lawnchair.ui.preferences.destinations
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -28,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import app.lawnchair.preferences.getAdapter
 import app.lawnchair.preferences.preferenceManager
 import app.lawnchair.preferences2.preferenceManager2
+import app.lawnchair.sections.DrawerSectionsRepository
 import app.lawnchair.ui.preferences.LocalIsExpandedScreen
 import app.lawnchair.ui.preferences.components.NavigationActionPreference
 import app.lawnchair.ui.preferences.components.SuggestionsPreference
@@ -39,6 +41,7 @@ import app.lawnchair.ui.preferences.components.layout.ExpandAndShrink
 import app.lawnchair.ui.preferences.components.layout.PreferenceGroup
 import app.lawnchair.ui.preferences.components.layout.PreferenceLayout
 import app.lawnchair.ui.preferences.navigation.AppDrawerHiddenApps
+import app.lawnchair.ui.preferences.navigation.AppDrawerSections
 import com.android.launcher3.R
 
 object AppDrawerRoutes {
@@ -61,6 +64,13 @@ fun AppDrawerPreferences(
     ) {
         // hammock: removed the drawer layout (categories) and folder settings, drawer sections replace them
         PreferenceGroup(heading = stringResource(id = R.string.general_label)) {
+            // hammock: entry to the drawer sections screen
+            val sectionCount = DrawerSectionsRepository.INSTANCE.get(context).sections.collectAsState().value.sections.size
+            NavigationActionPreference(
+                label = stringResource(id = R.string.drawer_sections_label),
+                subtitle = resources.getQuantityString(R.plurals.drawer_sections_count, sectionCount, sectionCount),
+                destination = AppDrawerSections,
+            )
             val hiddenApps = prefs2.hiddenApps.getAdapter().state.value
             NavigationActionPreference(
                 label = stringResource(id = R.string.hidden_apps_label),

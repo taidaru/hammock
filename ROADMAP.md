@@ -96,15 +96,15 @@ the dock, the drawer and search; closing with the swipe gesture and the Home but
 
 ## Phase 3. App drawer sections
 
-The drawer is split into up to 5 swipeable sections, like the Personal / Work tabs.
+The drawer is split into swipeable sections, like the Personal / Work tabs.
 
 Decisions:
 - Each app belongs to exactly one section. The first section is the main one: unassigned and newly
   installed apps go there.
-- At most 5 sections (`MAX_DRAWER_SECTIONS`). With a single section the tab bar is hidden, which is
-  the Pixel Launcher look.
+- Any number of sections: the tab bar shows three at a time anyway. With a single section the tab bar
+  is hidden, which is the Pixel Launcher look.
 - The work profile is an extra system section at the end, shown only when the profile exists,
-  not counted in the limit, with the pause button as today.
+  with the pause button as today.
 - Private Space stays at the bottom of the main section.
 - Search covers all sections.
 - Apps inside a section are sorted alphabetically (manual order is post-MVP).
@@ -133,12 +133,13 @@ Tasks:
       (`DrawerSectionTabStrip`); changes apply live.
 - [x] "Move to…" system shortcut (`MoveToSectionShortcut`): drawer apps of the main profile, while there is
       more than one section.
-- [ ] Settings screen for sections (Compose).
+- [x] Settings screen for sections (`DrawerSectionsPreferences`): add, rename, reorder by drag, delete;
+      the entry is in App drawer settings.
 - [x] Remove Lawnchair drawer folders and categories (drawer list, settings, routes, strings). The core keeps
       its now unused drawer-folder rendering; the categorization utilities stay for Lawndeck until Phase 4.
-- [ ] Strings in English and Russian.
+- [x] Strings in English and Russian (`strings_hammock.xml`).
 
-Acceptance: 1 and 5 sections, swipe and tab switching, search, install and uninstall of an app,
+Acceptance: 1 and many (6+) sections, swipe and tab switching, search, install and uninstall of an app,
 work profile pause, Private Space, rotation, launcher restart.
 
 ## Phase 4. Optional app drawer
@@ -203,6 +204,10 @@ Acceptance: Home button, returning from apps, launcher restart, page add and rem
   (long-press currently drags the icon to the home screen).
 - Drag an app onto another section's tab.
 - Private Space access in drawer-less mode.
+- Settings jank: opening a settings screen composes the whole screen in one frame (40–70 ms in a compiled
+  release build). Move heavy screens (App drawer, General) from `PreferenceLayout`'s scrolling column to a lazy
+  list, avoid blocking DataStore reads (`firstBlocking`) in preference adapters, and add settings journeys to
+  the baseline profile.
 - Review which Lawnchair features to keep (currently all are kept).
 - Verify Startpage web suggestions still work without Lawnchair partner parameters.
 - Revisit the base: Lawnchair `15-dev` is frozen; `16-dev` targets Android 17.

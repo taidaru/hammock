@@ -2,4 +2,19 @@
 <resources>
     <string name="based_on_lawnchair">Основано на Lawnchair</string>
     <string name="move_to_section">Переместить в…</string>
+    <string name="drawer_sections_label">Разделы</string>
+    <plurals name="drawer_sections_count">
+        <item quantity="one">%d раздел</item>
+        <item quantity="few">%d раздела</item>
+        <item quantity="many">%d разделов</item>
+        <item quantity="other">%d раздела</item>
+    </plurals>
+    <string name="drawer_main_section">Основной раздел</string>
+    <string name="drawer_main_section_description">Сюда попадают новые приложения и те, что не перенесены в другой раздел. Этот раздел нельзя удалить.</string>
+    <string name="drawer_extra_sections">Другие разделы</string>
+    <string name="drawer_section_add">Добавить раздел</string>
+    <string name="drawer_section_new">Новый раздел</string>
+    <string name="drawer_section_rename">Переименовать раздел</string>
+    <string name="drawer_section_delete">Удалить раздел</string>
+    <string name="drawer_section_delete_description">Приложения из «%1$s» перейдут в «%2$s».</string>
 </resources>
