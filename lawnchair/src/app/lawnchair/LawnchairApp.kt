@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package app.lawnchair
@@ -19,44 +21,25 @@ package app.lawnchair
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.requiredWidth
-import androidx.compose.material3.Button
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import app.lawnchair.backup.LawnchairBackup
 import app.lawnchair.flowerpot.Flowerpot
 import app.lawnchair.preferences.PreferenceManager
-import app.lawnchair.ui.ModalBottomSheetContent
-import app.lawnchair.ui.preferences.destinations.openAppInfo
 import app.lawnchair.util.restartLauncher
 import app.lawnchair.util.unsafeLazy
-import app.lawnchair.views.ComposeBottomSheet
 import com.android.launcher3.BuildConfig
 import com.android.launcher3.InvariantDeviceProfile
-import com.android.launcher3.Launcher
-import com.android.launcher3.R
 import com.android.launcher3.Utilities
-import com.android.quickstep.RecentsActivity
 import com.android.systemui.shared.system.QuickStepContract
 import java.io.File
 
 class LawnchairApp : Application() {
-    private val compatible = Build.VERSION.SDK_INT in BuildConfig.QUICKSTEP_MIN_SDK..BuildConfig.QUICKSTEP_MAX_SDK
-    private val isRecentsComponent: Boolean by unsafeLazy { checkRecentsComponent() }
-    private val recentsEnabled: Boolean get() = compatible && isRecentsComponent
+    // hammock: removed the Recents provider (QuickSwitch) check, Hammock is never the Recents provider
     private val isAtleastT = Utilities.ATLEAST_T
     internal var accessibilityService: LawnchairAccessibilityService? = null
     val isVibrateOnIconAnimation: Boolean by unsafeLazy { getSystemUiBoolean("config_vibrateOnIconAnimation", false) }
@@ -64,34 +47,12 @@ class LawnchairApp : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        QuickStepContract.sRecentsDisabled = !recentsEnabled
+        // hammock: Quickstep still reads this until it is removed
+        QuickStepContract.sRecentsDisabled = true
         Flowerpot.Manager.getInstance(this)
     }
 
-    fun hideClockInStatusBar() {
-        if (!isRecentsEnabled) return
-        try {
-            val currentBlacklist = Settings.Secure.getString(contentResolver, "icon_blacklist") ?: ""
-            val newBlacklist = if (currentBlacklist.contains("clock")) {
-                currentBlacklist
-            } else {
-                "$currentBlacklist,clock"
-            }
-            Settings.Secure.putString(contentResolver, "icon_blacklist", newBlacklist)
-        } catch (_: Exception) {
-            // ignore
-        }
-    }
-
-    fun restoreClockInStatusBar() {
-        if (!isRecentsEnabled) return
-        try {
-            val currentBlacklist = Settings.Secure.getString(contentResolver, "icon_blacklist") ?: ""
-            val newBlacklist = currentBlacklist.split(",").filter { it != "clock" }.joinToString(",")
-            Settings.Secure.putString(contentResolver, "icon_blacklist", newBlacklist)
-        } catch (_: Exception) {
-        }
-    }
+    // hammock: removed the status bar clock toggle, it needs WRITE_SECURE_SETTINGS and the Recents provider role
 
     fun onLauncherAppStateCreated() {
         registerActivityLifecycleCallbacks(activityHandler)
@@ -185,29 +146,7 @@ class LawnchairApp : Application() {
         }
     }
 
-    private fun checkRecentsComponent(): Boolean {
-        @SuppressLint("DiscouragedApi")
-        val resId = resources.getIdentifier("config_recentsComponentName", "string", "android")
-        if (resId == 0) {
-            Log.d(TAG, "config_recentsComponentName not found, disabling recents")
-            return false
-        }
-
-        val recentsComponent = ComponentName.unflattenFromString(resources.getString(resId))
-        if (recentsComponent == null) {
-            Log.d(TAG, "config_recentsComponentName is empty, disabling recents")
-            return false
-        }
-
-        val isRecentsComponent = recentsComponent.packageName == packageName &&
-            recentsComponent.className == RecentsActivity::class.java.name
-        if (!isRecentsComponent) {
-            Log.d(TAG, "config_recentsComponentName ($recentsComponent) is not Lawnchair, disabling recents")
-            return false
-        }
-
-        return true
-    }
+    // hammock: removed checkRecentsComponent, Hammock is never the Recents provider
 
     fun isAccessibilityServiceBound(): Boolean = accessibilityService != null
 
@@ -227,45 +166,14 @@ class LawnchairApp : Application() {
         lateinit var instance: LawnchairApp
             private set
 
+        // hammock: Quickstep still reads this until it is removed
         @JvmStatic
-        val isRecentsEnabled: Boolean get() = instance.recentsEnabled
+        val isRecentsEnabled: Boolean get() = false
 
         @JvmStatic
         val isAtleastT: Boolean get() = instance.isAtleastT
 
-        fun Launcher.showQuickstepWarningIfNecessary() {
-            val launcher = this
-            if (!lawnchairApp.isRecentsComponent || isRecentsEnabled) return
-            ComposeBottomSheet.show(this) {
-                ModalBottomSheetContent(
-                    title = { Text(text = stringResource(id = R.string.quickstep_incompatible)) },
-                    text = {
-                        val description = stringResource(
-                            id = R.string.quickstep_incompatible_description,
-                            stringResource(id = R.string.derived_app_name),
-                            Build.VERSION.RELEASE,
-                        )
-                        Text(text = description)
-                    },
-                    buttons = {
-                        OutlinedButton(
-                            onClick = {
-                                openAppInfo(launcher)
-                                close(true)
-                            },
-                        ) {
-                            Text(text = stringResource(id = R.string.app_info_drop_target_label))
-                        }
-                        Spacer(modifier = Modifier.requiredWidth(8.dp))
-                        Button(
-                            onClick = { close(true) },
-                        ) {
-                            Text(text = stringResource(id = android.R.string.ok))
-                        }
-                    },
-                )
-            }
-        }
+        // hammock: removed the QuickSwitch incompatibility warning, Hammock is never the Recents provider
 
         fun getUriForFile(context: Context, file: File): Uri {
             return FileProvider.getUriForFile(context, "${BuildConfig.APPLICATION_ID}.fileprovider", file)

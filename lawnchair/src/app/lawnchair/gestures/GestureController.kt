@@ -12,12 +12,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package app.lawnchair.gestures
 
 import androidx.lifecycle.lifecycleScope
-import app.lawnchair.LawnchairApp
 import app.lawnchair.LawnchairLauncher
 import app.lawnchair.gestures.config.GestureHandlerConfig
 import app.lawnchair.gestures.handlers.GestureHandler
@@ -57,7 +58,8 @@ class GestureController(private val launcher: LawnchairLauncher) {
     }
 
     fun onHomePressed() {
-        triggerHandler(homePressHandler, LawnchairApp.isRecentsEnabled)
+        // hammock: Hammock is never the Recents provider, so Home press never vibrates
+        triggerHandler(homePressHandler, false)
     }
 
     fun onBackPressed() {

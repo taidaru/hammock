@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.preferences.navigation
 
 import androidx.compose.runtime.Composable
@@ -43,7 +47,6 @@ import app.lawnchair.ui.preferences.destinations.IconShapePreference
 import app.lawnchair.ui.preferences.destinations.LauncherPopupPreference
 import app.lawnchair.ui.preferences.destinations.PickAppForGesture
 import app.lawnchair.ui.preferences.destinations.PreferencesDashboard
-import app.lawnchair.ui.preferences.destinations.QuickstepPreferences
 import app.lawnchair.ui.preferences.destinations.SearchPreferences
 import app.lawnchair.ui.preferences.destinations.SearchProviderPreferences
 import app.lawnchair.ui.preferences.destinations.SelectAppsForDrawerFolder
@@ -138,7 +141,7 @@ fun PreferenceNavigation(
         composable<Gestures> { GesturePreferences() }
         composable<GesturesPickApp> { PickAppForGesture() }
 
-        composable<Quickstep> { QuickstepPreferences() }
+        // hammock: removed the Quickstep settings route, Hammock is never the Recents provider
 
         composable<About> { About() }
         composable<AboutLicenses> { Acknowledgements() }

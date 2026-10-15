@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.preferences.navigation
 
 import app.lawnchair.ui.preferences.components.search.SearchProviderId
@@ -50,8 +54,7 @@ data class Search(val selectedId: SearchRoute = SearchRoute.DOCK_SEARCH) : Prefe
 @Serializable
 data object Folders : PreferenceRootRoute
 
-@Serializable
-data object Quickstep : PreferenceRootRoute
+// hammock: removed the Quickstep route, Hammock is never the Recents provider
 
 @Serializable
 data object Gestures : PreferenceRootRoute

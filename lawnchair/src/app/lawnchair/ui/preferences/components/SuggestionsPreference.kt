@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.preferences.components
 
 import android.annotation.SuppressLint
@@ -6,11 +10,7 @@ import android.content.pm.PackageManager
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import app.lawnchair.LawnchairApp
-import app.lawnchair.preferences.getAdapter
-import app.lawnchair.preferences2.preferenceManager2
 import app.lawnchair.ui.preferences.components.controls.ClickablePreference
-import app.lawnchair.ui.preferences.components.controls.SwitchPreference
 import com.android.launcher3.R
 
 @SuppressLint("WrongConstant")
@@ -28,16 +28,6 @@ fun SuggestionsPreference() {
                 context.startActivity(intent)
             },
         )
-    } else {
-        // On some devices, the Suggestions activity could not be found or PACKAGE_USAGE_STATS is not granted.
-
-        if (LawnchairApp.isRecentsEnabled) {
-            val prefs2 = preferenceManager2()
-            val showRecentAppsInDrawer = prefs2.showSuggestedAppsInDrawer.getAdapter()
-            SwitchPreference(
-                label = stringResource(id = R.string.show_suggested_apps_at_drawer_top),
-                adapter = showRecentAppsInDrawer,
-            )
-        }
     }
+    // hammock: removed the fallback suggested apps switch, it needs the Recents provider role
 }

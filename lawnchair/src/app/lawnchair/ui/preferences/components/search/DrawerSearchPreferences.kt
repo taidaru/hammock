@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.preferences.components.search
 
 import android.content.Context
@@ -66,76 +70,43 @@ fun DrawerSearchPreference(
 
         PreferenceGroup(heading = stringResource(id = R.string.show_search_result_types)) {
             val searchAlgorithm = preferenceManager2().searchAlgorithm.getAdapter().state.value
-            if (searchAlgorithm != LawnchairSearchAlgorithm.ASI_SEARCH) {
-                val navController = LocalNavController.current
-                val canDisable = searchAlgorithm != LawnchairSearchAlgorithm.APP_SEARCH
-                val adapter = prefs.searchResultApps.getAdapter()
+            // hammock: removed ASI search, Android System Intelligence results need the Recents provider role
+            val navController = LocalNavController.current
+            val canDisable = searchAlgorithm != LawnchairSearchAlgorithm.APP_SEARCH
+            val adapter = prefs.searchResultApps.getAdapter()
 
-                TwoTargetSwitchPreference(
-                    checked = if (canDisable) adapter.state.value else true,
-                    onCheckedChange = if (canDisable) adapter::onChange else ({}),
-                    enabled = canDisable,
-                    label = stringResource(R.string.search_pref_result_apps_and_shortcuts_title),
-                    onClick = {
-                        navController.navigate(SearchProviderPreference(SearchProviderId.APPS))
-                    },
+            TwoTargetSwitchPreference(
+                checked = if (canDisable) adapter.state.value else true,
+                onCheckedChange = if (canDisable) adapter::onChange else ({}),
+                enabled = canDisable,
+                label = stringResource(R.string.search_pref_result_apps_and_shortcuts_title),
+                onClick = {
+                    navController.navigate(SearchProviderPreference(SearchProviderId.APPS))
+                },
+            )
+            if (searchAlgorithm == LawnchairSearchAlgorithm.LOCAL_SEARCH) {
+                LocalSearchSettings(
+                    prefs = prefs,
+                    prefs2 = prefs2,
+                    context = context,
                 )
-            }
-            when (searchAlgorithm) {
-                LawnchairSearchAlgorithm.LOCAL_SEARCH -> {
-                    LocalSearchSettings(
-                        prefs = prefs,
-                        prefs2 = prefs2,
-                        context = context,
-                    )
-                }
-
-                LawnchairSearchAlgorithm.ASI_SEARCH -> {
-                    ASISearchSettings(prefs)
-                }
             }
         }
     }
 }
 
-@Composable
-private fun ASISearchSettings(prefs: PreferenceManager) {
-    SwitchPreference(
-        adapter = prefs.searchResultShortcuts.getAdapter(),
-        label = stringResource(id = R.string.search_pref_result_shortcuts_title),
-    )
-    SwitchPreference(
-        adapter = prefs.searchResultPeople.getAdapter(),
-        label = stringResource(id = R.string.search_pref_result_people_title),
-    )
-    SwitchPreference(
-        adapter = prefs.searchResultPixelTips.getAdapter(),
-        label = stringResource(id = R.string.search_pref_result_tips_title),
-    )
-    SwitchPreference(
-        adapter = prefs.searchResultSettings.getAdapter(),
-        label = stringResource(id = R.string.search_pref_result_settings_title),
-    )
-}
+// hammock: removed ASISearchSettings, ASI search needs the Recents provider role
 
 @Composable
 private fun SearchProvider(
     context: Context,
 ) {
+    // hammock: removed the ASI search entry, it needs the Recents provider role
     val searchAlgorithmEntries = remember {
-        sequenceOf(
+        listOf(
             ListPreferenceEntry(LawnchairSearchAlgorithm.APP_SEARCH) { stringResource(R.string.search_algorithm_app_search) },
             ListPreferenceEntry(LawnchairSearchAlgorithm.LOCAL_SEARCH) { stringResource(R.string.search_algorithm_global_search_on_device) },
-            ListPreferenceEntry(LawnchairSearchAlgorithm.ASI_SEARCH) { stringResource(R.string.search_algorithm_global_search_via_asi) },
-        ).filter {
-            when (it.value) {
-                LawnchairSearchAlgorithm.ASI_SEARCH -> LawnchairSearchAlgorithm.isASISearchEnabled(
-                    context,
-                )
-
-                else -> true
-            }
-        }.toList()
+        )
     }
 
     ListPreference(

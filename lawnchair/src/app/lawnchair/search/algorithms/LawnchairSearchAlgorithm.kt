@@ -1,7 +1,10 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.search.algorithms
 
 import android.content.Context
-import app.lawnchair.LawnchairApp
 import app.lawnchair.allapps.views.SearchItemBackground
 import app.lawnchair.allapps.views.SearchResultView.Companion.EXTRA_QUICK_LAUNCH
 import app.lawnchair.preferences2.PreferenceManager2
@@ -25,7 +28,6 @@ import com.android.app.search.LayoutType.TEXT_HEADER
 import com.android.app.search.LayoutType.THUMBNAIL
 import com.android.app.search.LayoutType.WIDGET_LIVE
 import com.android.launcher3.BuildConfig
-import com.android.launcher3.Utilities
 import com.android.launcher3.allapps.BaseAllAppsAdapter
 import com.android.launcher3.search.SearchAlgorithm
 import com.android.launcher3.search.SearchCallback
@@ -202,30 +204,13 @@ sealed class LawnchairSearchAlgorithm(
 
         const val APP_SEARCH = "appSearch"
         const val LOCAL_SEARCH = "localSearch"
-        const val ASI_SEARCH = "globalSearch"
-
-        private var ranCompatibilityCheck = false
-
-        fun isASISearchEnabled(context: Context): Boolean {
-            if (!Utilities.ATLEAST_S) return false
-            if (!LawnchairApp.isRecentsEnabled) return false
-
-            if (!ranCompatibilityCheck) {
-                ranCompatibilityCheck = true
-                LawnchairASISearchAlgorithm.checkSearchCompatibility(context)
-            }
-            return true
-        }
+        // hammock: removed ASI search, Android System Intelligence results need the Recents provider role
 
         fun create(context: Context): LawnchairSearchAlgorithm {
             val prefs = PreferenceManager2.getInstance(context)
             val searchAlgorithm = prefs.searchAlgorithm.firstBlocking()
 
             return when {
-                searchAlgorithm == ASI_SEARCH && isASISearchEnabled(context) -> LawnchairASISearchAlgorithm(
-                    context,
-                )
-
                 searchAlgorithm == LOCAL_SEARCH -> LawnchairLocalSearchAlgorithm(context)
 
                 else -> LawnchairAppSearchAlgorithm(context)

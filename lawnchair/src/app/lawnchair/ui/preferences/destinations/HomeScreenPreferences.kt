@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package app.lawnchair.ui.preferences.destinations
@@ -23,7 +25,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import app.lawnchair.LawnchairApp
 import app.lawnchair.data.iconoverride.IconOverrideRepository
 import app.lawnchair.nexuslauncher.OverlayCallbackImpl
 import app.lawnchair.preferences.getAdapter
@@ -184,13 +185,7 @@ fun HomeScreenPreferences(
                     label = stringResource(id = R.string.dark_status_bar_label),
                 )
             }
-            ExpandAndShrink(visible = showStatusBarAdapter.state.value && LawnchairApp.isRecentsEnabled) {
-                SwitchPreference(
-                    adapter = prefs2.statusBarClock.getAdapter(),
-                    label = stringResource(id = R.string.status_bar_clock_label),
-                    description = stringResource(id = R.string.status_bar_clock_description),
-                )
-            }
+            // hammock: removed the status bar clock switch, the feature needs the Recents provider role
         }
         PreferenceGroup(heading = stringResource(id = R.string.icons)) {
             SliderPreference(

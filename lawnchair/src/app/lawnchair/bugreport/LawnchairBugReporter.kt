@@ -9,7 +9,6 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import android.util.Log
-import app.lawnchair.LawnchairApp
 import app.lawnchair.util.MainThreadInitializedObject
 import app.lawnchair.util.requireSystemService
 import com.android.launcher3.BuildConfig
@@ -110,7 +109,7 @@ class LawnchairBugReporter(private val context: Context) {
             .appendLine("version.release: ${Build.VERSION.RELEASE}")
             .appendLine("version.sdk_int: ${Build.VERSION.SDK_INT}")
             .appendLine("display.density_dpi: ${context.resources.displayMetrics.densityDpi}")
-            .appendLine("isRecentsEnabled: ${LawnchairApp.isRecentsEnabled}")
+            // hammock: removed isRecentsEnabled, Hammock is never the Recents provider
             .appendLine()
             .appendLine("error: $error")
             .also {

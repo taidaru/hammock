@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  * Modifications copyright 2021, Lawnchair
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package com.android.launcher3;
@@ -143,7 +145,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import app.lawnchair.LawnchairApp;
-import app.lawnchair.LawnchairAppKt;
 import app.lawnchair.preferences.PreferenceManager;
 import app.lawnchair.preferences2.PreferenceManager2;
 import app.lawnchair.smartspace.DoubleShadowTextView;
@@ -619,13 +620,7 @@ public class Workspace<T extends View & PageIndicator> extends PagedView<T>
         setWallpaperDimension();
     }
 
-    public void updateStatusbarClock() {
-        if (mCurrentPage == 0 && PreferenceExtensionsKt.firstBlocking(mPreferenceManager2.getStatusBarClock())) {
-            LawnchairAppKt.getLawnchairApp(mLauncher).hideClockInStatusBar();
-        } else {
-            LawnchairAppKt.getLawnchairApp(mLauncher).restoreClockInStatusBar();
-        }
-    }
+    // hammock: removed updateStatusbarClock, the status bar clock toggle needs the Recents provider role
 
     private void setupLayoutTransition() {
         // We want to show layout transitions when pages are deleted, to close the gap.
@@ -1544,7 +1539,7 @@ public class Workspace<T extends View & PageIndicator> extends PagedView<T>
                                             .setPageIndex(prevPage))
                             .build())
                     .log(event);
-            updateStatusbarClock();
+            // hammock: removed the status bar clock update on page change
         }
     }
 

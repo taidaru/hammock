@@ -36,7 +36,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
-import app.lawnchair.LawnchairApp.Companion.showQuickstepWarningIfNecessary
 import app.lawnchair.compat.LawnchairQuickstepCompat
 import app.lawnchair.data.AppDatabase
 import app.lawnchair.data.wallpaper.service.WallpaperService
@@ -68,7 +67,6 @@ import com.android.launcher3.statemanager.StateManager
 import com.android.launcher3.statemanager.StateManager.StateHandler
 import com.android.launcher3.uioverrides.QuickstepLauncher
 import com.android.launcher3.uioverrides.states.AllAppsState
-import com.android.launcher3.uioverrides.states.BackgroundAppState
 import com.android.launcher3.uioverrides.states.OverviewState
 import com.android.launcher3.util.ActivityOptionsWrapper
 import com.android.launcher3.util.Executors
@@ -118,23 +116,7 @@ class LawnchairLauncher : QuickstepLauncher() {
         }
         override fun onStateTransitionComplete(finalState: LauncherState) {}
     }
-    private val statusBarClockListener = object : StateManager.StateListener<LauncherState> {
-        override fun onStateTransitionStart(toState: LauncherState) {
-            when (toState) {
-                is BackgroundAppState,
-                is OverviewState,
-                is AllAppsState,
-                -> {
-                    LawnchairApp.instance.restoreClockInStatusBar()
-                }
-
-                else -> {
-                    workspace.updateStatusbarClock()
-                }
-            }
-        }
-        override fun onStateTransitionComplete(finalState: LauncherState) {}
-    }
+    // hammock: removed the status bar clock listener, the feature needs the Recents provider role
     private val clearSearchStateListener = object : StateManager.StateListener<LauncherState> {
         override fun onStateTransitionComplete(finalState: LauncherState) {
             if (finalState == LauncherState.NORMAL && mAppsView != null && mAppsView.isSearching) {
@@ -187,17 +169,7 @@ class LawnchairLauncher : QuickstepLauncher() {
             }
         }.launchIn(scope = lifecycleScope)
 
-        preferenceManager2.statusBarClock.get().onEach {
-            with(launcher.stateManager) {
-                if (it) {
-                    addStateListener(statusBarClockListener)
-                } else {
-                    removeStateListener(statusBarClockListener)
-                    // Make sure status bar clock is restored when the preference is toggled off
-                    LawnchairApp.instance.restoreClockInStatusBar()
-                }
-            }
-        }
+        // hammock: removed the status bar clock subscription, the feature needs the Recents provider role
         preferenceManager2.rememberPosition.get().onEach {
             with(launcher.stateManager) {
                 if (it) {
@@ -238,7 +210,7 @@ class LawnchairLauncher : QuickstepLauncher() {
 
         colorScheme = themeProvider.colorScheme
 
-        showQuickstepWarningIfNecessary()
+        // hammock: removed the QuickSwitch incompatibility warning, Hammock is never the Recents provider
 
         reloadIconsIfNeeded()
 
@@ -252,10 +224,8 @@ class LawnchairLauncher : QuickstepLauncher() {
 
     override fun getSupportedShortcuts(): Stream<SystemShortcut.Factory<*>> = Stream.concat(
         super.getSupportedShortcuts(),
-        Stream.concat(
-            Stream.of(LawnchairShortcut.UNINSTALL, LawnchairShortcut.CUSTOMIZE),
-            if (LawnchairApp.isRecentsEnabled) Stream.of(LawnchairShortcut.PAUSE_APPS) else Stream.empty(),
-        ),
+        // hammock: removed the Pause apps shortcut, it needs the Recents provider role and hidden APIs
+        Stream.of(LawnchairShortcut.UNINSTALL, LawnchairShortcut.CUSTOMIZE),
     )
 
     override fun updateTheme() {
@@ -295,7 +265,8 @@ class LawnchairLauncher : QuickstepLauncher() {
     }
 
     override fun handleGestureContract(intent: Intent?) {
-        if (!LawnchairApp.isRecentsEnabled && prefs.enableGnc.get()) {
+        // hammock: Hammock is never the Recents provider, so only the Gesture Nav Contract pref matters
+        if (prefs.enableGnc.get()) {
             val gnc = GestureNavContract.fromIntent(intent)
             if (gnc != null) {
                 AbstractFloatingView.closeOpenViews(

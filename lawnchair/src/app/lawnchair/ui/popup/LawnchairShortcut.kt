@@ -1,18 +1,17 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.ui.popup
 
-import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.app.AppGlobals
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.LauncherActivityInfo
 import android.content.pm.LauncherApps
-import android.content.pm.SuspendDialogInfo
 import android.net.Uri
 import android.os.UserHandle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.compose.foundation.layout.PaddingValues
@@ -71,14 +70,7 @@ class LawnchairShortcut {
                 UnInstall(activity, itemInfo, view)
             }
 
-        val PAUSE_APPS = SystemShortcut.Factory { activity: LawnchairLauncher, itemInfo: ItemInfo, originalView: View ->
-            val targetCmp = itemInfo.targetComponent
-            val packageName = targetCmp?.packageName ?: return@Factory null
-
-            if (PackageManagerHelper(activity).isAppSuspended(packageName, itemInfo.user)) return@Factory null
-
-            PauseApps(activity, itemInfo, originalView)
-        }
+        // hammock: removed PAUSE_APPS, suspending apps needs the Recents provider role and hidden APIs
     }
 
     class Customize(
@@ -116,58 +108,7 @@ class LawnchairShortcut {
         }
     }
 
-    class PauseApps(
-        target: LawnchairLauncher,
-        itemInfo: ItemInfo,
-        originalView: View,
-    ) : SystemShortcut<LawnchairLauncher>(
-        R.drawable.ic_hourglass_top,
-        R.string.paused_apps_drop_target_label,
-        target,
-        itemInfo,
-        originalView,
-    ) {
-        @SuppressLint("NewApi")
-        override fun onClick(view: View) {
-            val context = view.context
-            val appLabel = PackageManagerHelper(context).getApplicationInfo(
-                mItemInfo.targetComponent?.packageName ?: "",
-                mItemInfo.user,
-                0,
-            )?.let {
-                context.packageManager.getApplicationLabel(
-                    it,
-                )
-            }
-            AlertDialog.Builder(context)
-                .setIcon(R.drawable.ic_hourglass_top)
-                .setTitle(context.getString(R.string.pause_apps_dialog_title, appLabel))
-                .setMessage(context.getString(R.string.pause_apps_dialog_message, appLabel))
-                .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(R.string.pause) { _, _ ->
-                    try {
-                        AppGlobals.getPackageManager().setPackagesSuspendedAsUser(
-                            arrayOf(mItemInfo.targetComponent?.packageName ?: ""),
-                            true, null, null,
-                            SuspendDialogInfo.Builder()
-                                .setIcon(R.drawable.ic_hourglass_top)
-                                .setTitle(R.string.paused_apps_dialog_title)
-                                .setMessage(R.string.paused_apps_dialog_message)
-                                .setNeutralButtonAction(SuspendDialogInfo.BUTTON_ACTION_UNSUSPEND)
-                                .build(),
-                            0,
-                            context.opPackageName,
-                            context.userId,
-                            mItemInfo.user.identifier,
-                        )
-                    } catch (e: Throwable) {
-                        Log.e("LawnchairShortcut", "Failed to pause app", e)
-                    }
-                }
-                .show()
-            AbstractFloatingView.closeAllOpenViews(mTarget)
-        }
-    }
+    // hammock: removed PauseApps, suspending apps needs the Recents provider role and hidden APIs
 
     class UnInstall(private var target: BaseDraggingActivity?, private var itemInfo: ItemInfo?, originalView: View?) :
         SystemShortcut<BaseDraggingActivity>(

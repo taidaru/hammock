@@ -21,10 +21,12 @@ Without root a third-party launcher never gets Recents, gesture navigation or re
 so this code never runs. Removing it first gives a smaller codebase to build the features on.
 
 - [x] Inventory everything that depends on `quickstep/` (see below).
-- [ ] Remove root features: `root/` (`RootHelperManager`, `autoLaunchRoot`).
-- [ ] Remove Lawnchair code that only works as the Recents provider: `overview/`, `RecentHelper`,
+- [x] Remove root features: `root/` (`RootHelperManager`, `autoLaunchRoot`).
+- [x] Remove Lawnchair code that only works as the Recents provider: `overview/`, `RecentHelper`,
       `TaskIconUtils`, `TaskUtilLockState`, `LawnchairLockedStateController`, the Quickstep settings screen,
-      the QuickSwitch check in `LawnchairApp`; `isRecentsEnabled` branches keep their "false" side.
+      the QuickSwitch check in `LawnchairApp`, ASI search, the Pause apps shortcut, the status bar clock toggle;
+      `isRecentsEnabled` branches keep their "false" side. `isRecentsEnabled` itself stays, hardwired to `false`,
+      while Quickstep still reads it.
 - [ ] Cut the Launcher3 core (`src/`, `res/`) loose from `quickstep/`.
 - [ ] Make `LawnchairLauncher` extend `Launcher`.
 - [ ] Build through `src_no_quickstep/` without the `withQuickstep` flavor dimension; the variant becomes `lawnGithubDebug`.
@@ -40,10 +42,10 @@ Inventory (as of the Phase 0 base). Each step above keeps the build green; Quick
 - Lawnchair: `LawnchairLauncher` (base class, Overview/BackgroundApp states, `QuickStepContract` window corner
   radius, `LawnchairQuickstepCompat` launch options), `LawnchairApp` (`RecentsActivity`), `LawnchairProcessInitializer`,
   `ReloadHelper` (`TouchInteractionService`), `LawnchairFloatingSurfaceView` (`QuickstepTransitionManager`),
-  `LawnchairUtils`, `LawnchairASISearchAlgorithm`, `res/layout-v28,v31/task_desktop.xml`.
+  `LawnchairUtils`, `res/layout-v28,v31/task_desktop.xml`.
 - Modules used outside Quickstep and kept: `flags` (`com.android.launcher3.Flags`), `plugin` and `plugincore`
   (Launcher3 plugin interfaces). `hidden-api` is used only for `android.app.search.SearchTarget`
-  (`LawnchairASISearchAlgorithm`, `SearchTargetCompat`).
+  (`SearchTargetCompat`).
 - Not a Quickstep dependency: the "Open Recents" gesture uses `AccessibilityService.GLOBAL_ACTION_RECENTS`
   and stays. Gesture Nav Contract (`handleGestureContract`) is how Pixel Launcher animates the swipe home
   into a third-party launcher and stays.
@@ -130,6 +132,8 @@ Acceptance: Home button, returning from apps, launcher restart, page add and rem
 
 ## Post-MVP backlog
 
+- Return-to-home animation: remove the brief blur of the dock when Home is pressed in an app,
+  to match Pixel Launcher (Lawnchair has the same issue).
 - Manual app order in sections: alphabetical until the first manual move, new apps go to the end,
   "Sort alphabetically" action in the section menu. Needs a solution for the long-press conflict
   (long-press currently drags the icon to the home screen).
