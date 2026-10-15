@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Επιλογή όλων</string>
     <string name="deselect_all">Αποεπιλογή όλων</string>
     <string name="inverse_selection">Αντίστροφη επιλογή</string>
-    <string name="loading">Φόρτωση…</string>
     <string name="dismiss">Παράβλεψη</string>
     <string name="download_update">Λήψη ενημέρωσης</string>
     <string name="install_update">Εγκατάσταση ενημέρωσης</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Τι να εμφανίζεται</string>
     <string name="wallpapers">Ταπετσαρία και στιλ</string>
-    <string name="caddy_beta">Κατηγορίες (Beta)</string>
     <string name="caddy">Κατηγορίες</string>
-    <string name="app_drawer_folder">Φάκελοι συρταριού εφαρμογών</string>
     <string name="selected_apps">Επιλεγμένες εφαρμογές</string>
     <string name="add_apps">Προσθήκη εφαρμογών</string>
     <string name="app_drawer_folder_settings">Δημιουργία, διαγραφή ή επεξεργασία φακέλων</string>
-    <string name="add_folder">Δημιουργία φακέλου</string>
     <string name="edit_folder">Επεξεργασία φακέλου</string>
     <string name="add_label">Προσθήκη</string>
     <string name="edit_label">Επεξεργασία</string>
     <string name="apply_label">Εφαρμογή</string>
     <string name="delete_label">Διαγραφή</string>
     <string name="folder_list_note">Σύρετε προς τα αριστερά για επεξεργασία, σύρετε προς τα δεξιά για διαγραφή ή πατήστε για ενημέρωση στοιχείων</string>
-    <string name="apps_in_folder_label">Απόκρυψη εφαρμογών φακέλων</string>
-    <string name="apps_in_folder_description">Οι εφαρμογές που έχουν εκχωρηθεί σε φακέλους εξαιρούνται από τις λίστες εφαρμογών</string>
-    <string name="folders_filter_duplicates">Εμφάνιση μόνο ιδιαίτερων εφαρμογών</string>
-    <string name="my_folder_label">Ο φάκελός μου</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Για την εκτέλεση ορισμένων ενεργειών (όπως το κλείδωμα του τηλεφώνου σας) κατά την εκτέλεση μιας χειρονομίας, ο εκκινητής Lawnchair απαιτεί δικαιώματα προσβασιμότητας.\n\nΟ εκκινητής Lawnchair δεν παρακολουθεί καμία ενέργεια χρήστη, αν και το δικαίωμα αυτό απαιτείται για όλες τις υπηρεσίες προσβασιμότητας. Ο εκκινητής Lawnchair απορρίπτει οποιοδήποτε συμβάν αποστέλλεται από το σύστημα.\n\nΓια να κλειδώσετε το τηλέφωνό σας ή για να ανοίξετε την οθόνη Πρόσφατων εφαρμογών, ο εκκινητής Lawnchair χρησιμοποιεί την υπηρεσία προσβασιμότητας performGlobalAction.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d × %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">Προχωρημένες ρυθμίσεις</string>

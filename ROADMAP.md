@@ -111,7 +111,15 @@ Decisions:
 - Moving an app: "Move to…" item in the icon long-press menu.
 - Sections are created, renamed, reordered and deleted in settings. Deleting a section returns its apps
   to the main section.
-- Lawnchair drawer folders are removed; their Room tables are reused for sections.
+- The first section is "Personal" by default; it can be renamed but not deleted.
+- The tab bar keeps equal-width tabs while they fit and scrolls when they do not, keeping the active tab
+  in view; titles are never cut.
+- Lawnchair's drawer folders and drawer categories are both removed: inside a section the drawer is a plain
+  alphabetical list, as in Pixel Launcher. The folder Room tables are replaced by section tables in one
+  migration; Hammock has no released users, so folder data is not migrated.
+- Core hook: `MAIN`, `WORK` and `SEARCH` keep their adapter indices; extra sections get adapters from index 3,
+  and the core maps pager pages to adapters (main section, extra sections, work). Section logic lives in
+  `app.lawnchair.sections`.
 
 Tasks:
 - [ ] Data: Room entities for sections and app-to-section mapping (keyed by component and user).
@@ -119,7 +127,8 @@ Tasks:
       `ActivityAllAppsContainerView` and the Personal / Work tab bar to N tabs.
 - [ ] "Move to…" system shortcut.
 - [ ] Settings screen for sections (Compose).
-- [ ] Remove Lawnchair drawer folders (UI, settings, routes).
+- [x] Remove Lawnchair drawer folders and categories (drawer list, settings, routes, strings). The core keeps
+      its now unused drawer-folder rendering; the categorization utilities stay for Lawndeck until Phase 4.
 - [ ] Strings in English and Russian.
 
 Acceptance: 1 and 5 sections, swipe and tab switching, search, install and uninstall of an app,

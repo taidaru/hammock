@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">모두 선택</string>
     <string name="deselect_all">모두 선택 해제</string>
     <string name="inverse_selection">선택 반전</string>
-    <string name="loading">불러오는 중...</string>
     <string name="dismiss">취소</string>
     <string name="download_update">업데이트 다운로드</string>
     <string name="install_update">업데이트 설치</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">표시할 항목</string>
     <string name="wallpapers">배경화면</string>
-    <string name="caddy_beta">Caddy (베타)</string>
     <string name="caddy">Caddy</string>
-    <string name="app_drawer_folder">앱 서랍 폴더</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">서랍 폴더</string>
-    <string name="add_folder">폴더 만들기</string>
     <string name="edit_folder">폴더 편집</string>
     <string name="add_label">추가</string>
     <string name="edit_label">편집</string>
     <string name="apply_label">적용</string>
     <string name="delete_label">삭제</string>
     <string name="folder_list_note">항목을 왼쪽으로 스와이프 하면 편집, 오른쪽으로 스와이프 해서 삭제를, 탭하여 업데이트할 수 있습니다</string>
-    <string name="apps_in_folder_label">폴더 앱 숨기기</string>
-    <string name="apps_in_folder_description">폴더에 지정한 앱을 앱 목록에서 제외</string>
-    <string name="folders_filter_duplicates">중복 앱 숨기기</string>
-    <string name="my_folder_label">내 폴더</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">특정 액션들(휴대전화 잠그기 같은 액션)을 제스처로 작동시키려면, Lawnchair가 접근성 기능에 접근해야 합니다. \n\nLawnchair는 접근성 기능을 필요로 하지만 사용자의 활동을 감시하지 않으며, 시스템에서 발송된 모든 이벤트는 삭제됩니다. \n\nLawnchair는 휴대전화를 잠그거나 최근 앱을 보기 위해서 GlobalActionAccessbility 서비스를 사용합니다.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">고급</string>

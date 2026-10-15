@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
@@ -46,7 +47,6 @@
     <string name="action_copy">Copy</string>
     <string name="action_paste">Paste</string>
 
-    <string name="loading">Loading…</string>
 
     <string name="managed_by_lawnchair">Managed by Lawnchair</string>
 

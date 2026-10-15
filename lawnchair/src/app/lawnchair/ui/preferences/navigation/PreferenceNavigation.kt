@@ -26,7 +26,6 @@ import app.lawnchair.ui.preferences.about.acknowledgements.Acknowledgements
 import app.lawnchair.ui.preferences.components.colorpreference.ColorPreferenceModelList
 import app.lawnchair.ui.preferences.components.colorpreference.ColorSelection
 import app.lawnchair.ui.preferences.components.search.SearchProviderPreferenceScreen
-import app.lawnchair.ui.preferences.destinations.AppDrawerFoldersPreference
 import app.lawnchair.ui.preferences.destinations.AppDrawerPreferences
 import app.lawnchair.ui.preferences.destinations.CustomIconShapePreference
 import app.lawnchair.ui.preferences.destinations.DebugMenuPreferences
@@ -49,7 +48,6 @@ import app.lawnchair.ui.preferences.destinations.PickAppForGesture
 import app.lawnchair.ui.preferences.destinations.PreferencesDashboard
 import app.lawnchair.ui.preferences.destinations.SearchPreferences
 import app.lawnchair.ui.preferences.destinations.SearchProviderPreferences
-import app.lawnchair.ui.preferences.destinations.SelectAppsForDrawerFolder
 import app.lawnchair.ui.preferences.destinations.SelectIconPreference
 import app.lawnchair.ui.preferences.destinations.SmartspacePreferences
 import com.android.launcher3.util.ComponentKey
@@ -120,12 +118,7 @@ fun PreferenceNavigation(
 
         composable<AppDrawer> { AppDrawerPreferences() }
         composable<AppDrawerHiddenApps> { HiddenAppsPreferences() }
-        composable<AppDrawerAppListToFolder> { backStackEntry ->
-            val args = backStackEntry.arguments!!
-            val folderInfoId = args.getInt("id")
-            SelectAppsForDrawerFolder(folderInfoId)
-        }
-        composable<AppDrawerFolder> { AppDrawerFoldersPreference() }
+        // hammock: removed the drawer folder routes, drawer sections replace drawer folders
 
         composable<Search> { backStackEntry ->
             val route: Search = backStackEntry.toRoute()

@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- PreferenceDashboard -->
     <string name="settings">Mpangilio</string>
@@ -343,7 +344,6 @@
     <string name="dt2s_a11y_hint_title">Washa Huduma ya Ufikiaji</string>
     <string name="dt2s_a11y_hint">Ili kutumia Gusa Mara Mbili ili Ulale, washa huduma ya ufikiaji wa Lawnchair. Gusa Fungua Mipangilio, kisha uchague Lawnchair na uwashe Tumia Lawnchair.</string>
     <string name="dt2s_warning_open_settings">Fungua mfumo</string>
-    <string name="loading">Inapakia…</string>
     <string name="system">Mfumo</string>
     <string name="customize_button_text">Binafsisha ikufae</string>
     <string name="label">Lebo</string>

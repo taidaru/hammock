@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">すべて選択</string>
     <string name="deselect_all">すべて選択解除</string>
     <string name="inverse_selection">選択を反転する</string>
-    <string name="loading">読み込み中…</string>
     <string name="dismiss">無視</string>
     <string name="download_update">アップデートをダウンロード</string>
     <string name="install_update">アップデートのインストール</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">表示する項目</string>
     <string name="wallpapers">壁紙</string>
-    <string name="caddy_beta">Caddy(ベータ版)</string>
     <string name="caddy">Caddy</string>
-    <string name="app_drawer_folder">アプリドロワーのフォルダー</string>
     <string name="selected_apps">選択したアプリ</string>
     <string name="add_apps">アプリを追加</string>
     <string name="app_drawer_folder_settings">ドロワーフォルダー</string>
-    <string name="add_folder">フォルダーを作成する</string>
     <string name="edit_folder">フォルダーを編集する</string>
     <string name="add_label">追加</string>
     <string name="edit_label">編集</string>
     <string name="apply_label">適用</string>
     <string name="delete_label">削除</string>
     <string name="folder_list_note">左にスワイプして編集、右にスワイプして削除、またはタップしてアイテムを更新します</string>
-    <string name="apps_in_folder_label">フォルダーアプリを隠す</string>
-    <string name="apps_in_folder_description">フォルダーに割り当てられたアプリはアプリリストから除外されます</string>
-    <string name="folders_filter_duplicates">固有のアプリのみ表示</string>
-    <string name="my_folder_label">自分のフォルダー</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">ジェスチャー操作時に特定の操作（スマートフォンのロックなど）を実行するには、Lawnchair にユーザー補助機能へのアクセスが必要です。\n\nLawnchair はユーザーの操作を監視しませんが、すべてのユーザー補助サービスにはユーザー補助機能へのアクセス権限が必要です。Lawnchair はシステムから送信されたイベントをすべて破棄します。\n\nLawnchair はスマートフォンをロックしたり、「最近」画面を開いたりするために、performGlobalAction ユーザー補助機能サービスを使用します。</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d × %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">高度な設定</string>

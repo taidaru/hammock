@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">حدد الكل</string>
     <string name="deselect_all">إلغاء تحديد الكل</string>
     <string name="inverse_selection">الاختيار العكسي</string>
-    <string name="loading">جارٍ التحميل…</string>
     <string name="dismiss">تجاهل</string>
     <string name="download_update">تنزيل التحديث</string>
     <string name="install_update">تثبيت التحديث</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">ماذا يُعرض</string>
     <string name="wallpapers">خلفيات</string>
-    <string name="caddy_beta">كادي (بيتا)</string>
     <string name="caddy">كادي</string>
-    <string name="app_drawer_folder">مجلدات درج التطبيقات</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">مجلد الأدراج</string>
-    <string name="add_folder">إنشاء مجلد</string>
     <string name="edit_folder">تحرير المجلد</string>
     <string name="add_label">يضيف</string>
     <string name="edit_label">يحرر</string>
     <string name="apply_label">تطبيق</string>
     <string name="delete_label">حذف</string>
     <string name="folder_list_note">اسحب لليسار لتحرير العناصر، أو اسحب لليمين لحذفها، أو انقر لتحديث العناصر</string>
-    <string name="apps_in_folder_label">إخفاء مجلدات التطبيقات</string>
-    <string name="apps_in_folder_description">يتم استبعاد التطبيقات المخصصة للمجلدات من قوائم التطبيقات</string>
-    <string name="folders_filter_duplicates">إظهار التطبيقات الفريدة فقط</string>
-    <string name="my_folder_label">مجلدي</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">للقيام بإجراءات معينة (مثل غلق الهاتف) عند تنفيذ إيماءة، يتطلب Lawnchair منح الاذن إلى إمكانية الوصول.\n\nلا يراقب Lawnchair أي إجراء للمستخدم، على الرغم من ذلك فان الاذن مطلوب لجميع خدمات إمكانية الوصول. يتجاهل Lawnchair أي حدث يرسله النظام.\n\nلغلق هاتفك أو فتح \"التطبيقات الأخيرة\"، يستخدم Lawnchair خدمة إمكانية الوصول performGlobalAction.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">متقدم</string>

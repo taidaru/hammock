@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Изабери све</string>
     <string name="deselect_all">Поништи избор</string>
     <string name="inverse_selection">Обрни избор</string>
-    <string name="loading">Учитава се…</string>
     <string name="dismiss">Dismiss</string>
     <string name="download_update">Преузми ажурирање</string>
     <string name="install_update">Инсталирај ажурирање</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Информације за приказ</string>
     <string name="wallpapers">Позадине</string>
-    <string name="caddy_beta">Груписано (бета)</string>
     <string name="caddy">Груписано</string>
-    <string name="app_drawer_folder">Фолдери на листи апликација</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">Фолдер на листи апликација</string>
-    <string name="add_folder">Направи фолдер</string>
     <string name="edit_folder">Уреди фолдер</string>
     <string name="add_label">Додај</string>
     <string name="edit_label">Уреди</string>
     <string name="apply_label">Примени</string>
     <string name="delete_label">Избриши</string>
     <string name="folder_list_note">Превуците улево за уређивање, удесно за брисање, или додирните за ажурирање ставки</string>
-    <string name="apps_in_folder_label">Сакриј апликације из фолдера</string>
-    <string name="apps_in_folder_description">Апликације у фолдерима су изузете са листе апликација</string>
-    <string name="folders_filter_duplicates">Приказуј само апликације које се не понављају</string>
-    <string name="my_folder_label">Мој фолдер</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Да бисте извршили одређене радње (попут закључавања уређаја) покретом, Lawnchair-у је потребан приступ услузи приступачности.\n\nПомоћу ње се могу надгледати корисничке радње, али је Lawnchair не користи у те сврхе.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s и %2$s</string>
     <string name="advanced">Напредно</string>

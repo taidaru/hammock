@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Velg alle</string>
     <string name="deselect_all">Opphev all markering</string>
     <string name="inverse_selection">Inverter valg</string>
-    <string name="loading">Laster…</string>
     <string name="dismiss">Avvis</string>
     <string name="download_update">Last ned oppdatering</string>
     <string name="install_update">Installer oppdatering</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Hva som skal vises</string>
     <string name="wallpapers">Bakgrunnsbilder</string>
-    <string name="caddy_beta">Caddy (Beta)</string>
     <string name="caddy">Caddy</string>
-    <string name="app_drawer_folder">Applikasjonsskuffemapper</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">Skuffemappe</string>
-    <string name="add_folder">Opprett mappe</string>
     <string name="edit_folder">Rediger mappe</string>
     <string name="add_label">Legg til</string>
     <string name="edit_label">Rediger</string>
     <string name="apply_label">Bruk</string>
     <string name="delete_label">Slett</string>
     <string name="folder_list_note">Sveip til venstre for å redigere, dra til høyre for å slette, eller trykk for å oppdatere elementer</string>
-    <string name="apps_in_folder_label">Skjul appene i mappen</string>
-    <string name="apps_in_folder_description">Apper tilordnet mapper er ekskludert fra applister</string>
-    <string name="folders_filter_duplicates">Vis kun unike apper</string>
-    <string name="my_folder_label">Min mappe</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">For å utføre visse handlinger (som å låse telefonen din) når du utfører en gest, krever Lawnchair tilgang på tilgjengelighetstjenester.\n\nLawnchair ser ingen brukerhandlinger, men rettighetene til å gjøre dette er nødvendig for alle tilgjengelighetstjenester. Lawnchair forkaster enhver hendelse som systemet sender.\n\nFor å låse telefonen din, eller for å åpne nylig-skjermen, anvender Lawnchair tjenesten performGlobalAction Accessibility</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">Avansert</string>

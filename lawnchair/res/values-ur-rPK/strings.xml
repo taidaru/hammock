@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">سبھی کو منتخب کریں۔</string>
     <string name="deselect_all">سبھی کو غیر منتخب کریں۔</string>
     <string name="inverse_selection">الٹا انتخاب</string>
-    <string name="loading">لوڈ ہو رہا ہے…</string>
     <string name="dismiss">برطرف</string>
     <string name="download_update">اپ ڈیٹ ڈاؤن لوڈ کریں۔</string>
     <string name="install_update">اپ ڈیٹ انسٹال کریں۔</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">کیا دکھانا ہے۔</string>
     <string name="wallpapers">وال پیپرز</string>
-    <string name="caddy_beta">کیڈی (بیٹا)</string>
     <string name="caddy">کیڈی</string>
-    <string name="app_drawer_folder">ایپ ڈراور فولڈرز</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">دراز فولڈر</string>
-    <string name="add_folder">فولڈر بنائیں</string>
     <string name="edit_folder">فولڈر میں ترمیم کریں۔</string>
     <string name="add_label">شامل کریں۔</string>
     <string name="edit_label">ترمیم کریں۔</string>
     <string name="apply_label">لگائیں</string>
     <string name="delete_label">حذف کریں۔</string>
     <string name="folder_list_note">ترمیم کرنے کے لیے بائیں سوائپ کریں، حذف کرنے کے لیے دائیں سوائپ کریں، یا آئٹمز کو اپ ڈیٹ کرنے کے لیے تھپتھپائیں۔</string>
-    <string name="apps_in_folder_label">فولڈر ایپس کو چھپائیں۔</string>
-    <string name="apps_in_folder_description">فولڈرز کو تفویض کردہ ایپس کو ایپ کی فہرستوں سے خارج کر دیا گیا ہے۔</string>
-    <string name="folders_filter_duplicates">صرف منفرد ایپس دکھائیں۔</string>
-    <string name="my_folder_label">میرا فولڈر</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">To perform certain actions (such as locking your phone) when performing a gesture, Lawnchair requires accessibility access.\n\nLawnchair doesn\'t watch any user action, though the privilege to do so is required for all accessibility services. Lawnchair discards any event sent by the system.\n\nIn order to lock your phone, or to open the Recents screen, Lawnchair uses the performGlobalAction Accessibility service.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">اعلی درجے کی</string>

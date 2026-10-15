@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Markera alla</string>
     <string name="deselect_all">Avmarkera alla</string>
     <string name="inverse_selection">Invertera markering</string>
-    <string name="loading">Laddar …</string>
     <string name="dismiss">Avvisa</string>
     <string name="download_update">Ladda ner uppdatering</string>
     <string name="install_update">Installera uppdatering</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Vad ska visas</string>
     <string name="wallpapers">Bakgrundsbilder</string>
-    <string name="caddy_beta">Skrin (beta)</string>
     <string name="caddy">Skrin</string>
-    <string name="app_drawer_folder">Mappar i applådan</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">Applådemapp</string>
-    <string name="add_folder">Skapa mapp</string>
     <string name="edit_folder">Redigera mapp</string>
     <string name="add_label">Lägg till</string>
     <string name="edit_label">Redigera</string>
     <string name="apply_label">Verkställ</string>
     <string name="delete_label">Radera</string>
     <string name="folder_list_note">Svep åt vänster för att redigera, svep åt höger för att radera, eller tryck för att uppdatera objekt</string>
-    <string name="apps_in_folder_label">Dölj mapp-appar</string>
-    <string name="apps_in_folder_description">Appar som har tilldelats mappar exkluderas från applistor</string>
-    <string name="folders_filter_duplicates">Visa endast unika appar</string>
-    <string name="my_folder_label">Min mapp</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">För att kunna utföra vissa åtgärder (såsom att låsa din telefon) när en gest görs, kräver Lawnchair tillgänglighetsåtkomst.\n\nLawnchair övervakar inte några användaraktiviteter, men behörigheten att kunna göra detta krävs för alla tillgänglighetstjänster. Lawnchair ignorerar alla händelser som skickas av systemet.\n\nFör att kunna låsa din telefon eller öppna Senaste-skärmen använder Lawnchair tillgänglighetstjänsten performGlobalAction.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">Avancerat</string>

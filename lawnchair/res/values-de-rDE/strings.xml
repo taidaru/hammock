@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Alle auswählen</string>
     <string name="deselect_all">Alle abwählen</string>
     <string name="inverse_selection">Auswahl umkehren</string>
-    <string name="loading">Laden…</string>
     <string name="dismiss">Verwerfen</string>
     <string name="download_update">Update herunterladen</string>
     <string name="install_update">Update installieren</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Was angezeigt werden soll</string>
     <string name="wallpapers">Hintergrundbilder</string>
-    <string name="caddy_beta">Caddy (Beta)</string>
     <string name="caddy">Caddy</string>
-    <string name="app_drawer_folder">Ordner in App-Übersicht</string>
     <string name="selected_apps">Ausgewählte Apps</string>
     <string name="add_apps">Apps hinzufügen</string>
     <string name="app_drawer_folder_settings">App-Übersicht-Ordner</string>
-    <string name="add_folder">Ordner erstellen</string>
     <string name="edit_folder">Ordner bearbeiten</string>
     <string name="add_label">Hinzufügen</string>
     <string name="edit_label">Bearbeiten</string>
     <string name="apply_label">Anwenden</string>
     <string name="delete_label">Löschen</string>
     <string name="folder_list_note">Zum Bearbeiten nach links, zum Löschen nach rechts wischen oder zum Aktualisieren der Elemente tippen</string>
-    <string name="apps_in_folder_label">Ordner-Apps ausblenden</string>
-    <string name="apps_in_folder_description">Ordnern zugewiesene Apps sind von der App-Liste ausgeschlossen</string>
-    <string name="folders_filter_duplicates">Nur Apps, die keine Duplikate sind, zeigen</string>
-    <string name="my_folder_label">Mein Ordner</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Um bestimmte Aktionen (bspw. das Mobiltelefon sperren) auszuführen, wenn eine Geste ausgeführt wird, benötigt Lawnchair Bedienungshilfen-Zugriff.\n\nLawnchair nimmt keine deiner Aktionen auf, jedoch ist die Berechtigung, dies zu tun, Teil des Bedienungshilfen-Zugriffes. Lawnchair löscht jedes Ereigniss, das vom System gesendet wird.\n\nUm das Gerät zu sperren, oder die zulezt geöffneten Apps zu öffnen, wird der performGlobalAction Bedienungshilfen-Service verwendet.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d × %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">Erweitert</string>

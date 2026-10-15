@@ -18,6 +18,7 @@
   -->
 <!-- hammock: rename Lawnchair to Hammock in user-facing strings -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -44,7 +45,6 @@
     <string name="select_all">Выбрать все пункты</string>
     <string name="deselect_all">Снять все отметки</string>
     <string name="inverse_selection">Инвертировать выбор</string>
-    <string name="loading">Загрузка…</string>
     <string name="dismiss">Отменить</string>
     <string name="download_update">Скачать обновление</string>
     <string name="install_update">Установить обновление</string>
@@ -102,26 +102,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Параметры отображения</string>
     <string name="wallpapers">Обои</string>
-    <string name="caddy_beta">Группировка (бета)</string>
     <string name="caddy">Группировка</string>
-    <string name="app_drawer_folder">Папки в Меню приложений</string>
     <string name="selected_apps">Выбранные приложения</string>
     <string name="add_apps">Добавить приложения</string>
     <string name="app_drawer_folder_settings">Папка с приложениями</string>
-    <string name="add_folder">Создать папку</string>
     <string name="edit_folder">Изменить папку</string>
     <string name="add_label">Добавить</string>
     <string name="edit_label">Изменить</string>
     <string name="apply_label">Применить</string>
     <string name="delete_label">Удалить</string>
     <string name="folder_list_note">Смахните влево для редактирования, Смахните вправо для удаления или Коснитесь для обновления элементов</string>
-    <string name="apps_in_folder_label">Скрыть приложения в папках</string>
-    <string name="apps_in_folder_description">Скрывать приложения в папках из общего списка приложений</string>
-    <string name="folders_filter_duplicates">Показывать только неповторяющиеся приложения</string>
-    <string name="my_folder_label">Моя папка</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Для выполнения определённых действий (например, блокировки телефона) с помощью жестов, Hammock требуется доступ к спец. возможностям.\n\nHammock не отслеживает действий пользователя, хотя это требуется для всех служб спец. возможностей. Hammock не учитывает любые системные события.\n\nЧтобы заблокировать телефон или открыть Экран недавних приложений, Hammock использует службу спец. возможностей PerformGlobalAction.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d × %2$d</string>
     <string name="x_and_y">%1$s и %2$s</string>
     <string name="advanced">Расширенные настройки</string>

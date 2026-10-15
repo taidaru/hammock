@@ -120,9 +120,7 @@ class PreferenceManager private constructor(private val context: Context) :
     val wallpaperBlur = IntPref("pref_wallpaperBlur", 25, recreate)
     val wallpaperBlurFactorThreshold = FloatPref("pref_wallpaperBlurFactor", 3.0F, recreate)
 
-    val drawerListOrder = StringPref("pref_drawerListOrder", "", reloadGrid)
-    val drawerList = BoolPref("pref_drawerList", true, recreate)
-    val folderApps = BoolPref("pref_hideFolderApps", true, reloadGrid)
+    // hammock: removed the drawer folder and category prefs, drawer sections replace them
 
     // hammock: removed the Quickstep Recents action and background prefs
 

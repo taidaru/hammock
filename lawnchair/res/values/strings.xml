@@ -18,6 +18,7 @@
   -->
 <!-- hammock: rename Lawnchair to Hammock in user-facing strings -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
@@ -52,7 +53,6 @@
     <string name="deselect_all">Deselect all</string>
     <string name="inverse_selection">Inverse selection</string>
 
-    <string name="loading">Loading…</string>
     <string name="dismiss">Dismiss</string>
 
     <string name="download_update">Download update</string>
@@ -124,14 +124,11 @@
 
     <string name="wallpapers">Wallpapers</string>
 
-    <string name="caddy_beta">Caddy (Beta)</string>
     <string name="caddy">Caddy</string>
 
-    <string name="app_drawer_folder">App drawer folders</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">Drawer folder</string>
-    <string name="add_folder">Create folder</string>
     <string name="edit_folder">Edit folder</string>
     <string name="add_label">Add</string>
     <string name="edit_label">Edit</string>
@@ -139,11 +136,7 @@
     <string name="delete_label">Delete</string>
     <string name="folder_list_note">Swipe left to edit, swipe right to delete, or tap to update items</string>
 
-    <string name="apps_in_folder_label">Hide folder apps</string>
-    <string name="apps_in_folder_description">Apps assigned to folders are excluded from app lists</string>
 
-    <string name="folders_filter_duplicates">Only show unique apps</string>
-    <string name="my_folder_label">My folder</string>
 
     <!-- A11y description -->
     <string name="accessibility_service_description">To perform certain actions (such as locking your phone) when performing a gesture, Hammock requires accessibility access.\n\nHammock doesn\'t watch any user action, though the privilege to do so is required for all accessibility services. Hammock discards any event sent by the system.\n\nIn order to lock your phone, or to open the Recents screen, Hammock uses the performGlobalAction Accessibility service.</string>
@@ -151,7 +144,6 @@
     <string name="iconPackPackageDefault" translatable="false">""</string>
 
     <string name="n_percent" translatable="false">%1$d%%</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
 

@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Tout sélectionner</string>
     <string name="deselect_all">Tout désélectionner</string>
     <string name="inverse_selection">Inverser la sélection</string>
-    <string name="loading">Chargement…</string>
     <string name="dismiss">Ignorer</string>
     <string name="download_update">Télécharger la mise à jour</string>
     <string name="install_update">Installer la mise à jour</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Informations à afficher</string>
     <string name="wallpapers">Fonds d\'écran</string>
-    <string name="caddy_beta">Catégorisé (bêta)</string>
     <string name="caddy">Catégorisé</string>
-    <string name="app_drawer_folder">Dossiers du tiroir des applis</string>
     <string name="selected_apps">Applis sélectionnées</string>
     <string name="add_apps">Ajouter des applis</string>
     <string name="app_drawer_folder_settings">Dossier du tiroir des applis</string>
-    <string name="add_folder">Créer un dossier</string>
     <string name="edit_folder">Modifier le dossier</string>
     <string name="add_label">Ajouter</string>
     <string name="edit_label">Modifier</string>
     <string name="apply_label">Appliquer</string>
     <string name="delete_label">Supprimer</string>
     <string name="folder_list_note">Balayez vers la gauche pour modifier, balayez vers la droite pour supprimer, ou appuyez pour ajouter des éléments</string>
-    <string name="apps_in_folder_label">Masquer les applis rangées dans un dossier</string>
-    <string name="apps_in_folder_description">Les applis assignées à un dossier sont exclues des listes d\'applis</string>
-    <string name="folders_filter_duplicates">Afficher seulement les applis uniques</string>
-    <string name="my_folder_label">Mon dossier</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Pour effectuer certaines actions (telles que verrouiller votre téléphone) en un seul geste, Lawnchair a besoin des droits d\'accessibilité.\n\nBien que le privilège soit accordé de force à tous les services d\'accessibilité, Lawnchair n\'observe pas les actions de l\'utilisateur et ignore tous les événements envoyés par le système.\n\nAfin de verrouiller votre téléphone ou ouvrir l\'écran Récents, Lawnchair utilise le service d\'accessibilité performGlobalAction.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s et %2$s</string>
     <string name="advanced">Avancé</string>

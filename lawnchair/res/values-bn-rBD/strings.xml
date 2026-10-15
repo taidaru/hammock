@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">সবগুলো নির্বাচন করুন</string>
     <string name="deselect_all">সবগুলো অনির্বাচন করুন</string>
     <string name="inverse_selection">বিপরীত নির্বাচন</string>
-    <string name="loading">লোড হচ্ছে…</string>
     <string name="dismiss">খারিজ করুন</string>
     <string name="download_update">আপডেট ডাউনলোড করুন</string>
     <string name="install_update">আপডেট ইনস্টল করুন</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">যা দেখাবে</string>
     <string name="wallpapers">ওয়ালপেপার</string>
-    <string name="caddy_beta">ক্যাডি (বিটা)</string>
     <string name="caddy">ক্যাডি</string>
-    <string name="app_drawer_folder">অ্যাপ ড্রয়ার ফোল্ডার</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">ড্রয়ার ফোল্ডার</string>
-    <string name="add_folder">ফোল্ডার তৈরি করুন</string>
     <string name="edit_folder">ফোল্ডার সম্পাদনা করুন</string>
     <string name="add_label">যোগ করুন</string>
     <string name="edit_label">সম্পাদনা করুন</string>
     <string name="apply_label">সম্পূর্ণ করুন</string>
     <string name="delete_label">মুছে ফেলুন</string>
     <string name="folder_list_note">সম্পাদনা করতে বাম দিকে সোয়াইপ করুন, মুছতে ডান দিকে সোয়াইপ করুন, অথবা আপডেট করতে চাপ দিন</string>
-    <string name="apps_in_folder_label">ফোল্ডার অ্যাপ লুকান</string>
-    <string name="apps_in_folder_description">ফোল্ডারগুলিতে নির্ধারিত অ্যাপগুলি অ্যাপ তালিকা থেকে বাদ দেওয়া হয়েছে</string>
-    <string name="folders_filter_duplicates">শুধুমাত্র অনন্য অ্যাপগুলি দেখান</string>
-    <string name="my_folder_label">আমার ফোল্ডার</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">অঙ্গভঙ্গি করার সময় নির্দিষ্ট কিছু কাজ (যেমন আপনার ফোন লক করা) করার জন্য, লনচেয়ারের অ্যাক্সেসিবিলিটি অ্যাক্সেস প্রয়োজন. \n\nলনচেয়ার ব্যবহারকারীর কোনও ক্রিয়াকলাপ পর্যবেক্ষণ করে না, যদিও সমস্ত অ্যাক্সেসিবিলিটি পরিষেবার জন্য এটি করার অধিকার প্রয়োজন। লনচেয়ার সিস্টেম দ্বারা প্রেরিত যেকোনো ইভেন্ট বাতিল করে দেয়।\n\nআপনার ফোন লক করতে, অথবা Recents স্ক্রিন খুলতে, Lawnchair performGlobalAction অ্যাক্সেসিবিলিটি পরিষেবা ব্যবহার করে।.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s&amp;%2$s</string>
     <string name="advanced">উন্নত</string>

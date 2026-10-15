@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Vali kõik</string>
     <string name="deselect_all">Tühista kõik valikud</string>
     <string name="inverse_selection">Pööra valik</string>
-    <string name="loading">Laadimine…</string>
     <string name="dismiss">Loobu</string>
     <string name="download_update">Laadi värskendus alla</string>
     <string name="install_update">Paigalda värskendus</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Mida kuvada</string>
     <string name="wallpapers">Taustapildid</string>
-    <string name="caddy_beta">Caddy (beeta)</string>
     <string name="caddy">Rühmitamine</string>
-    <string name="app_drawer_folder">Rakenduste sahtli kaustad</string>
     <string name="selected_apps">Valitud rakendused</string>
     <string name="add_apps">Lisa rakendusi</string>
     <string name="app_drawer_folder_settings">Sahtli kaust</string>
-    <string name="add_folder">Loo kaust</string>
     <string name="edit_folder">Muuda kausta</string>
     <string name="add_label">Lisa</string>
     <string name="edit_label">Muuda</string>
     <string name="apply_label">Rakenda</string>
     <string name="delete_label">Kustuta</string>
     <string name="folder_list_note">Üksuste muutmiseks nipsa vasakule, kustutamiseks nipsa paremale või puuduta üksuste värskendamiseks</string>
-    <string name="apps_in_folder_label">Peida kaustade rakendused</string>
-    <string name="apps_in_folder_description">Kaustadesse määratud rakendusi rakenduste loendis ei kuvata</string>
-    <string name="folders_filter_duplicates">Kuva ainult unikaalsed rakendused</string>
-    <string name="my_folder_label">Minu kaust</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Teatud toimingute (näiteks telefoni lukustamise) sooritamiseks viipe abil vajab Lawnchair luba juurdepääsetavuse teenuse kautamiseks.\n\nLawnchair ei jälgi kasutaja toiminguid, kuigi juurdepääsetavuse teenus annab selleks vajaliku õiguse. Lawnchair hülgab kõik süsteemi saadetud sündmused.\n\nTelefoni lukustamiseks või hiljutiste toimingute ekraani avamiseks kasutab Lawnchair performGlobalAction juurdepääsetavuse teenust.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">Täpsemalt</string>

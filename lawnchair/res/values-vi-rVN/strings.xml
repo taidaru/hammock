@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Chọn tất cả</string>
     <string name="deselect_all">Bỏ chọn tất cả</string>
     <string name="inverse_selection">Lựa chọn ngược</string>
-    <string name="loading">Đang tải…</string>
     <string name="dismiss">Miễn nhiệm</string>
     <string name="download_update">Tải xuống bản cập nhật</string>
     <string name="install_update">Cài đặt bản cập nhật</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Hiển thị những gì</string>
     <string name="wallpapers">Hình nền</string>
-    <string name="caddy_beta">Tự động sắp xếp (Thử nghiệm)</string>
     <string name="caddy">Tự động sắp xếp</string>
-    <string name="app_drawer_folder">Thư mục ngăn ứng dụng</string>
     <string name="selected_apps">Các ứng dụng đã chọn</string>
     <string name="add_apps">Thêm ứng dụng</string>
     <string name="app_drawer_folder_settings">Thư mục ngăn chứa</string>
-    <string name="add_folder">Tạo thư mục</string>
     <string name="edit_folder">Chỉnh sửa thư mục</string>
     <string name="add_label">Ứng dụng</string>
     <string name="edit_label">Chỉnh sửa</string>
     <string name="apply_label">Áp dụng</string>
     <string name="delete_label">Xóa</string>
     <string name="folder_list_note">Vuốt sang trái để chỉnh sửa, vuốt sang phải để xóa hoặc chạm để cập nhật mục</string>
-    <string name="apps_in_folder_label">Ẩn ứng dụng trong thư mục</string>
-    <string name="apps_in_folder_description">Các ứng dụng được gán vào thư mục sẽ bị loại khỏi danh sách ứng dụng</string>
-    <string name="folders_filter_duplicates">Chỉ hiển thị các ứng dụng duy nhất</string>
-    <string name="my_folder_label">Thư mục của tôi</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Để thực hiện một số hành động nhất định (chẳng hạn như khóa điện thoại) khi thực hiện cử chỉ, Lawnchair cần có quyền truy cập trợ năng.\n\nLawnchair không theo dõi bất kỳ hành động nào của người dùng, mặc dù quyền làm như vậy là bắt buộc đối với tất cả các dịch vụ trợ năng. Lawnchair loại bỏ bất kỳ sự kiện nào được hệ thống gửi đi.\n\nĐể khóa điện thoại hoặc mở màn hình Gần đây, Lawnchair sử dụng dịch vụ Trợ năng performGlobalAction.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">Nâng cao</string>

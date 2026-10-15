@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">انتخاب همه</string>
     <string name="deselect_all">لغو‌انتخاب همه</string>
     <string name="inverse_selection">انتخاب معکوس</string>
-    <string name="loading">درحال بارگذاری…</string>
     <string name="dismiss">رد کردن</string>
     <string name="download_update">بارگیری به‌روزرسانی</string>
     <string name="install_update">نصب به‌روزرسانی</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">چه چیزی نشان‌داده شود</string>
     <string name="wallpapers">تصویر‌زمینه</string>
-    <string name="caddy_beta">کدی (بتا)</string>
     <string name="caddy">کدی</string>
-    <string name="app_drawer_folder">ستون‌های کشوی برنامه‌ها</string>
     <string name="selected_apps">برنامه‌های انتخابی</string>
     <string name="add_apps">افزودن برنامه</string>
     <string name="app_drawer_folder_settings">پوشه کشو</string>
-    <string name="add_folder">ایجاد پوشه</string>
     <string name="edit_folder">ویرایش پوشه</string>
     <string name="add_label">افزودن</string>
     <string name="edit_label">ویرایش</string>
     <string name="apply_label">اعمال</string>
     <string name="delete_label">حذف</string>
     <string name="folder_list_note">برای ویرایش به چپ کشید، برای حذف به راست، یا برای به‌روزرسانی موارد ضربه بزنید</string>
-    <string name="apps_in_folder_label">پنهان کردن برنامه‌های پوشه</string>
-    <string name="apps_in_folder_description">برنامه‌های اختصاص داده شده به پوشه‌ها از فهرست برنامه‌ها حذف می‌شوند</string>
-    <string name="folders_filter_duplicates">فقط برنامه های ویژه را نشان بده</string>
-    <string name="my_folder_label">پوشه من</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">برای انجام برخی اقدامات (مانند قفل کردن تلفن شما) هنگام انجام یک حرکت، Lawnchair نیاز به دسترسی به قابلیت دسترسی دارد.\n\nLawnchair هیچ اقدام کاربر را زیر نظر نمی‌گیرد، اگرچه امتیاز انجام این کار برای همه سرویس‌های دسترسی لازم است. Lawnchair هر رویدادی را که توسط سیستم ارسال شود، نادیده می‌گیرد.\n\nبرای قفل کردن تلفن شما یا باز کردن صفحه اخیراً، Lawnchair از سرویس دسترسی اقدام جهانی استفاده می‌کند.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">پیشرفته</string>

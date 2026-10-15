@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
     <string name="deselect_all">എല്ലാം തിരഞ്ഞെടുത്തത് മാറ്റുക</string>
     <string name="inverse_selection">വിപരീത തിരഞ്ഞെടുപ്പ്</string>
-    <string name="loading">ലോഡ് ചെയുന്നു…</string>
     <string name="dismiss">Dismiss</string>
     <string name="download_update">അപ്‌ഡേറ്റ് ഡൗൺലോഡ് ചെയ്യുക</string>
     <string name="install_update">അപ്ഡേറ്റ് ഇൻസ്റ്റാൾ ചെയ്യുക</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">എന്ത് കാണിക്കണം</string>
     <string name="wallpapers">വാൾപേപ്പറുകൾ</string>
-    <string name="caddy_beta">കാഡി (ബീറ്റ)</string>
     <string name="caddy">കാഡി</string>
-    <string name="app_drawer_folder">ആപ്പ് ഡ്രോയർ ഫോൾഡറുകൾ</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">ഡ്രോയർ ഫോൾഡർ</string>
-    <string name="add_folder">ഫോൾഡർ സൃഷ്ടിക്കുക</string>
     <string name="edit_folder">ഫോൾഡർ എഡിറ്റ് ചെയ്യുക</string>
     <string name="add_label">ചേർക്കുക</string>
     <string name="edit_label">എഡിറ്റ് ചെയ്യുക</string>
     <string name="apply_label">പ്രയോഗിക്കുക</string>
     <string name="delete_label">ഇല്ലാതാക്കുക</string>
     <string name="folder_list_note">എഡിറ്റ് ചെയ്യാൻ ഇടത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക, ഇല്ലാതാക്കാൻ വലത്തേക്ക് സ്വൈപ്പ് ചെയ്യുക, അല്ലെങ്കിൽ ഇനങ്ങൾ അപ്ഡേറ്റ് ചെയ്യാൻ ടാപ്പ് ചെയ്യുക</string>
-    <string name="apps_in_folder_label">ഫോൾഡർ ആപ്പുകൾ മറയ്ക്കുക</string>
-    <string name="apps_in_folder_description">ഫോൾഡറുകളിലേക്ക് നിയോഗിച്ചിട്ടുള്ള ആപ്പുകൾ ആപ്പ് ലിസ്റ്റിൽ നിന്ന് ഒഴിവാക്കിയിരിക്കുന്നു</string>
-    <string name="folders_filter_duplicates">അദ്വിതീയ ആപ്പുകൾ മാത്രം കാണിക്കുക</string>
-    <string name="my_folder_label">എന്റെ ഫോൾഡർ</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">To perform certain actions (such as locking your phone) when performing a gesture, Lawnchair requires accessibility access.\n\nLawnchair doesn\'t watch any user action, though the privilege to do so is required for all accessibility services. Lawnchair discards any event sent by the system.\n\nIn order to lock your phone, or to open the Recents screen, Lawnchair uses the performGlobalAction Accessibility service.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">അഡ്വാൻസ്ഡ്</string>

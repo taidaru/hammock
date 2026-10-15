@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">選擇全部</string>
     <string name="deselect_all">取消全選</string>
     <string name="inverse_selection">反向選取</string>
-    <string name="loading">正在載入…</string>
     <string name="dismiss">撤鎖</string>
     <string name="download_update">下載更新</string>
     <string name="install_update">安裝更新</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">要顯示什麼</string>
     <string name="wallpapers">桌布</string>
-    <string name="caddy_beta">罐裝 (測試版)</string>
     <string name="caddy">罐裝</string>
-    <string name="app_drawer_folder">應用程式抽屜資料夾</string>
     <string name="selected_apps">己選的應用程式</string>
     <string name="add_apps">增加應用程式</string>
     <string name="app_drawer_folder_settings">抽屜資料夾</string>
-    <string name="add_folder">建立資料夾</string>
     <string name="edit_folder">編輯資料夾</string>
     <string name="add_label">新增</string>
     <string name="edit_label">編輯</string>
     <string name="apply_label">套用</string>
     <string name="delete_label">刪除</string>
     <string name="folder_list_note">向左滑動進行編輯，向右滑動進行刪除，或是輕觸以更新項目</string>
-    <string name="apps_in_folder_label">隱藏應用程式資料夾</string>
-    <string name="apps_in_folder_description">分配至資料夾的應用程式將會從抽屜中排除</string>
-    <string name="folders_filter_duplicates">僅顯示單一應用程式</string>
-    <string name="my_folder_label">我的資料夾</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Lawnchair 需要存取無障礙服務，才能透過手勢執行特定動作 (例如鎖定您的裝置)。\n\n存取所有無障礙服務都需要這項權限，但 Lawnchair 不會監視任何使用者操作，並會捨棄任何系統發送的事件。\n\nLawnchair 使用 performGlobalAction (執行全域動作)無障礙服務以鎖定您的裝置或開啟最近使用畫面。</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d × %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">進階</string>

@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Pilih semua</string>
     <string name="deselect_all">Batal pilih semua</string>
     <string name="inverse_selection">Balik pilihan</string>
-    <string name="loading">Memuat…</string>
     <string name="dismiss">Menolak</string>
     <string name="download_update">Unduh pembaruan</string>
     <string name="install_update">Pasang pembaruan</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Yang ditampilkan</string>
     <string name="wallpapers">Wallpaper</string>
-    <string name="caddy_beta">Caddy (Beta)</string>
     <string name="caddy">Caddy</string>
-    <string name="app_drawer_folder">Folder untuk laci aplikasi</string>
     <string name="selected_apps">Aplikasi yang dipilih</string>
     <string name="add_apps">Tambahkan aplikasi</string>
     <string name="app_drawer_folder_settings">Folder laci</string>
-    <string name="add_folder">Buat folder</string>
     <string name="edit_folder">Ubah folder</string>
     <string name="add_label">Tambah</string>
     <string name="edit_label">Ubah</string>
     <string name="apply_label">Terapkan</string>
     <string name="delete_label">Hapus</string>
     <string name="folder_list_note">Geser ke kiri untuk mengedit, geser ke kanan untuk menghapus, atau ketuk untuk memperbarui item</string>
-    <string name="apps_in_folder_label">Sembunyikan aplikasi folder</string>
-    <string name="apps_in_folder_description">Aplikasi yang dimasukkan ke dalam folder tidak akan ditampilkan di daftar aplikasi</string>
-    <string name="folders_filter_duplicates">Tunjukkan aplikasi yang unik saja</string>
-    <string name="my_folder_label">Folder saya</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Agar dapat melakukan suatu aksi (misalnya mengunci ponsel) saat melakukan gesture, Lawnchair butuh izin aksesibilitas.\n\nLawnchair tidak melihat aksi pengguna apa pun, meskipun kemampuan tersebut dibutuhkan untuk semua layanan aksesibilitas. Lawnchair mengabaikan event yang dikirim oleh sistem.\n\nAgar dapat mengunci ponsel Anda, atau membuka layar terbaru, Lawnchair memakai API aksesibilitas \"performGlobalAction\".</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d × %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">Tingkat lanjut</string>

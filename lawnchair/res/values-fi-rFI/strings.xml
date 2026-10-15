@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Valitse kaikki</string>
     <string name="deselect_all">Poista kaikki valinnat</string>
     <string name="inverse_selection">Käännä valinta</string>
-    <string name="loading">Ladataan…</string>
     <string name="dismiss">Hylkää</string>
     <string name="download_update">Lataa päivitys</string>
     <string name="install_update">Asenna päivitys</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Mitä näytetään</string>
     <string name="wallpapers">Taustakuvat</string>
-    <string name="caddy_beta">Ryhmitetyt sovellukset (Beta)</string>
     <string name="caddy">Ryhmitetty sovellukset</string>
-    <string name="app_drawer_folder">Kansiot sovellusvalikossa</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">Sovellusvalikon kansio</string>
-    <string name="add_folder">Luo kansio</string>
     <string name="edit_folder">Muokkaa kansiota</string>
     <string name="add_label">Lisää</string>
     <string name="edit_label">Muokkaa</string>
     <string name="apply_label">Käytä</string>
     <string name="delete_label">Poista</string>
     <string name="folder_list_note">Pyyhkäise vasemmalle muokataksesi, oikealle poistaaksesi tai napauta muokataksesi esineitä</string>
-    <string name="apps_in_folder_label">Piilota kansion sovelluksia</string>
-    <string name="apps_in_folder_description">Sovelluksia kansoissa ei näy sovelluslistoissa</string>
-    <string name="folders_filter_duplicates">Näytä vain yksi kappale jokaista sovellusta</string>
-    <string name="my_folder_label">Minun kansioni</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Suorittaakseen tiettyjä toimintoja (niin kuin lukitakseen puhelimesi) kun käytät jotain elettä, Lawnchair pitää asettaa saavutettavuussovellukseksi.\n\nLawnchair ei seuraa mitään käyttäjän toimintaa, vaikkakin kyseistä lupaa käytetään kaikille saavutettavuussovelluksille. Lawnchair hylkää kaikki tapahtumat, jotka käyttöjärjestelmä lähettää.\n\nJotta Lawnchair voisi lukita puhelimesi tai avata viimeisimpien sovellusten näkymän, se käyttää performGlobalAction saavutettavuuspalvelua.</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d X %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">Kehittyneet asetukset</string>

@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
+<!-- hammock: removed the drawer folder strings, drawer sections replace drawer folders -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -43,7 +44,6 @@
     <string name="select_all">Seleccionar todo</string>
     <string name="deselect_all">Deseleccionar todo</string>
     <string name="inverse_selection">Invertir selección</string>
-    <string name="loading">Cargando…</string>
     <string name="dismiss">Descartar</string>
     <string name="download_update">Descargar actualización</string>
     <string name="install_update">Instalar actualización</string>
@@ -101,26 +101,18 @@
     <!-- Miscellaneous -->
     <string name="what_to_show">Qué mostrar</string>
     <string name="wallpapers">Fondos de pantalla</string>
-    <string name="caddy_beta">Caddy (Beta)</string>
     <string name="caddy">Caddy</string>
-    <string name="app_drawer_folder">Carpetas del cajón de aplicaciones</string>
     <string name="selected_apps">Selected apps</string>
     <string name="add_apps">Add apps</string>
     <string name="app_drawer_folder_settings">Carpeta del cajón de aplicaciones</string>
-    <string name="add_folder">Crear carpeta</string>
     <string name="edit_folder">Editar carpeta</string>
     <string name="add_label">Agregar</string>
     <string name="edit_label">Editar</string>
     <string name="apply_label">Aplicar</string>
     <string name="delete_label">Eliminar</string>
     <string name="folder_list_note">Desliza hacia la izquierda para editar, hacia la derecha para eliminar, o pulsa para actualizar los elementos</string>
-    <string name="apps_in_folder_label">Ocultar carpetas de apps</string>
-    <string name="apps_in_folder_description">Las aplicaciones asignadas a carpetas están excluidas de la lista de aplicaciones</string>
-    <string name="folders_filter_duplicates">Mostrar solo aplicaciones únicas</string>
-    <string name="my_folder_label">Mi carpeta</string>
     <!-- A11y description -->
     <string name="accessibility_service_description">Para realizar ciertas acciones (como bloquear tu dispositivo al realizar un gesto) Lawnchair necesita añadirse como proveedor de accesibilidad.\n\nLawnchair no rastrea ni graba ninguna acción del usuario, aunque entre dentro de los privilegios concedidos, descartando cualquier evento enviado por el sistema.\n\nPara realizar la acción de bloquear la pantalla Lawnchair solo utiliza un servicio de accesibilidad llamado «performGlobalAction».</string>
-    <string name="x_with_y_count">%1$s (%2$d)</string>
     <string name="x_by_y">%1$d x %2$d</string>
     <string name="x_and_y">%1$s &amp; %2$s</string>
     <string name="advanced">Avanzado</string>
