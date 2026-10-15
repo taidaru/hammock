@@ -17,7 +17,7 @@ Launcher3 from Android 15) with Quickstep removed.
 
 ### Own features (the reason this project exists)
 
-1. **App drawer sections, at most 5.** The drawer is split into swipeable sections, like the
+1. **App drawer sections.** The drawer is split into swipeable sections, like the
    Personal / Work tabs. They replace Lawnchair's drawer folders (`lawnchair/src/app/lawnchair/data/folder/`).
 2. **Optional app drawer.** A "home screens only" mode: all apps live on the home screens,
    newly installed apps are added to a screen automatically, swipe up is reassigned.
@@ -78,7 +78,7 @@ Useful places in the Lawnchair code:
 
 - **Every feature of ours sits behind a toggle in settings**, with a safe default
   (behaves like Pixel Launcher). New settings go through `PreferenceManager2`.
-- Limits and constants (e.g. the maximum of 5 folders) are defined in one place as a named constant, no magic numbers.
+- Limits and constants (e.g. the number of tabs in view) are defined in one place as a named constant, no magic numbers.
 - Think about **migration**: what happens to user data when a feature is enabled, disabled, or the app
   is updated. Example: disabling the app drawer must never make an app "disappear"; lay them out on the home screens.
 

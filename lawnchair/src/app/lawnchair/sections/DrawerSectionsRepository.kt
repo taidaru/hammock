@@ -17,9 +17,6 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.plus
 
-/** The most drawer sections there can be, the main section included. */
-const val MAX_DRAWER_SECTIONS = 5
-
 const val MAIN_SECTION_ID = 0L
 
 /** [title] is null for the main section until the user renames it; the UI shows the default name then. */
@@ -57,12 +54,9 @@ class DrawerSectionsRepository(context: Context) {
         .flowOn(Dispatchers.IO)
         .stateIn(scope, SharingStarted.Eagerly, DrawerSections.MAIN_ONLY)
 
-    /** Adds an extra section at the end; returns false when [MAX_DRAWER_SECTIONS] is reached. */
-    suspend fun addSection(title: String): Boolean {
-        val extraCount = dao.countSections()
-        if (extraCount + 1 >= MAX_DRAWER_SECTIONS) return false
-        dao.insertSection(DrawerSectionEntity(title = title, rank = extraCount))
-        return true
+    /** Adds an extra section at the end. */
+    suspend fun addSection(title: String) {
+        dao.insertSection(DrawerSectionEntity(title = title, rank = dao.countSections()))
     }
 
     suspend fun renameSection(id: Long, title: String) {
