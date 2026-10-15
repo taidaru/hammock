@@ -87,6 +87,9 @@ Tasks:
 - [x] Swipe home: settle the home screen in 350 ms (AOSP `CONTENT_SCALE_DURATION`) instead of Lawnchair's 1050 ms.
 - [x] App open: scale the home screen (and fade All Apps) in step with the system open animation, as AOSP does
       (`AppLaunchContentAnimator`).
+- [x] Swipe home: the window sometimes flew to the wrong place and the icon came from another side. Lawnchair's
+      `LawnchairFloatingSurfaceView` sent the previous app's icon position when the app had no icon on screen and
+      moved the icon surface one frame late; both now follow AOSP `FloatingSurfaceView`.
 
 Acceptance: side-by-side recordings with Pixel Launcher on the same phone: opening from the home screen,
 the dock, the drawer and search; closing with the swipe gesture and the Home button; work profile apps.
@@ -193,7 +196,10 @@ Checked on a Pixel 9 Pro with Android 17; a third-party launcher cannot change t
 - App open window animation: see Phase 2.
 - Swipe home fades the home screen in (most visible on the dock): Pixel Launcher's `FallbackSwipeHandler`
   animates the third-party home task alpha from 0 to 1. See Phase 2.
-- Leaving Recents for home: the last app card stays still for about 250 ms and then disappears at once.
-  This is Pixel Launcher's fallback `RecentsActivity.startHomeInternal()`: it animates its own Recents view to
-  `BG_LAUNCHER` for `HOME_APPEAR_DURATION` (250 ms) and then hides. Hammock is ready to draw within ~20 ms
-  (`StartHomeFromRecents` transition `ready=17.8ms`, `finished=344.9ms`).
+- Leaving Recents for home goes through Pixel Launcher's fallback `RecentsActivity.startHomeInternal()`
+  (`StartHomeFromRecents`, 250 ms); Hammock is ready to draw within ~20 ms. Once seen as the last card
+  freezing and then cutting to home, later not reproduced. With a card other than the last one centered the
+  animation is wrong, the same as with Pixel Launcher as the home app.
+- Cold app start: the app's splash screen fades in full screen and, in the dark theme, leaves a near-black frame
+  between the splash icon and the app content. With Pixel Launcher the same splash grows from the icon, so it is
+  less visible; Hammock cannot change the window animation (see Phase 2).

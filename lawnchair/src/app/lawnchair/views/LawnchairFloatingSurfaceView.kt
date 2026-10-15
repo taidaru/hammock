@@ -243,14 +243,15 @@ class LawnchairFloatingSurfaceView @JvmOverloads constructor(
         }
     }
 
+    // hammock: lay out the icon surface right away, as AOSP does; the posted update left the surface
+    // at the previous app's icon for the first frames while the window already flew to the new icon
     private fun updateSurfaceViewLayout() {
-        post {
-            val lp = mSurfaceView.layoutParams as LayoutParams
-            lp.width = mIconPosition.width().roundToInt()
-            lp.height = mIconPosition.height().roundToInt()
-            lp.leftMargin = mIconPosition.left.roundToInt()
-            lp.topMargin = mIconPosition.top.roundToInt()
-        }
+        val lp = mSurfaceView.layoutParams as LayoutParams
+        lp.width = mIconPosition.width().roundToInt()
+        lp.height = mIconPosition.height().roundToInt()
+        lp.leftMargin = mIconPosition.left.roundToInt()
+        lp.topMargin = mIconPosition.top.roundToInt()
+        mSurfaceView.layoutParams = lp
     }
 
     private fun drawIconOnBitmap() {
@@ -287,7 +288,9 @@ class LawnchairFloatingSurfaceView @JvmOverloads constructor(
     }
 
     private fun sendIconInfo() {
-        if (mContract != null && Utilities.ATLEAST_Q) {
+        // hammock: without an icon on screen the recycled view held the previous app's icon position;
+        // send nothing and let the system pick the target
+        if (mContract != null && mIcon != null && Utilities.ATLEAST_Q) {
             mContract!!.sendEndPosition(mIconPosition, mLauncher, mSurfaceView.surfaceControl)
         }
     }
