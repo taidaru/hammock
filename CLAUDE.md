@@ -41,7 +41,7 @@ Launcher3 from Android 15) with Quickstep removed.
 | Path | Contents | How to treat it |
 |---|---|---|
 | `src/` | Launcher3 core from AOSP (Java) | Touch **minimally and surgically** |
-| `lawnchair/src/app/lawnchair/` | Lawnchair code (Kotlin) | May be changed, keep upstream sync in mind |
+| `lawnchair/src/app/lawnchair/` | Lawnchair code (Kotlin) | May be changed |
 | `quickstep/` | Recents/Overview | **Being removed**, do not use |
 | `src_no_quickstep/` | Stubs replacing quickstep | Our build path without Recents |
 | `platform_frameworks_libs_systemui/` | git submodule (iconloaderlib, animationlib, etc.) | Do not edit directly |
@@ -58,7 +58,7 @@ Useful places in the Lawnchair code:
 ### Where to put new code
 
 - **New code goes into a separate package** (e.g. `lawnchair/src/app/lawnchair/<our-module>/`)
-  instead of being spread over existing files. The smaller the diff in upstream files, the easier upstream merges are.
+  instead of being spread over existing files. The smaller the diff in upstream files, the easier it is to see what is ours.
 - **Only "hooks" go into the Launcher3 core (`src/`)**: replace a constant with a method call, add an
   extension point, call our code. The logic itself lives in our package.
 - Every change in an upstream file is marked exactly as described in "Marking changes in upstream files".
@@ -101,7 +101,7 @@ Useful places in the Lawnchair code:
 
 An upstream file is any file that came from another project: Lawnchair, AOSP, the submodule.
 Apache 2.0 (section 4(b)) requires modified files to state that they were changed and by whom,
-and the markers make our changes visible during upstream merges. The format below is fixed; don't vary it.
+and the markers keep our changes easy to find. The format below is fixed; don't vary it.
 
 ### 1. File notice
 
@@ -200,14 +200,13 @@ git submodule update --init --recursive   # after cloning: the platform_framewor
   launcher restart, screen rotation, work profile.
 - Before committing non-trivial changes, run `./gradlew lint` for the affected module.
 
-## Working with upstream (Lawnchair)
+## Lawnchair base
 
-- `origin` is our repository, `upstream` is LawnchairLauncher/lawnchair.
-- Our base, Lawnchair `15-dev`, is frozen upstream (active development moved to `16-dev`),
-  so Hammock is effectively a hard fork. Upstream fixes are cherry-picked when needed.
-- Merge upstream changes in a separate merge commit; don't mix them with our work.
-- After quickstep removal, merge conflicts are expected. When resolving them, don't bring
-  quickstep dependencies back.
+- Hammock is based on Lawnchair `15-dev` and is not synced with it: there is no `upstream` remote,
+  and moving to a newer Lawnchair version is not planned for now.
+- `origin` is our repository.
+- If a specific upstream fix is needed, port it by hand as a separate commit that names the source
+  commit, and mark the changes as usual.
 
 ## Commits
 

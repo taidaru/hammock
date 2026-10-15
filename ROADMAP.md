@@ -11,8 +11,8 @@ Phases are done in order. A phase is done when its acceptance criteria are verif
 - [x] Fork Lawnchair `15-dev`, rename to Hammock, new icon, `applicationId` `io.github.taidaru.hammock`.
 - [x] Remove Lawnchair-only files and integrations: store metadata, Crowdin, nightly updater,
       bug report upload, announcements and remote defaults from `lawnchair.app`, Play/nightly channels.
-- [ ] Commit the current state, create `github.com/taidaru/hammock`, add it as `origin`.
-- [ ] Smoke test on Android 17: the base targets SDK 35, the device runs SDK 37.
+- [x] Commit the current state, create `github.com/taidaru/hammock`, add it as `origin`.
+- [x] Smoke test on Android 17: the base targets SDK 35, the device runs SDK 37.
       Home, drawer, widgets, search, settings, work profile, Private Space, rotation.
 
 ## Phase 1. Remove Quickstep
