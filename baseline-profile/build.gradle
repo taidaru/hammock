@@ -17,10 +17,10 @@ android {
 
     targetProjectPath = ":"
 
-    flavorDimensions += ["app", "recents", "channel"]
+    // hammock: removed the "recents" dimension, Hammock builds without Quickstep
+    flavorDimensions += ["app", "channel"]
     productFlavors {
         lawn { dimension = "app" }
-        withQuickstep { dimension = "recents" }
         github { dimension = "channel" }
         // hammock: removed the play flavor, Hammock ships only the github channel
     }

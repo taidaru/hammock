@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package com.android.launcher3.model.data;
@@ -64,7 +66,6 @@ import com.android.launcher3.model.ModelWriter;
 import com.android.launcher3.pm.UserCache;
 import com.android.launcher3.util.ComponentKey;
 import com.android.launcher3.util.ContentWriter;
-import com.android.launcher3.util.SettingsCache;
 import com.android.launcher3.util.UserIconInfo;
 import com.android.systemui.shared.system.SysUiStatsLog;
 
@@ -73,7 +74,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import app.lawnchair.LawnchairApp;
 
 /**
  * Represents an item in the launcher.
@@ -438,10 +438,7 @@ public class ItemInfo {
     @NonNull
     protected LauncherAtom.ItemInfo.Builder getDefaultItemInfoBuilder() {
         LauncherAtom.ItemInfo.Builder itemBuilder = LauncherAtom.ItemInfo.newBuilder();
-        if (LawnchairApp.isRecentsEnabled()) {
-            SettingsCache.INSTANCE
-                    .executeIfCreated(cache -> itemBuilder.setIsKidsMode(cache.getValue(NAV_BAR_KIDS_MODE, 0)));
-        }
+        // hammock: removed the kids mode logging, Lawnchair ran it only as the Recents provider
         UserCache.INSTANCE.executeIfCreated(cache -> itemBuilder.setUserType(getUserType(cache.getUserInfo(user))));
         itemBuilder.setRank(rank);
         itemBuilder.addAllItemAttributes(mAttributeList);

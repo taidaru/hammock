@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.theme.drawable
 
 import android.content.res.ColorStateList
@@ -17,12 +21,7 @@ object DrawableTokens {
     val BgCellLayout = ResourceDrawableToken<Drawable>(R.drawable.bg_celllayout)
         .setTint(ColorTokens.ColorAccent)
 
-    @JvmField
-    val BgOverviewClearAllButton = ResourceDrawableToken<RippleDrawable>(R.drawable.bg_overview_clear_all_button)
-        .mutate { context, scheme, uiColorMode ->
-            val background = getDrawable(0) as GradientDrawable
-            background.setColor(ColorTokens.ColorBackground.resolveColor(context, scheme, uiColorMode))
-        }
+    // hammock: removed BgOverviewClearAllButton, only Quickstep's Recents used it
 
     @JvmField
     val BgWidgetsFullSheet = ResourceDrawableToken<GradientDrawable>(R.drawable.bg_widgets_full_sheet)
@@ -68,9 +67,7 @@ object DrawableTokens {
     val SingleItemPrimary = ResourceDrawableToken<GradientDrawable>(R.drawable.single_item_primary)
         .setColor(ColorTokens.PopupColorPrimary)
 
-    @JvmField
-    val TaskMenuItemBg = ResourceDrawableToken<GradientDrawable>(R.drawable.task_menu_item_bg)
-        .setColor(ColorTokens.ColorPrimary)
+    // hammock: removed TaskMenuItemBg, only Quickstep's Recents used it
 
     @JvmField
     val WidgetsBottomSheetBackground = ResourceDrawableToken<GradientDrawable>(R.drawable.bg_rounded_corner_bottom_sheet)

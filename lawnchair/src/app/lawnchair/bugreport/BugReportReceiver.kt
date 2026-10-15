@@ -101,7 +101,8 @@ class BugReportReceiver : BroadcastReceiver() {
                 report.createShareIntent(context),
                 FLAG_UPDATE_CURRENT or FLAG_IMMUTABLE,
             )
-            val icon = Icon.createWithResource(context, R.drawable.ic_share)
+            // hammock: system share icon, ic_share came from quickstep/res
+            val icon = Icon.createWithResource("android", android.R.drawable.ic_menu_share)
             val shareActionBuilder = Notification.Action.Builder(
                 icon,
                 context.getString(R.string.action_share),

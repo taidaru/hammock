@@ -35,7 +35,6 @@ import app.lawnchair.util.unsafeLazy
 import com.android.launcher3.BuildConfig
 import com.android.launcher3.InvariantDeviceProfile
 import com.android.launcher3.Utilities
-import com.android.systemui.shared.system.QuickStepContract
 import java.io.File
 
 class LawnchairApp : Application() {
@@ -47,8 +46,6 @@ class LawnchairApp : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        // hammock: Quickstep still reads this until it is removed
-        QuickStepContract.sRecentsDisabled = true
         Flowerpot.Manager.getInstance(this)
     }
 
@@ -166,9 +163,7 @@ class LawnchairApp : Application() {
         lateinit var instance: LawnchairApp
             private set
 
-        // hammock: Quickstep still reads this until it is removed
-        @JvmStatic
-        val isRecentsEnabled: Boolean get() = false
+        // hammock: removed isRecentsEnabled, Hammock is never the Recents provider
 
         @JvmStatic
         val isAtleastT: Boolean get() = instance.isAtleastT

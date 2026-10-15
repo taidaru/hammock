@@ -35,7 +35,7 @@ jobs:
           java-version: 21
       - uses: gradle/actions/setup-gradle@v5
       - name: Build APK
-        run: ./gradlew assembleLawnWithQuickstepGithubDebug
+        run: ./gradlew assembleLawnGithubDebug
       - name: Upload artifact
         uses: actions/upload-artifact@v6
         with:

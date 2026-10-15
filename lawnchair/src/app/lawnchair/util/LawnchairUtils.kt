@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package app.lawnchair.util
@@ -52,7 +54,6 @@ import com.android.launcher3.R
 import com.android.launcher3.Utilities
 import com.android.launcher3.util.Executors.MAIN_EXECUTOR
 import com.android.launcher3.util.Themes
-import com.android.systemui.shared.system.QuickStepContract
 import com.patrykmichalik.opto.core.firstBlocking
 import java.io.ByteArrayOutputStream
 import java.util.Locale
@@ -121,24 +122,7 @@ fun getPrefsIfUnlocked(context: Context): PreferenceManager? {
     }
 }
 
-fun getWindowCornerRadius(context: Context): Float {
-    val prefs = getPrefsIfUnlocked(context)
-    return when {
-        prefs?.overrideWindowCornerRadius?.get() == true -> prefs.windowCornerRadius.get().toFloat()
-        Utilities.ATLEAST_Q -> QuickStepContract.getWindowCornerRadius(context)
-        else -> 0.0f
-    }
-}
-
-fun supportsRoundedCornersOnWindows(context: Context): Boolean {
-    val prefs = getPrefsIfUnlocked(context)
-
-    return when {
-        prefs?.overrideWindowCornerRadius?.get() == true -> true
-        Utilities.ATLEAST_Q -> QuickStepContract.supportsRoundedCornersOnWindows(context.resources)
-        else -> false
-    }
-}
+// hammock: removed getWindowCornerRadius and supportsRoundedCornersOnWindows, only Quickstep used them
 
 fun overrideAllAppsTextColor(textView: TextView) {
     val context = textView.context

@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  * Modifications copyright 2021, Lawnchair
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package com.android.launcher3;
@@ -287,7 +289,6 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import app.lawnchair.LawnchairApp;
 
 /**
  * Default launcher application.
@@ -1697,9 +1698,8 @@ public class Launcher extends StatefulActivity<LauncherState>
                     // Only change state, if not already the same. This prevents cancelling any
                     // animations running as part of resume
                     boolean animate = mStateManager.shouldAnimateStateChange();
-                    if (!LawnchairApp.isRecentsEnabled()) {
-                        animate &= alreadyOnHome;
-                    }
+                    // hammock: Hammock is never the Recents provider, so always animate only when already home
+                    animate &= alreadyOnHome;
                     mStateManager.goToState(NORMAL, animate);
                 }
 

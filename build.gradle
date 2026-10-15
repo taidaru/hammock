@@ -153,8 +153,7 @@ final def releaseName = "Beta 3"
 final def versionDisplayName = "${version}.${isReleaseBuild ? releaseName : devReleaseName}"
 final def majorVersion = versionDisplayName.split("\\.")[0]
 
-final def quickstepMinSdk = "29"
-final def quickstepMaxSdk = "35"
+// hammock: removed the QuickSwitch SDK range, Hammock builds without Quickstep
 
 android {
     namespace "com.android.launcher3"
@@ -167,11 +166,7 @@ android {
         buildConfigField "String", "MAJOR_VERSION", "\"${majorVersion}\""
         buildConfigField "String", "COMMIT_HASH", "\"${buildCommit}\""
         buildConfigField "boolean", "ENABLE_AUTO_INSTALLS_LAYOUT", "false"
-
-        manifestPlaceholders.quickstepMinSdk = quickstepMinSdk
-        manifestPlaceholders.quickstepMaxSdk = quickstepMaxSdk
-        buildConfigField "int", "QUICKSTEP_MIN_SDK", quickstepMinSdk
-        buildConfigField "int", "QUICKSTEP_MAX_SDK", quickstepMaxSdk
+        // hammock: removed the QuickSwitch SDK range placeholders and BuildConfig fields
     }
 
     applicationVariants.configureEach { variant ->
@@ -264,17 +259,15 @@ android {
     }
 
     // See: https://developer.android.com/studio/build/build-variants#flavor-dimensions
-    flavorDimensions += ["app", "recents", "channel"]
+    // hammock: removed the "recents" dimension, Hammock builds without Quickstep
+    flavorDimensions += ["app", "channel"]
 
     productFlavors {
         lawn {
             dimension "app"
         }
 
-        withQuickstep {
-            dimension "recents"
-            minSdk 26
-        }
+        // hammock: removed the withQuickstep flavor, Hammock builds without Quickstep
 
         github {
             // hammock: Hammock application ID
@@ -295,12 +288,14 @@ android {
             java.srcDirs = ['src', 'src_plugins']
             manifest.srcFile 'AndroidManifest-common.xml'
             proto {
-                srcDirs = ['protos/', 'quickstep/protos_overrides/']
+                // hammock: the AOSP non-Quickstep proto overrides
+                srcDirs = ['protos/', 'protos_overrides/']
             }
         }
 
         lawn {
-            java.srcDirs = ['src_flags', 'src_shortcuts_overrides', 'lawnchair/src', 'tests/shared']
+            // hammock: src_no_quickstep replaces Quickstep, as in the AOSP Launcher3 target
+            java.srcDirs = ['src_flags', 'src_shortcuts_overrides', 'src_no_quickstep', 'lawnchair/src', 'tests/shared']
             aidl.srcDirs = ['lawnchair/aidl']
             res.srcDirs = ['lawnchair/res', 'platform_frameworks_libs_systemui/animationlib/res']
             manifest.srcFile "lawnchair/AndroidManifest.xml"
@@ -318,17 +313,11 @@ android {
 
         // hammock: removed the nightly source set, Hammock ships only the github channel
 
-        lawnWithQuickstepGithub {
-            manifest.srcFile "quickstep/AndroidManifest-launcher.xml"
-        }
+        // hammock: removed the lawnWithQuickstepGithub source set, the launcher activity is declared in lawnchair/AndroidManifest.xml
 
         // hammock: removed the nightly and play source sets, Hammock ships only the github channel
 
-        withQuickstep {
-            res.srcDirs = ['quickstep/res', 'quickstep/recents_ui_overrides/res']
-            java.srcDirs = ['quickstep/src', 'quickstep/recents_ui_overrides/src']
-            manifest.srcFile "quickstep/AndroidManifest.xml"
-        }
+        // hammock: removed the withQuickstep source set, Hammock builds without Quickstep
     }
 }
 
@@ -347,32 +336,16 @@ dependencies {
     implementation projects.animationlib
     implementation libs.androidx.exifinterface
 
-    // Recents lib dependency
-    withQuickstepCompileOnly projects.hiddenApi
-    withQuickstepImplementation projects.shared
-    withQuickstepImplementation projects.anim
-    withQuickstepImplementation projects.unfold
-    withQuickstepImplementation projects.viewcapture
-    withQuickstepImplementation projects.log
-    withQuickstepCompileOnly projects.plugin
-    withQuickstepImplementation projects.plugincore
-    withQuickstepCompileOnly projects.common
-
-    // QuickSwitch Compat
-    withQuickstepImplementation projects.compatLib
-    withQuickstepImplementation projects.compatLib.compatLibVQ
-    withQuickstepImplementation projects.compatLib.compatLibVR
-    withQuickstepImplementation projects.compatLib.compatLibVS
-    withQuickstepImplementation projects.compatLib.compatLibVT
-    withQuickstepImplementation projects.compatLib.compatLibVU
-    withQuickstepImplementation projects.compatLib.compatLibVV
-    withQuickstepImplementation projects.wmshell
-    withQuickstepImplementation projects.flags
+    // hammock: Quickstep dependencies removed; these are the ones the Launcher3 core and Lawnchair use
+    compileOnly projects.hiddenApi
+    compileOnly projects.plugin
+    implementation projects.plugincore
+    implementation projects.flags
     implementation libs.androidx.dynamicanimation
 
     implementation fileTree(dir: FRAMEWORK_PREBUILTS_DIR, include: 'SystemUI-statsd-15.jar')
     implementation fileTree(dir: FRAMEWORK_PREBUILTS_DIR, include: 'WindowManager-Shell-15.jar')
-    withQuickstepCompileOnly fileTree(dir: FRAMEWORK_PREBUILTS_DIR, include: 'framework-15.jar')
+    // hammock: removed the Quickstep-only framework-15.jar entry, addFrameworkJar already adds it
 
     coreLibraryDesugaring libs.android.desugarJdkLibs
 
@@ -419,8 +392,7 @@ dependencies {
     implementation libs.bundles.room
     ksp libs.room.compiler
 
-    // hammock: libsu is used only by Quickstep's ImageActionUtils now, it goes away with Quickstep
-    withQuickstepImplementation libs.libsu.core
+    // hammock: removed libsu, only Quickstep's ImageActionUtils used it
 
     // Persian Date
     implementation libs.persian.date

@@ -28,13 +28,15 @@ so this code never runs. Removing it first gives a smaller codebase to build the
       `isRecentsEnabled` branches keep their "false" side. `isRecentsEnabled` itself stays, hardwired to `false`,
       while Quickstep still reads it.
 - [x] Cut the Launcher3 core (`src/`, `res/`) loose from `quickstep/`.
-- [ ] Make `LawnchairLauncher` extend `Launcher`.
-- [ ] Build through `src_no_quickstep/` without the `withQuickstep` flavor dimension; the variant becomes `lawnGithubDebug`.
+- [x] Make `LawnchairLauncher` extend `Launcher` and build through `src_no_quickstep/` without the `withQuickstep`
+      flavor dimension; the variant becomes `lawnGithubDebug`. One step: while Quickstep compiles, its
+      `uioverrides.states` expect `RecentsView`. The Quickstep depth controller (wallpaper zoom and blur
+      in transitions) is dropped: it needs hidden APIs.
 - [ ] Remove modules that only Quickstep needed (`quickstep/`, `wmshell/`, `systemUI/`, `hidden-api/`, `prebuilts/`, `compatLib/`),
       each only after checking nothing else uses it.
 - [ ] Remove settings and strings that only made sense with Quickstep.
 
-Inventory (as of the Phase 0 base). Each step above keeps the build green; Quickstep still compiles until the build switch.
+Inventory (as of the Phase 0 base). Each step above keeps the build green and the app working.
 - Core `src/`: `LauncherState` uses `uioverrides.states`, which `src_no_quickstep/` provides as in AOSP.
   Mentions of `QuickstepLauncher`, `QuickstepTransitionManager` and `TaskView` in `Launcher`, `BaseActivity`,
   `FloatingIconView` and `ClipIconView` are javadoc only. `res/layout/floating_{split_select,app_pair,widget}_view.xml`
@@ -134,6 +136,11 @@ Acceptance: Home button, returning from apps, launcher restart, page add and rem
 
 - Return-to-home animation: remove the brief blur of the dock when Home is pressed in an app,
   to match Pixel Launcher (Lawnchair has the same issue).
+- Restore the original Pixel Launcher app open and close animations.
+- Background blur in transitions and the drawer through the public `Window.setBackgroundBlurRadius` (API 31).
+  Wallpaper zoom has no public API.
+- Closing Recents with Home: remove the last app "hanging" on screen before home appears. Recents belongs
+  to Pixel Launcher, so first check whether a third-party home can affect this at all.
 - Manual app order in sections: alphabetical until the first manual move, new apps go to the end,
   "Sort alphabetically" action in the section menu. Needs a solution for the long-press conflict
   (long-press currently drags the icon to the home screen).

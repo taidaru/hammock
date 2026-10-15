@@ -41,7 +41,8 @@
     <uses-permission android:name="android.permission.SUSPEND_APPS" tools:ignore="ProtectedPermissions" />
 
     <!--override minSdk declared in it-->
-    <uses-sdk tools:overrideLibrary="com.kieronquinn.app.smartspacer.sdk" />
+    <!-- hammock: the smartspacer client override moved from quickstep/AndroidManifest-launcher.xml -->
+    <uses-sdk tools:overrideLibrary="com.kieronquinn.app.smartspacer.sdk,com.kieronquinn.app.smartspacer.sdk.client" />
 
     <permission
         android:name="${packageName}.permission.READ_SETTINGS"
@@ -57,6 +58,34 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <!-- hammock: the launcher activity, moved from quickstep/AndroidManifest-launcher.xml -->
+        <activity
+            android:name="app.lawnchair.LawnchairLauncher"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"
+            android:stateNotNeeded="true"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="unspecified"
+            android:configChanges="keyboard|keyboardHidden|mcc|mnc|navigation|orientation|screenSize|screenLayout|smallestScreenSize"
+            android:resizeableActivity="true"
+            android:resumeWhilePausing="true"
+            android:taskAffinity=""
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.SHOW_WORK_APPS" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.MONKEY"/>
+                <category android:name="android.intent.category.LAUNCHER_APP" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="com.android.launcher3.grid.control"
+                android:value="${applicationId}.grid_control" />
+        </activity>
 
         <activity
             android:name="app.lawnchair.ui.preferences.PreferenceActivity"
@@ -150,13 +179,7 @@
                 android:resource="@xml/smartspace_appwidget_info" />
         </receiver>
 
-        <meta-data
-            android:name="xyz.paphonb.quickstepswitcher.minSdk"
-            android:value="${quickstepMinSdk}" />
-
-        <meta-data
-            android:name="xyz.paphonb.quickstepswitcher.maxSdk"
-            android:value="${quickstepMaxSdk}" />
+        <!-- hammock: removed the QuickSwitch SDK range metadata, Hammock builds without Quickstep -->
 
         <provider
             android:name="org.chickenhook.restrictionbypass.BypassProvider"

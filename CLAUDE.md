@@ -186,8 +186,8 @@ or a decision changes.
 
 ```bash
 git submodule update --init --recursive   # after cloning: the platform_frameworks_libs_systemui submodule
-./gradlew assembleLawnWithQuickstepGithubDebug   # current variant; after quickstep removal it becomes lawnGithubDebug
-./gradlew installLawnWithQuickstepGithubDebug
+./gradlew assembleLawnGithubDebug
+./gradlew installLawnGithubDebug
 ```
 
 - Run Gradle on JDK 21 (as in the upstream CI); bytecode targets Java 17 (`jdkRelease` in `gradle/libs.versions.toml`).

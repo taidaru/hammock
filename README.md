@@ -43,7 +43,7 @@ Requirements: JDK 21, Android SDK platform `android-36.1` and build-tools `36.1.
 
 ```bash
 git submodule update --init --recursive
-./gradlew assembleLawnWithQuickstepGithubDebug
+./gradlew assembleLawnGithubDebug
 ```
 
 ## Credits

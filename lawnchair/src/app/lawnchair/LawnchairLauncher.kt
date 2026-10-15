@@ -29,14 +29,12 @@ import android.os.Bundle
 import android.util.Pair
 import android.view.Display
 import android.view.View
-import android.view.ViewTreeObserver
 import android.window.SplashScreen
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
-import app.lawnchair.compat.LawnchairQuickstepCompat
 import app.lawnchair.data.AppDatabase
 import app.lawnchair.data.wallpaper.service.WallpaperService
 import app.lawnchair.factory.LawnchairWidgetHolder
@@ -56,6 +54,7 @@ import com.android.launcher3.AbstractFloatingView
 import com.android.launcher3.BaseActivity
 import com.android.launcher3.BubbleTextView
 import com.android.launcher3.GestureNavContract
+import com.android.launcher3.Launcher
 import com.android.launcher3.LauncherAppState
 import com.android.launcher3.LauncherState
 import com.android.launcher3.R
@@ -65,11 +64,9 @@ import com.android.launcher3.popup.SystemShortcut
 import com.android.launcher3.shortcuts.DeepShortcutView
 import com.android.launcher3.statemanager.StateManager
 import com.android.launcher3.statemanager.StateManager.StateHandler
-import com.android.launcher3.uioverrides.QuickstepLauncher
 import com.android.launcher3.uioverrides.states.AllAppsState
 import com.android.launcher3.uioverrides.states.OverviewState
 import com.android.launcher3.util.ActivityOptionsWrapper
-import com.android.launcher3.util.Executors
 import com.android.launcher3.util.RunnableList
 import com.android.launcher3.util.SystemUiController.UI_STATE_BASE_WINDOW
 import com.android.launcher3.util.Themes
@@ -80,7 +77,6 @@ import com.android.launcher3.views.OptionsPopupView.OptionItem
 import com.android.launcher3.widget.LauncherWidgetHolder
 import com.android.launcher3.widget.RoundedCornerEnforcement
 import com.android.systemui.plugins.shared.LauncherOverlayManager
-import com.android.systemui.shared.system.QuickStepContract
 import com.kieronquinn.app.smartspacer.sdk.client.SmartspacerClient
 import com.patrykmichalik.opto.core.firstBlocking
 import com.patrykmichalik.opto.core.onEach
@@ -90,7 +86,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class LawnchairLauncher : QuickstepLauncher() {
+class LawnchairLauncher : Launcher() {
     private val defaultOverlay by unsafeLazy { OverlayCallbackImpl(this) }
     private val prefs by unsafeLazy { PreferenceManager.getInstance(this) }
     private val preferenceManager2 by unsafeLazy { PreferenceManager2.getInstance(this) }
@@ -116,6 +112,7 @@ class LawnchairLauncher : QuickstepLauncher() {
         }
         override fun onStateTransitionComplete(finalState: LauncherState) {}
     }
+
     // hammock: removed the status bar clock listener, the feature needs the Recents provider role
     private val clearSearchStateListener = object : StateManager.StateListener<LauncherState> {
         override fun onStateTransitionComplete(finalState: LauncherState) {
@@ -180,12 +177,7 @@ class LawnchairLauncher : QuickstepLauncher() {
             }
         }.launchIn(scope = lifecycleScope)
 
-        prefs.overrideWindowCornerRadius.subscribeValues(this) {
-            QuickStepContract.sHasCustomCornerRadius = it
-        }
-        prefs.windowCornerRadius.subscribeValues(this) {
-            QuickStepContract.sCustomCornerRadius = it.toFloat()
-        }
+        // hammock: removed the window corner radius override, only Quickstep transitions used it
         preferenceManager2.roundedWidgets.onEach(launchIn = lifecycleScope) {
             RoundedCornerEnforcement.sRoundedCornerEnabled = it
         }
@@ -344,19 +336,8 @@ class LawnchairLauncher : QuickstepLauncher() {
 
     override fun makeDefaultActivityOptions(splashScreenStyle: Int): ActivityOptionsWrapper {
         val callbacks = RunnableList()
-        val options = if (Utilities.ATLEAST_Q) {
-            LawnchairQuickstepCompat.activityOptionsCompat.makeCustomAnimation(
-                this,
-                0,
-                0,
-                Executors.MAIN_EXECUTOR.handler,
-                null,
-            ) {
-                callbacks.executeAllAndDestroy()
-            }
-        } else {
-            ActivityOptions.makeBasic()
-        }
+        // hammock: public makeCustomAnimation, the finish-callback overload is hidden API
+        val options = ActivityOptions.makeCustomAnimation(this, 0, 0)
         if (Utilities.ATLEAST_T) {
             options.splashScreenStyle = splashScreenStyle
         }
@@ -365,13 +346,8 @@ class LawnchairLauncher : QuickstepLauncher() {
         return ActivityOptionsWrapper(options, callbacks)
     }
 
-    override fun getActivityLaunchOptions(v: View?, item: ItemInfo?): ActivityOptionsWrapper {
-        return runCatching {
-            super.getActivityLaunchOptions(v, item)
-        }.getOrElse {
-            getActivityLaunchOptionsDefault(v)
-        }
-    }
+    // hammock: Quickstep remote launch animations need a system permission, always use the default
+    override fun getActivityLaunchOptions(v: View?, item: ItemInfo?): ActivityOptionsWrapper = getActivityLaunchOptionsDefault(v)
 
     private fun getActivityLaunchOptionsDefault(v: View?): ActivityOptionsWrapper {
         var left = 0
@@ -409,24 +385,7 @@ class LawnchairLauncher : QuickstepLauncher() {
     override fun onResume() {
         super.onResume()
         restartIfPending()
-
-        dragLayer.viewTreeObserver.addOnDrawListener(
-            object : ViewTreeObserver.OnDrawListener {
-                private var handled = false
-
-                override fun onDraw() {
-                    if (handled) {
-                        return
-                    }
-                    handled = true
-
-                    dragLayer.post {
-                        dragLayer.viewTreeObserver.removeOnDrawListener(this)
-                    }
-                    depthController
-                }
-            },
-        )
+        // hammock: removed the Quickstep depth controller warm-up, the controller needs hidden APIs
     }
 
     override fun onDestroy() {

@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.views
 
 import android.animation.Animator
@@ -16,7 +20,6 @@ import android.util.AttributeSet
 import android.util.Log
 import android.util.Pair
 import android.view.MotionEvent
-import android.view.SurfaceControl
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.View
@@ -33,17 +36,17 @@ import com.android.launcher3.CellLayout
 import com.android.launcher3.GestureNavContract
 import com.android.launcher3.Insettable
 import com.android.launcher3.LauncherAnimUtils
-import com.android.launcher3.QuickstepTransitionManager.CONTENT_SCALE_DURATION
-import com.android.launcher3.QuickstepTransitionManager.LaunchDepthController
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
 import com.android.launcher3.util.Executors
-import com.android.launcher3.util.MultiPropertyFactory
 import com.android.launcher3.util.window.RefreshRateTracker
 import com.android.launcher3.views.FloatingIconView.getLocationBoundsForView
 import com.android.launcher3.views.FloatingIconViewCompanion.setPropertiesVisible
 import java.util.function.Consumer
 import kotlin.math.roundToInt
+
+// hammock: copied from QuickstepTransitionManager, which Hammock does not build
+private const val CONTENT_SCALE_DURATION = 350
 
 class LawnchairFloatingSurfaceView @JvmOverloads constructor(
     context: Context?,
@@ -166,66 +169,7 @@ class LawnchairFloatingSurfaceView @JvmOverloads constructor(
         return Pair<AnimatorSet?, Runnable?>(launcherAnimator, endListener)
     }
 
-    private fun getBackgroundAnimator(): ObjectAnimator {
-        val depthController = LaunchDepthController(mLauncher)
-        val targetDepth = mLauncher.stateManager.state.getDepth<LawnchairLauncher?>(mLauncher)
-
-        val backgroundRadiusAnim = createDepthAnimator(
-            depthController,
-            targetDepth,
-            onEnd = {
-                if (Utilities.ATLEAST_R) {
-                    val viewRootImpl = mLauncher.dragLayer.getViewRootImpl()
-                    val parent = viewRootImpl?.surfaceControl
-                    val dimLayer: SurfaceControl = SurfaceControl.Builder()
-                        .setName("Blur layer")
-                        .setParent(parent)
-                        .setOpaque(false)
-                        .setEffectLayer()
-                        .build()
-
-                    createDepthAnimator(
-                        depthController,
-                        mLauncher.depthController.stateDepth.value,
-                    ) {
-                        depthController.dispose()
-                        SurfaceControl.Transaction().remove(dimLayer).apply()
-                    }.start()
-                } else {
-                    createDepthAnimator(
-                        depthController,
-                        mLauncher.depthController.stateDepth.value,
-                    ) {
-                        depthController.dispose()
-                    }.start()
-                }
-            },
-        )
-
-        return backgroundRadiusAnim
-    }
-
-    private fun createDepthAnimator(
-        depthController: LaunchDepthController,
-        targetDepth: Float,
-        onEnd: (() -> Unit)? = null,
-    ): ObjectAnimator {
-        return ObjectAnimator.ofFloat(
-            depthController.stateDepth,
-            MultiPropertyFactory.MULTI_PROPERTY_VALUE,
-            targetDepth,
-        ).apply {
-            duration = CONTENT_SCALE_DURATION.toLong() * 2
-            interpolator = Interpolators.DECELERATE_2
-            onEnd?.let {
-                addListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator) {
-                        it()
-                    }
-                })
-            }
-        }
-    }
+    // hammock: removed the depth (blur and wallpaper zoom) animation, it needs Quickstep and hidden APIs
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
@@ -408,7 +352,8 @@ class LawnchairFloatingSurfaceView @JvmOverloads constructor(
             val startDelay = RefreshRateTracker.getSingleFrameMs(launcher)
             val launcherContentAnimator: Pair<AnimatorSet?, Runnable?> =
                 view.getLauncherContentAnimator(startDelay)
-            anim.playTogether(launcherContentAnimator.first, view.getBackgroundAnimator())
+            // hammock: no depth animation, see getLauncherContentAnimator
+            anim.playTogether(launcherContentAnimator.first)
             anim.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     launcherContentAnimator.second!!.run()

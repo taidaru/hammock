@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package app.lawnchair.preferences2
@@ -20,15 +22,12 @@ import android.content.Context
 import app.lawnchair.LawnchairLauncher
 import com.android.launcher3.InvariantDeviceProfile
 import com.android.launcher3.LauncherAppState
-import com.android.quickstep.TouchInteractionService
-import com.android.quickstep.util.TISBindHelper
 
 class ReloadHelper(private val context: Context) {
 
     private val idp: InvariantDeviceProfile
         get() = InvariantDeviceProfile.INSTANCE.get(context)
-    private var tis: TouchInteractionService.TISBinder? = null
-    private val tisBinder = TISBindHelper(context) { tis = it }
+    // hammock: removed the TouchInteractionService binding, Hammock has no taskbar
 
     fun reloadGrid() {
         idp.onPreferencesChanged(context)
@@ -47,9 +46,5 @@ class ReloadHelper(private val context: Context) {
         LauncherAppState.INSTANCE.get(context).reloadIcons()
     }
 
-    fun reloadTaskbar() {
-        tisBinder.runOnBindToTouchInteractionService {
-            tis?.taskbarManager?.recreateTaskbar()
-        }
-    }
+    // hammock: removed reloadTaskbar, Hammock has no taskbar
 }

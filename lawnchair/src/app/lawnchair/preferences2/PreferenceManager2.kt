@@ -609,7 +609,7 @@ class PreferenceManager2 private constructor(private val context: Context) :
         defaultValue = false,
         onSet = {
             reloadHelper.reloadGrid()
-            reloadHelper.reloadTaskbar()
+            // hammock: removed reloadTaskbar, Hammock has no taskbar
             reloadHelper.recreate()
         },
     )
