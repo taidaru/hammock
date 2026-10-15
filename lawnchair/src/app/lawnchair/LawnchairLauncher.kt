@@ -44,6 +44,7 @@ import app.lawnchair.gestures.config.GestureHandlerConfig
 import app.lawnchair.nexuslauncher.OverlayCallbackImpl
 import app.lawnchair.preferences.PreferenceManager
 import app.lawnchair.preferences2.PreferenceManager2
+import app.lawnchair.sections.MoveToSectionShortcut
 import app.lawnchair.theme.ThemeProvider
 import app.lawnchair.transitions.AppLaunchContentAnimator
 import app.lawnchair.ui.popup.LauncherOptionsPopup
@@ -221,7 +222,8 @@ class LawnchairLauncher : Launcher() {
     override fun getSupportedShortcuts(): Stream<SystemShortcut.Factory<*>> = Stream.concat(
         super.getSupportedShortcuts(),
         // hammock: removed the Pause apps shortcut, it needs the Recents provider role and hidden APIs
-        Stream.of(LawnchairShortcut.UNINSTALL, LawnchairShortcut.CUSTOMIZE),
+        // hammock: the "Move to…" item for drawer sections
+        Stream.of(LawnchairShortcut.UNINSTALL, LawnchairShortcut.CUSTOMIZE, MoveToSectionShortcut.FACTORY),
     )
 
     override fun updateTheme() {

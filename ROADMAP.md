@@ -112,8 +112,9 @@ Decisions:
 - Sections are created, renamed, reordered and deleted in settings. Deleting a section returns its apps
   to the main section.
 - The first section is "Personal" by default; it can be renamed but not deleted.
-- The tab bar keeps equal-width tabs while they fit and scrolls when they do not, keeping the active tab
-  in view; titles are never cut.
+- The tab bar shows at most three tabs at a time. With more sections every tab is a third of the bar,
+  long titles are ellipsized, and the bar follows the pager with the active tab centered; tabs out of view
+  slide in and out past the screen edges like the app pages.
 - Lawnchair's drawer folders and drawer categories are both removed: inside a section the drawer is a plain
   alphabetical list, as in Pixel Launcher. The folder Room tables are replaced by section tables in one
   migration; Hammock has no released users, so folder data is not migrated.
@@ -128,9 +129,10 @@ Tasks:
 - [x] Core hook: generalize the two adapters (`AdapterHolder.MAIN` / `WORK`) in
       `ActivityAllAppsContainerView` and the Personal / Work tab bar to N tabs: extension points
       `getExtraSectionCount`, `getSectionFilter`, `onBindSectionTabs`, `onSectionsChanged`.
-- [x] Sections in the drawer: a tab and a page per section (`DrawerSectionsController`), the scrolling
-      tab strip (`DrawerSectionTabStrip`); changes apply live.
-- [ ] "Move to…" system shortcut.
+- [x] Sections in the drawer: a tab and a page per section (`DrawerSectionsController`), the tab strip
+      (`DrawerSectionTabStrip`); changes apply live.
+- [x] "Move to…" system shortcut (`MoveToSectionShortcut`): drawer apps of the main profile, while there is
+      more than one section.
 - [ ] Settings screen for sections (Compose).
 - [x] Remove Lawnchair drawer folders and categories (drawer list, settings, routes, strings). The core keeps
       its now unused drawer-folder rendering; the categorization utilities stay for Lawndeck until Phase 4.
