@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package com.android.systemui.plugins;
@@ -148,10 +150,7 @@ public interface BcSmartspaceDataPlugin extends Plugin {
          */
         void setIntentStarter(IntentStarter intentStarter);
 
-        /**
-         * When on the lockscreen, use the FalsingManager to help detect errant touches
-         */
-        void setFalsingManager(com.android.systemui.plugins.FalsingManager falsingManager);
+        // hammock: removed setFalsingManager, FalsingManager lived in the removed SystemUI plugin module
 
         /**
          * Set or clear Do Not Disturb information.

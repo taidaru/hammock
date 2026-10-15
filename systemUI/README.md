@@ -1,5 +1,7 @@
-# SystemUI Module
+# SystemUI modules
 
-This directory contains all of the required SystemUI modules. Some examples of modules include `Common`, which serves as a helper for other SystemUI modules, and `Unfold`, which handles devices with hinges.
+`plugin_core/` holds the SystemUI plugin interfaces (`Plugin`, `PluginListener`, `@ProvidesInterface`)
+that the Launcher3 plugin code in `src_plugins/` builds on. The other SystemUI modules served only
+Quickstep and were removed.
 
 Upstream source code: https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/packages/SystemUI/

@@ -42,8 +42,7 @@ Launcher3 from Android 15) with Quickstep removed.
 |---|---|---|
 | `src/` | Launcher3 core from AOSP (Java) | Touch **minimally and surgically** |
 | `lawnchair/src/app/lawnchair/` | Lawnchair code (Kotlin) | May be changed |
-| `quickstep/` | Recents/Overview | **Being removed**, do not use |
-| `src_no_quickstep/` | Stubs replacing quickstep | Our build path without Recents |
+| `src_no_quickstep/` | Stubs replacing Quickstep (removed) | Part of the build, as in the AOSP Launcher3 target |
 | `platform_frameworks_libs_systemui/` | git submodule (iconloaderlib, animationlib, etc.) | Do not edit directly |
 | `res/`, `lawnchair/res/` | Launcher3 and Lawnchair resources | New resources go into our resource folder |
 
@@ -51,7 +50,7 @@ Useful places in the Lawnchair code:
 - Settings: `preferences2/PreferenceManager2.kt` (DataStore) and `preferences/PreferenceManager.kt` (legacy SharedPreferences).
 - Compose settings screens: `ui/preferences/`, routes in `ui/preferences/navigation/PreferenceRoutes.kt`.
 - App drawer: `allapps/`. Drawer folders: `data/folder/` (Room: `FolderEntity`, `FolderDao`, `FolderService`).
-- Main class: `LawnchairLauncher.kt`. It currently extends `QuickstepLauncher`; the goal is to extend `Launcher`.
+- Main class: `LawnchairLauncher.kt`, extends `Launcher`.
 
 ## Good practices
 

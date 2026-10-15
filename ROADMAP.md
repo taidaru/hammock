@@ -32,8 +32,10 @@ so this code never runs. Removing it first gives a smaller codebase to build the
       flavor dimension; the variant becomes `lawnGithubDebug`. One step: while Quickstep compiles, its
       `uioverrides.states` expect `RecentsView`. The Quickstep depth controller (wallpaper zoom and blur
       in transitions) is dropped: it needs hidden APIs.
-- [ ] Remove modules that only Quickstep needed (`quickstep/`, `wmshell/`, `systemUI/`, `hidden-api/`, `prebuilts/`, `compatLib/`),
-      each only after checking nothing else uses it.
+- [x] Remove modules that only Quickstep needed: `quickstep/`, `wmshell/`, `compatLib/`, `hidden-api/`, `androidx-lib/`,
+      all of `systemUI/` except `plugin_core/`, and the unused JARs in `prebuilts/libs/`. Kept: `framework-15.jar`
+      and `framework-14.jar` (compile-only, for the core and the submodule libraries) and `SystemUI-statsd-15.jar`
+      (`SysUiStatsLog`). Dropping `framework-*.jar` needs the hidden API audit from the backlog.
 - [ ] Remove settings and strings that only made sense with Quickstep.
 
 Inventory (as of the Phase 0 base). Each step above keeps the build green and the app working.
@@ -45,9 +47,9 @@ Inventory (as of the Phase 0 base). Each step above keeps the build green and th
   radius, `LawnchairQuickstepCompat` launch options), `LawnchairApp` (`RecentsActivity`), `LawnchairProcessInitializer`,
   `ReloadHelper` (`TouchInteractionService`), `LawnchairFloatingSurfaceView` (`QuickstepTransitionManager`),
   `LawnchairUtils`, `res/layout-v28,v31/task_desktop.xml`.
-- Modules used outside Quickstep and kept: `flags` (`com.android.launcher3.Flags`), `plugin` and `plugincore`
-  (Launcher3 plugin interfaces). `hidden-api` is used only for `android.app.search.SearchTarget`
-  (`SearchTargetCompat`).
+- Modules used outside Quickstep and kept: `flags` (`com.android.launcher3.Flags`) and `plugincore`
+  (Launcher3 plugin interfaces). `android.app.search.SearchTarget` (`SearchTargetCompat`) compiles against
+  `framework-15.jar`.
 - Not a Quickstep dependency: the "Open Recents" gesture uses `AccessibilityService.GLOBAL_ACTION_RECENTS`
   and stays. Gesture Nav Contract (`handleGestureContract`) is how Pixel Launcher animates the swipe home
   into a third-party launcher and stays.
@@ -134,6 +136,8 @@ Acceptance: Home button, returning from apps, launcher restart, page add and rem
 
 ## Post-MVP backlog
 
+- Hidden API audit: remove hidden API use in `src/` and Lawnchair (`Unseal`, ChickenHook RestrictionBypass,
+  `framework-15.jar` on the compile classpath), as `CLAUDE.md` requires public APIs only.
 - Return-to-home animation: remove the brief blur of the dock when Home is pressed in an app,
   to match Pixel Launcher (Lawnchair has the same issue).
 - Restore the original Pixel Launcher app open and close animations.

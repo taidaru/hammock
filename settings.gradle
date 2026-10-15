@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 pluginManagement {
     repositories {
         google {
@@ -55,43 +59,11 @@ project(':searchuilib').projectDir = new File(rootDir, 'platform_frameworks_libs
 include ':animationlib'
 project(':animationlib').projectDir = new File(rootDir, 'platform_frameworks_libs_systemui/animationlib')
 
-include ':hidden-api'
-
-include ':shared'
-project(':shared').projectDir = new File(rootDir, 'systemUI/shared')
-
-include ':plugin'
-project(':plugin').projectDir = new File(rootDir, 'systemUI/plugin')
-
+// hammock: removed the Quickstep-only modules (hidden-api, SystemUI shared/anim/log/common/unfold/viewcapture/plugin, compatLib)
 include ':plugincore'
 project(':plugincore').projectDir = new File(rootDir, 'systemUI/plugin_core')
 
-include ':common'
-project(':common').projectDir = new File(rootDir, 'systemUI/common')
-
-include ':log'
-project(':log').projectDir = new File(rootDir, 'systemUI/log')
-
-include ':anim'
-project(':anim').projectDir = new File(rootDir, 'systemUI/anim')
-
-include ':unfold'
-project(':unfold').projectDir = new File(rootDir, 'systemUI/unfold')
-
-include ':viewcapture'
-project(':viewcapture').projectDir = new File(rootDir, 'systemUI/viewcapture')
-
-
-include ':compatLib'
-include ':compatLib:compatLibVQ'
-include ':compatLib:compatLibVR'
-include ':compatLib:compatLibVS'
-include ':compatLib:compatLibVT'
-include ':compatLib:compatLibVU'
-include ':compatLib:compatLibVV'
-
 include ':baseline-profile'
 
-include ':androidx-lib'
+// hammock: removed androidx-lib and wmshell, only Quickstep modules used them
 include ':flags'
-include ':wmshell'
