@@ -122,7 +122,9 @@ Decisions:
   `app.lawnchair.sections`.
 
 Tasks:
-- [ ] Data: Room entities for sections and app-to-section mapping (keyed by component and user).
+- [x] Data: Room entities for sections and app-to-section mapping (keyed by component and user):
+      `DrawerSections` and `DrawerSectionApps` (database version 4), `DrawerSectionsRepository`. The main section
+      is implicit: apps without a row belong to it, its title is a `PreferenceManager2` setting.
 - [ ] Core hook: generalize the two adapters (`AdapterHolder.MAIN` / `WORK`) in
       `ActivityAllAppsContainerView` and the Personal / Work tab bar to N tabs.
 - [ ] "Move to…" system shortcut.
@@ -182,6 +184,8 @@ Acceptance: Home button, returning from apps, launcher restart, page add and rem
 
 ## Post-MVP backlog
 
+- Brand leak from Phase 0: "Lawnchair" is still in the text of translated strings (63 `values-*` files, e.g.
+  "Managed by Lawnchair" in English variants) and in the sponsored search provider description.
 - Hidden API audit: remove hidden API use in `src/` and Lawnchair (`Unseal`, ChickenHook RestrictionBypass,
   `framework-15.jar` on the compile classpath), as `CLAUDE.md` requires public APIs only.
 - Background blur in transitions and the drawer through the public `Window.setBackgroundBlurRadius` (API 31).

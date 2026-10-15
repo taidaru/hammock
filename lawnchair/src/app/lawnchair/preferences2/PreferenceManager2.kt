@@ -246,6 +246,12 @@ class PreferenceManager2 private constructor(private val context: Context) :
         onSet = { reloadHelper.reloadGrid() },
     )
 
+    // hammock: the main drawer section title; empty means the default name
+    val drawerMainSectionTitle = preference(
+        key = stringPreferencesKey(name = "drawer_main_section_title"),
+        defaultValue = "",
+    )
+
     val roundedWidgets = preference(
         key = booleanPreferencesKey(name = "rounded_widgets"),
         defaultValue = context.resources.getBoolean(R.bool.config_default_rounded_widgets),
