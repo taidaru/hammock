@@ -45,6 +45,7 @@ import app.lawnchair.nexuslauncher.OverlayCallbackImpl
 import app.lawnchair.preferences.PreferenceManager
 import app.lawnchair.preferences2.PreferenceManager2
 import app.lawnchair.theme.ThemeProvider
+import app.lawnchair.transitions.AppLaunchContentAnimator
 import app.lawnchair.ui.popup.LauncherOptionsPopup
 import app.lawnchair.ui.popup.LawnchairShortcut
 import app.lawnchair.util.getThemedIconPacksInstalled
@@ -128,6 +129,9 @@ class LawnchairLauncher : Launcher() {
     private var hasBackGesture = false
 
     val gestureController by unsafeLazy { GestureController(this) }
+
+    // hammock: launcher-side part of the app open animation, see AppLaunchContentAnimator
+    private val appLaunchContentAnimator by unsafeLazy { AppLaunchContentAnimator(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (!Utilities.ATLEAST_Q) {
@@ -382,8 +386,19 @@ class LawnchairLauncher : Launcher() {
         return ActivityOptionsWrapper(options, callback)
     }
 
+    // hammock: animate the launcher content in step with the system app open animation
+    override fun startActivitySafely(v: View?, intent: Intent, item: ItemInfo?): RunnableList? {
+        val result = super.startActivitySafely(v, intent, item)
+        if (result != null && v != null && hasBeenResumed()) {
+            appLaunchContentAnimator.animateOut()
+        }
+        return result
+    }
+
     override fun onResume() {
         super.onResume()
+        // hammock: restore content left scaled by an app launch the user came back from early
+        appLaunchContentAnimator.restore()
         restartIfPending()
         // hammock: removed the Quickstep depth controller warm-up, the controller needs hidden APIs
     }

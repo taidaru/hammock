@@ -1,7 +1,7 @@
 # Roadmap
 
 The goal of the first release (0.1) is the three Hammock features on top of a Lawnchair 15 base
-without Quickstep, with Pixel Launcher app animations. Everything else is post-MVP.
+without Quickstep, with Pixel Launcher-like app animations. Everything else is post-MVP.
 
 Phases are done in order. A phase is done when its acceptance criteria are verified on a real Pixel
 (see "Build and verification" in `CLAUDE.md`).
@@ -65,19 +65,31 @@ The app open and close animations and the return to home differ from Pixel Launc
 the experience too much to leave for later.
 
 Decisions:
-- Public APIs only. Pixel Launcher's open animation is a remote animation that needs the system permission
-  `CONTROL_REMOTE_APP_TRANSITION_ANIMATIONS`, so the goal is the closest match with public `ActivityOptions`
-  and launcher-side animation, not a copy of the remote transition.
-- The close animation (swipe or Home from an app) is driven by Pixel Launcher through the Gesture Nav Contract;
-  Hammock animates its side of it (`LawnchairFloatingSurfaceView`) to match.
+- Public APIs only. The app open window animation cannot be changed by a third-party launcher on Android 17:
+  WindowManager applies `ActivityOptions` animations to a launched task only for `overrideTaskTransition`
+  (hidden API, system permission) or scene transitions (`Transition.shouldApplyAnimOptionsToTask` in AOSP);
+  clip reveal, scale up, thumbnail and custom animations were verified on the device to be ignored.
+  Pixel Launcher uses a remote animation, which also needs a system permission. So the open animation stays
+  the system default, and Hammock only animates its own home screen in step with it.
+- The swipe-home animation is driven by Pixel Launcher through the Gesture Nav Contract; Hammock reports the
+  icon position and draws the icon surface (`LawnchairFloatingSurfaceView`). The window travelling above the
+  dock before the icon settles is the same in Pixel Launcher. The home screen fading in (most visible on the
+  dock over a bright wallpaper) also comes from Pixel Launcher: its `FallbackSwipeHandler` animates the home
+  task alpha of a third-party launcher from 0 to 1 with `ACCELERATE`, and the launcher cannot change it.
+- The Home button with gesture navigation plays the system default close transition (no Gesture Nav Contract,
+  `DefaultTransitionHandler`); the black background before the wallpaper appears is the system's and cannot be
+  changed through public APIs.
 
 Tasks:
-- [ ] Return to home: remove the brief blur of the dock when Home is pressed in an app (Lawnchair has the same
-      issue). First check whether it is still there: Phase 1 removed the depth animation from the swipe-home path.
-- [ ] Restore the Pixel Launcher app open and close animations as closely as public APIs allow.
+- [x] Swipe home: remove the translucent rectangles over the dock and the search bar (the "dock blur"). They came
+      from Lawnchair's "app closing animation" overlay (`FullScreenOverlayView`, default "suck in"), drawn on top
+      of the system animation; the default is now "none".
+- [x] Swipe home: settle the home screen in 350 ms (AOSP `CONTENT_SCALE_DURATION`) instead of Lawnchair's 1050 ms.
+- [x] App open: scale the home screen (and fade All Apps) in step with the system open animation, as AOSP does
+      (`AppLaunchContentAnimator`).
 
-Acceptance: side-by-side comparison with Pixel Launcher on the same phone: opening from the home screen,
-the dock, the drawer and search; closing with Home and with the swipe gesture; work profile apps.
+Acceptance: side-by-side recordings with Pixel Launcher on the same phone: opening from the home screen,
+the dock, the drawer and search; closing with the swipe gesture and the Home button; work profile apps.
 
 ## Phase 3. App drawer sections
 
@@ -162,8 +174,6 @@ Acceptance: Home button, returning from apps, launcher restart, page add and rem
   `framework-15.jar` on the compile classpath), as `CLAUDE.md` requires public APIs only.
 - Background blur in transitions and the drawer through the public `Window.setBackgroundBlurRadius` (API 31).
   Wallpaper zoom has no public API.
-- Closing Recents with Home: remove the last app "hanging" on screen before home appears. Recents belongs
-  to Pixel Launcher, so first check whether a third-party home can affect this at all.
 - Icon customization: improve per-app icon customization.
 - Themed (adaptive color) icons: some icons are not recolored in the mode where all icons share one
   color palette; make them follow it.
@@ -175,3 +185,15 @@ Acceptance: Home button, returning from apps, launcher restart, page add and rem
 - Review which Lawnchair features to keep (currently all are kept).
 - Verify Startpage web suggestions still work without Lawnchair partner parameters.
 - Revisit the base: Lawnchair `15-dev` is frozen; `16-dev` targets Android 17.
+
+## Known platform limitations
+
+Checked on a Pixel 9 Pro with Android 17; a third-party launcher cannot change these through public APIs.
+
+- App open window animation: see Phase 2.
+- Swipe home fades the home screen in (most visible on the dock): Pixel Launcher's `FallbackSwipeHandler`
+  animates the third-party home task alpha from 0 to 1. See Phase 2.
+- Leaving Recents for home: the last app card stays still for about 250 ms and then disappears at once.
+  This is Pixel Launcher's fallback `RecentsActivity.startHomeInternal()`: it animates its own Recents view to
+  `BG_LAUNCHER` for `HOME_APPEAR_DURATION` (250 ms) and then hides. Hammock is ready to draw within ~20 ms
+  (`StartHomeFromRecents` transition `ready=17.8ms`, `finished=344.9ms`).
