@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -28,7 +31,6 @@
     <string name="action_delete">حذف</string>
     <string name="action_reset">دوبارہ ترتیب دیں۔</string>
     <string name="action_unlock">غیر مقفل کریں۔</string>
-    <string name="action_lock">تالا</string>
     <string name="action_apply">لگائیں</string>
     <string name="action_customize">حسب ضرورت بنائیں۔</string>
     <string name="always_choice">ہمیشہ</string>
@@ -148,8 +150,6 @@
     <string name="folders_description">قطار اور کالم کی گنتی</string>
     <string name="gestures_label">اشارے</string>
     <string name="gestures_description">ٹیپ اور سوائپس</string>
-    <string name="quickstep_label">Recents screen</string>
-    <string name="quickstep_description">کلئیر آل بٹن، کونے کی گولائی</string>
     <string name="about_label">کے بارے میں</string>
     <string name="app_info_drop_target_label">ایپ کی معلومات</string>
     <string name="debug_restart_launcher">لان چیئر کو دوبارہ شروع کریں۔</string>
@@ -177,8 +177,6 @@
     <string name="gesturenavcontract_label">GestureNavContract API</string>
     <string name="gesturenavcontract_description">Render launcher animations without root, does not work with heavily modified AOSP</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract may cause artifacting during animations</string>
-    <string name="recents_lock_unlock">لاک/انلاک</string>
-    <string name="recents_lock_unlock_description">\"سب کو صاف کریں\" دبانے پر منتخب ایپ کو بند ہونے سے روکیں۔</string>
     <!--Overlay-->
     <string name="overlay_fade_in">دھندلا جانا</string>
     <string name="overlay_suck_in">اندر چوسنا</string>
@@ -506,8 +504,6 @@
     <string name="status_bar_label">اسٹیٹس بار</string>
     <string name="show_status_bar">اسٹیٹس بار دکھائیں۔</string>
     <string name="dark_status_bar_label">تاریک اسٹیٹس بار</string>
-    <string name="status_bar_clock_label">اسٹیٹس بار کلاک</string>
-    <string name="status_bar_clock_description">پہلی اسکرین میں متحرک طور پر اسٹیٹس بار کلاک کو چھپائیں۔</string>
     <string name="home_screen_text_color">متن کا رنگ</string>
     <string name="color_light">روشن</string>
     <string name="color_dark">اندھیرا</string>
@@ -539,12 +535,6 @@
     <string name="hotseat_bg_color_label">پس منظر کا رنگ</string>
     <string name="hotseat_bg_alpha">پس منظر کی دھندلاپن</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">توقف</string>
-    <string name="pause_apps_dialog_title">%1$s کو موقوف کریں؟</string>
-    <string name="pause_apps_dialog_message">%1$s کی اطلاعات روک دی جائیں گی۔</string>
-    <string name="paused_apps_dialog_title">ایپ روک دی گئی۔</string>
-    <string name="paused_apps_dialog_message">%1$s کو براہ راست لانچر سے روک دیا گیا تھا۔</string>
-    <string name="paused_apps_drop_target_label">ایپ کو روکیں۔</string>
     <string name="dock_icons">ڈاک آئیکنز</string>
     <string name="hotseat_bottom_space_label">نیچے کی بھرتی</string>
     <string name="page_indicator_height">صفحہ کے اشارے کی اونچائی</string>
@@ -584,21 +574,9 @@
     <string name="max_folder_columns">زیادہ سے زیادہ فولڈر کالم</string>
     <string name="max_folder_rows">فولڈر کی زیادہ سے زیادہ قطاریں۔</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">These settings will be ignored as Lawnchair isn\'t set as the Recents screen provider</string>
-    <string name="quickstep_incompatible">غیر مطابقت پذیر نظام کا انضمام</string>
-    <string name="quickstep_incompatible_description">آپ کے آلے کو %1$s کے ذریعہ فراہم کردہ سسٹم اشاروں (جسے Quickstep کہا جاتا ہے) کے لیے ترتیب دیا گیا ہے، لیکن %1$s کا یہ ورژن آپ کے Android ورژن کے ساتھ مطابقت نہیں رکھتا ہے۔ اپنے آلے کا استعمال جاری رکھنے کے لیے، براہ کرم %1$s اپ ڈیٹس کو اَن انسٹال کریں یا %1$s کو سسٹم اشارہ فراہم کنندہ کے طور پر غیر فعال کریں۔</string>
-    <string name="translucent_background">شفاف پس منظر</string>
-    <string name="translucent_background_alpha">پس منظر کی دھندلاپن</string>
     <string name="recents_actions_label">فوری اقدامات</string>
     <string name="action_share">شیئر کریں۔</string>
-    <string name="action_lens">لینس</string>
-    <string name="recents_clear_all">سب صاف کریں۔</string>
     <string name="task_menu_force_stop">زبردستی بند کریں۔</string>
-    <string name="window_corner_radius_label">اسکرین کونے کا رداس</string>
-    <string name="override_window_corner_radius_label">حسب ضرورت اسکرین کونے کا رداس</string>
-    <string name="window_corner_radius_description">When you swipe up to open the Recents screen, the current app follows your finger, shrinking into a card. Use this slider to adjust the corner radius of the card when it\'s nearly full screen so it matches the corners of your screen.</string>
-    <string name="taskbar_label">ٹاسک بار</string>
-    <string name="enable_taskbar_experimental">ٹاسک بار دکھائیں (تجرباتی)</string>
     <!--
 
     All Apps search
@@ -625,7 +603,6 @@
     <string name="fuzzy_search_title">مبہم تلاش</string>
     <string name="fuzzy_search_desc">ایپ کی تلاش کے لیے تخمینی مماثلت</string>
     <string name="suggestion_pref_screen_title">تجاویز</string>
-    <string name="show_suggested_apps_at_drawer_top">دراز کے اوپری حصے میں تجویز کردہ ایپس دکھائیں۔</string>
     <string name="perform_wide_search_title">ڈیوائس کی تلاش</string>
     <string name="perform_wide_search_description">اپنے فون کے رابطے، فائلیں اور سیٹنگز تلاش کریں۔</string>
     <string name="show_hidden_apps_in_search_results">تلاش کے نتائج میں چھپی ہوئی ایپس دکھائیں۔</string>
@@ -637,7 +614,6 @@
     <string name="app_search_algorithm">الگورتھم تلاش کریں۔</string>
     <string name="search_algorithm_app_search">ایپ کی تلاش</string>
     <string name="search_algorithm_global_search_on_device">عالمی تلاش (آلہ پر)</string>
-    <string name="search_algorithm_global_search_via_asi">عالمی تلاش (بذریعہ ASI)</string>
     <string name="custom_search_label">Search engine name</string>
     <string name="custom_search_url">Search engine URL</string>
     <string name="custom_search_suggestions_url">Search suggestions URL</string>
@@ -646,9 +622,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">تلاش کے نتائج میں دکھائیں۔</string>
     <string name="search_pref_result_apps_and_shortcuts_title">Apps and shortcuts</string>
-    <string name="search_pref_result_shortcuts_title">ایپ شارٹ کٹس</string>
     <string name="search_pref_result_people_title">لوگ</string>
-    <string name="search_pref_result_tips_title">پکسل ٹپس</string>
     <string name="search_pref_result_settings_title">اینڈرائیڈ کی ترتیبات</string>
     <string name="search_pref_result_files_title">فائلیں</string>
     <string name="search_pref_result_visual_media_title">Photos and videos</string>

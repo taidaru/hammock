@@ -24,7 +24,6 @@ import androidx.compose.ui.platform.LocalContext
 import app.lawnchair.LawnchairLauncher
 import app.lawnchair.font.FontCache
 import app.lawnchair.util.isGestureNavContractCompatible
-import app.lawnchair.util.isOnePlusStock
 import com.android.launcher3.InvariantDeviceProfile
 import com.android.launcher3.InvariantDeviceProfile.INDEX_DEFAULT
 import com.android.launcher3.model.DeviceGridState
@@ -62,8 +61,7 @@ class PreferenceManager private constructor(private val context: Context) :
     val feedProvider = StringPref("pref_feedProvider", "")
     val ignoreFeedWhitelist = BoolPref("pref_ignoreFeedWhitelist", false)
     val launcherTheme = StringPref("pref_launcherTheme", "system")
-    val overrideWindowCornerRadius = BoolPref("pref_overrideWindowCornerRadius", false, recreate)
-    val windowCornerRadius = IntPref("pref_windowCornerRadius", 80, recreate)
+    // hammock: removed the window corner radius override, only Quickstep transitions used it
 
     // hammock: removed autoLaunchRoot, Hammock has no root features
     val wallpaperScrolling = BoolPref("pref_wallpaperScrolling", true)
@@ -76,7 +74,7 @@ class PreferenceManager private constructor(private val context: Context) :
         override fun unflattenValue(value: String) = value
     }
 
-    val recentActionOrder = StringPref("pref_recentActionOrder", "0,1,2,3,4", recreate)
+    // hammock: removed recentActionOrder, it ordered the Quickstep Recents actions
 
     private val fontCache = FontCache.INSTANCE.get(context)
     val fontWorkspace = FontPref("pref_workspaceFont", fontCache.uiText, recreate)
@@ -86,11 +84,10 @@ class PreferenceManager private constructor(private val context: Context) :
     val fontBodyMedium = FontPref("pref_fontBodyMedium", fontCache.uiTextMedium, recreate)
 
     // TODO REMOVE
-    val deviceSearch = BoolPref("device_search", false, recreate)
-    val searchResultShortcuts = BoolPref("pref_searchResultShortcuts", false)
+    // hammock: removed deviceSearch and searchResultShortcuts, only ASI search used them
     val searchResultPeople = BoolPref("pref_searchResultPeople", false, recreate)
-    val searchResultPixelTips = BoolPref("pref_searchResultPixelTips", false)
-    val searchResultSettings = BoolPref("pref_searchResultSettings", false)
+
+    // hammock: removed searchResultPixelTips and searchResultSettings, only ASI search used them
     val searchResultCalculator = BoolPref("pref_searchResultCalculator", false)
 
     val searchResultApps = BoolPref("pref_searchResultApps", true, recreate)
@@ -127,13 +124,7 @@ class PreferenceManager private constructor(private val context: Context) :
     val drawerList = BoolPref("pref_drawerList", true, recreate)
     val folderApps = BoolPref("pref_hideFolderApps", true, reloadGrid)
 
-    val recentsActionScreenshot = BoolPref("pref_recentsActionScreenshot", !isOnePlusStock)
-    val recentsActionShare = BoolPref("pref_recentsActionShare", isOnePlusStock)
-    val recentsActionLens = BoolPref("pref_recentsActionLens", true)
-    val recentsActionClearAll = BoolPref("pref_clearAllAsAction", false)
-    val recentsActionLocked = BoolPref("pref_lockedAsAction", false)
-    val recentsTranslucentBackground = BoolPref("pref_recentsTranslucentBackground", false, recreate)
-    val recentsTranslucentBackgroundAlpha = FloatPref("pref_recentTranslucentBackgroundAlpha", .8f, recreate)
+    // hammock: removed the Quickstep Recents action and background prefs
 
     val enableGnc = BoolPref("pref_enableGnc", isGestureNavContractCompatible, recreate)
 

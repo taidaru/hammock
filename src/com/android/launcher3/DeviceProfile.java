@@ -33,7 +33,6 @@ import static com.android.launcher3.icons.IconNormalizer.ICON_VISIBLE_AREA_FACTO
 import static com.android.launcher3.testing.shared.ResourceUtils.INVALID_RESOURCE_HANDLE;
 import static com.android.launcher3.testing.shared.ResourceUtils.pxFromDp;
 import static com.android.launcher3.testing.shared.ResourceUtils.roundPxValueFromFloat;
-import static com.android.wm.shell.Flags.enableTinyTaskbar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -76,7 +75,6 @@ import com.android.launcher3.util.IconSizeSteps;
 import com.android.launcher3.util.ResourceHelper;
 import com.android.launcher3.util.WindowBounds;
 import com.patrykmichalik.opto.core.PreferenceExtensionsKt;
-import com.android.launcher3.util.window.WindowManagerProxy;
 
 import java.io.PrintWriter;
 import java.util.Locale;
@@ -380,9 +378,8 @@ public class DeviceProfile {
         isTablet = info.isTablet(windowBounds);
         isPhone = !isTablet;
         isTwoPanels = isMultiDisplay;
-        boolean isTaskBarEnabled = PreferenceExtensionsKt.firstBlocking(preferenceManager2.getEnableTaskbarOnPhone());
-        isTaskbarPresent = isTaskBarEnabled && (isTablet || (enableTinyTaskbar() && isGestureMode))
-                && WindowManagerProxy.INSTANCE.get(context).isTaskbarDrawnInProcess();
+        // hammock: no taskbar without Quickstep, as in the AOSP non-Quickstep build
+        isTaskbarPresent = false;
 
         // Some more constants.
         context = getContext(context, info, isVerticalBarLayout() || (isTablet && isLandscape)

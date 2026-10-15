@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -28,7 +31,6 @@
     <string name="action_delete">Apagar</string>
     <string name="action_reset">Redefinir</string>
     <string name="action_unlock">Desbloquear</string>
-    <string name="action_lock">Bloquear</string>
     <string name="action_apply">Aplicar</string>
     <string name="action_customize">Personalizado</string>
     <string name="always_choice">Sempre</string>
@@ -148,8 +150,6 @@
     <string name="folders_description">Contagem de linhas e colunas</string>
     <string name="gestures_label">Gestos</string>
     <string name="gestures_description">Toques e deslizamentos</string>
-    <string name="quickstep_label">Janela de aplicativos recentes</string>
-    <string name="quickstep_description">Botão \"Limpar Tudo\", raio de canto</string>
     <string name="about_label">Sobre</string>
     <string name="app_info_drop_target_label">Informações do app</string>
     <string name="debug_restart_launcher">Reiniciar o Lawnchair</string>
@@ -177,8 +177,6 @@
     <string name="gesturenavcontract_label">GestureNavContract Api</string>
     <string name="gesturenavcontract_description">Render launcher animations without root, does not work with heavily modified AOSP</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract pode causar Artefatos durante animações</string>
-    <string name="recents_lock_unlock">Bloquear/desbloquear</string>
-    <string name="recents_lock_unlock_description">Prevenir app selecionado de fechar ao clicar em \"Limpar tudo\"</string>
     <!--Overlay-->
     <string name="overlay_fade_in">Aparecer</string>
     <string name="overlay_suck_in">Sugar</string>
@@ -506,8 +504,6 @@
     <string name="status_bar_label">Barra de status</string>
     <string name="show_status_bar">Mostrar barra de status</string>
     <string name="dark_status_bar_label">Barra de status escura</string>
-    <string name="status_bar_clock_label">Relógio da barra de Status</string>
-    <string name="status_bar_clock_description">Esconder dinamicamente o relógio da barra de status na primeira tela</string>
     <string name="home_screen_text_color">Cor do texto</string>
     <string name="color_light">Claro</string>
     <string name="color_dark">Escuro</string>
@@ -539,12 +535,6 @@
     <string name="hotseat_bg_color_label">Cor de fundo</string>
     <string name="hotseat_bg_alpha">Opacidade do fundo</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">Pausar</string>
-    <string name="pause_apps_dialog_title">Pausar por %1$s?</string>
-    <string name="pause_apps_dialog_message">Notificações por %1$s vão ser pausadas</string>
-    <string name="paused_apps_dialog_title">Aplicativo foi pausado</string>
-    <string name="paused_apps_dialog_message">%1$s Foi diretamente pausado pela launcher</string>
-    <string name="paused_apps_drop_target_label">Pausar aplicativo</string>
     <string name="dock_icons">Ícones da dock</string>
     <string name="hotseat_bottom_space_label">Preenchimento inferior</string>
     <string name="page_indicator_height">Altura do indicador de página</string>
@@ -584,21 +574,9 @@
     <string name="max_folder_columns">Máximo de colunas nas pastas</string>
     <string name="max_folder_rows">Máximo de linhas nas pastas</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">Estas configurações serão ignoradas, já que o Lawnchair não está definido como o provedor de aplicativos recentes</string>
-    <string name="quickstep_incompatible">Integração de sistema incompatível</string>
-    <string name="quickstep_incompatible_description">Seu dispositivo está configurado para ter gestos do sistema (conhecido como Quickstep) fornecidos por %1$s, mas esta versão do %1$s não é compatível com sua versão do Android. Para continuar usando o seu dispositivo, desinstale as atualizações de %1$s ou desative %1$s como provedor de gestos do sistema.</string>
-    <string name="translucent_background">Fundo translúcido</string>
-    <string name="translucent_background_alpha">Opacidade do fundo</string>
     <string name="recents_actions_label">Ações rápidas</string>
     <string name="action_share">Compartilhar</string>
-    <string name="action_lens">Lens</string>
-    <string name="recents_clear_all">Limpar tudo</string>
     <string name="task_menu_force_stop">Forçar fechamento</string>
-    <string name="window_corner_radius_label">Raio do canto da tela</string>
-    <string name="override_window_corner_radius_label">Raio do canto de tela personalizado</string>
-    <string name="window_corner_radius_description">Ao deslizar para cima para abrir a janela de aplicativos recentes, o aplicativo atual segue o seu dedo, diminuindo em um cartão. Utilize este controle deslizante para ajustar o raio de curvatura do cartão quando este estiver quase em tela cheia, de modo que ele corresponda aos cantos da sua tela.</string>
-    <string name="taskbar_label">Barra de Tarefas</string>
-    <string name="enable_taskbar_experimental">Mostrar barra de tarefas (experimental)</string>
     <!--
 
     All Apps search
@@ -625,7 +603,6 @@
     <string name="fuzzy_search_title">Pesquisa aproximada</string>
     <string name="fuzzy_search_desc">Correspondência aproximada para pesquisas de apps</string>
     <string name="suggestion_pref_screen_title">Sugestões</string>
-    <string name="show_suggested_apps_at_drawer_top">Mostrar aplicativos sugeridos na parte superior da gaveta de aplicativos</string>
     <string name="perform_wide_search_title">Pesquisa no dispositivo</string>
     <string name="perform_wide_search_description">Procurar nos contatos, arquivos e configurações do seu telefone</string>
     <string name="show_hidden_apps_in_search_results">Mostrar aplicativos ocultos nos resultados da pesquisa</string>
@@ -637,7 +614,6 @@
     <string name="app_search_algorithm">Algoritmo de pesquisa</string>
     <string name="search_algorithm_app_search">Pesquisa de aplicativos</string>
     <string name="search_algorithm_global_search_on_device">Pesquisa global (no dispositivo)</string>
-    <string name="search_algorithm_global_search_via_asi">Pesquisa global (via ASI)</string>
     <string name="custom_search_label">Nome do provedor de pesquisa</string>
     <string name="custom_search_url">URL do provedor de pesquisa</string>
     <string name="custom_search_suggestions_url">Sugestões de busca URL</string>
@@ -646,9 +622,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">Mostrar nos resultados da pesquisa</string>
     <string name="search_pref_result_apps_and_shortcuts_title">Aplicativos e atalhos</string>
-    <string name="search_pref_result_shortcuts_title">Atalhos de aplicativos</string>
     <string name="search_pref_result_people_title">Pessoas</string>
-    <string name="search_pref_result_tips_title">Dicas do Pixel</string>
     <string name="search_pref_result_settings_title">Configurações do Android</string>
     <string name="search_pref_result_files_title">Arquivos</string>
     <string name="search_pref_result_visual_media_title">Fotos e vídeos</string>

@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -28,7 +31,6 @@
     <string name="action_delete">Slett</string>
     <string name="action_reset">Nullstill</string>
     <string name="action_unlock">Lås opp</string>
-    <string name="action_lock">Lås</string>
     <string name="action_apply">Bruk</string>
     <string name="action_customize">Tilpass</string>
     <string name="always_choice">Alltid</string>
@@ -148,8 +150,6 @@
     <string name="folders_description">Rad og kolonneantall</string>
     <string name="gestures_label">Bevegelser</string>
     <string name="gestures_description">Tapping og sveiping</string>
-    <string name="quickstep_label">Nylige-skjermen</string>
-    <string name="quickstep_description">Fjern alt knapp, hjørneradius</string>
     <string name="about_label">Om</string>
     <string name="app_info_drop_target_label">App info</string>
     <string name="debug_restart_launcher">Omstart av Lawnchair</string>
@@ -177,8 +177,6 @@
     <string name="gesturenavcontract_label">GestureNavContract API</string>
     <string name="gesturenavcontract_description">Render launcher animations without root, does not work with heavily modified AOSP</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract may cause artifacting during animations</string>
-    <string name="recents_lock_unlock">Lås/lås opp</string>
-    <string name="recents_lock_unlock_description">Forhindre at valgt app lukker seg når man trykker \"Tøm alle\"</string>
     <!--Overlay-->
     <string name="overlay_fade_in">Falm inn</string>
     <string name="overlay_suck_in">Sug inn</string>
@@ -506,8 +504,6 @@
     <string name="status_bar_label">Statuslinje</string>
     <string name="show_status_bar">Vis statuslinje</string>
     <string name="dark_status_bar_label">Mørk statuslinje</string>
-    <string name="status_bar_clock_label">Status bar clock</string>
-    <string name="status_bar_clock_description">Dynamically hide status bar clock in first screen</string>
     <string name="home_screen_text_color">Tekstfarge</string>
     <string name="color_light">Lyst</string>
     <string name="color_dark">Mørkt</string>
@@ -539,12 +535,6 @@
     <string name="hotseat_bg_color_label">Background color</string>
     <string name="hotseat_bg_alpha">Gjennomsiktighet bakgrunn</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">Pause</string>
-    <string name="pause_apps_dialog_title">Pause %1$s?</string>
-    <string name="pause_apps_dialog_message">Notifications for %1$s will be paused</string>
-    <string name="paused_apps_dialog_title">App paused</string>
-    <string name="paused_apps_dialog_message">%1$s was directly paused from the launcher</string>
-    <string name="paused_apps_drop_target_label">Pause app</string>
     <string name="dock_icons">Dokk-ikoner</string>
     <string name="hotseat_bottom_space_label">Fyll nederst</string>
     <string name="page_indicator_height">Page indicator height</string>
@@ -584,21 +574,9 @@
     <string name="max_folder_columns">Maksimalt antall mappekolonner</string>
     <string name="max_folder_rows">Maksimum mapperader</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">These settings will be ignored as Lawnchair isn\'t set as the Recents screen provider</string>
-    <string name="quickstep_incompatible">Ukompatibel systemintegrering</string>
-    <string name="quickstep_incompatible_description">Enheten din er konfigurert til å ha systembevegelser (kjent som Quickstep) levert av %1$s, men denne versjonen av %1$s er ikke kompatibel med Android-versjonen din. Hvis du vil fortsette å bruke enheten, må du avinstallere %1$s-oppdateringer eller deaktivere %1$s som leverandør av systembevegelser.</string>
-    <string name="translucent_background">Gjennomskinn bakgrunn</string>
-    <string name="translucent_background_alpha">Bakgrunnsgjennomsiktighet</string>
     <string name="recents_actions_label">Raske handlinger</string>
     <string name="action_share">Del</string>
-    <string name="action_lens">Linse</string>
-    <string name="recents_clear_all">Fjern alle</string>
     <string name="task_menu_force_stop">Tving avslutning</string>
-    <string name="window_corner_radius_label">Radius for skjermhjørne</string>
-    <string name="override_window_corner_radius_label">Egendefinert skjermhjørneradius</string>
-    <string name="window_corner_radius_description">When you swipe up to open the Recents screen, the current app follows your finger, shrinking into a card. Use this slider to adjust the corner radius of the card when it\'s nearly full screen so it matches the corners of your screen.</string>
-    <string name="taskbar_label">Oppgavelinje</string>
-    <string name="enable_taskbar_experimental">Vis oppgavelinje (eksperimentiell)</string>
     <!--
 
     All Apps search
@@ -625,7 +603,6 @@
     <string name="fuzzy_search_title">Uklart søk</string>
     <string name="fuzzy_search_desc">Omtrentlig samsvar for appsøk</string>
     <string name="suggestion_pref_screen_title">Forslag</string>
-    <string name="show_suggested_apps_at_drawer_top">Vis foreslåtte apper på toppen av skuffen</string>
     <string name="perform_wide_search_title">Enhetssøk</string>
     <string name="perform_wide_search_description">Søk i telefonkontakter, filer og innstillinger</string>
     <string name="show_hidden_apps_in_search_results">Vis skjulte apper i søkeresultat</string>
@@ -637,7 +614,6 @@
     <string name="app_search_algorithm">Søkealgoritme</string>
     <string name="search_algorithm_app_search">Appsøk</string>
     <string name="search_algorithm_global_search_on_device">Globalt søk</string>
-    <string name="search_algorithm_global_search_via_asi">Globalt søk (via ASI)</string>
     <string name="custom_search_label">Search engine name</string>
     <string name="custom_search_url">Search engine URL</string>
     <string name="custom_search_suggestions_url">Search suggestions URL</string>
@@ -646,9 +622,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">Vis i søkeresultater</string>
     <string name="search_pref_result_apps_and_shortcuts_title">Apps and shortcuts</string>
-    <string name="search_pref_result_shortcuts_title">Appsnarveier</string>
     <string name="search_pref_result_people_title">Folk</string>
-    <string name="search_pref_result_tips_title">Tips for piksler</string>
     <string name="search_pref_result_settings_title">Androidinstillinger</string>
     <string name="search_pref_result_files_title">Filer</string>
     <string name="search_pref_result_visual_media_title">Photos and videos</string>

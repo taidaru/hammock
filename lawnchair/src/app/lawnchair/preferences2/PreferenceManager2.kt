@@ -354,11 +354,7 @@ class PreferenceManager2 private constructor(private val context: Context) :
         onSet = { reloadHelper.recreate() },
     )
 
-    val showSuggestedAppsInDrawer = preference(
-        key = booleanPreferencesKey(name = "show_suggested_apps_at_drawer_top"),
-        defaultValue = context.resources.getBoolean(R.bool.config_default_show_suggested_apps_at_drawer_top),
-        onSet = { reloadHelper.recreate() },
-    )
+    // hammock: removed showSuggestedAppsInDrawer, app predictions need the Recents provider role
 
     val enableFontSelection = preference(
         key = booleanPreferencesKey(name = "enable_font_selection"),
@@ -604,15 +600,7 @@ class PreferenceManager2 private constructor(private val context: Context) :
         defaultValue = "",
     )
 
-    val enableTaskbarOnPhone = preference(
-        key = booleanPreferencesKey("enable_taskbar_on_phone"),
-        defaultValue = false,
-        onSet = {
-            reloadHelper.reloadGrid()
-            // hammock: removed reloadTaskbar, Hammock has no taskbar
-            reloadHelper.recreate()
-        },
-    )
+    // hammock: removed enableTaskbarOnPhone, Hammock has no taskbar
 
     val smartspaceMode = preference(
         key = stringPreferencesKey("smartspace_mode"),

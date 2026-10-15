@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -28,7 +31,6 @@
     <string name="action_delete">삭제</string>
     <string name="action_reset">초기화</string>
     <string name="action_unlock">잠금 해제</string>
-    <string name="action_lock">잠금</string>
     <string name="action_apply">적용</string>
     <string name="action_customize">개인화</string>
     <string name="always_choice">항상</string>
@@ -148,8 +150,6 @@
     <string name="folders_description">아이콘 세로 및 가로 배치 수</string>
     <string name="gestures_label">제스처</string>
     <string name="gestures_description">탭 및 스와이프</string>
-    <string name="quickstep_label">최근 앱</string>
-    <string name="quickstep_description">모두 닫기 버튼, 가장자리 둥글기</string>
     <string name="about_label">더 보기</string>
     <string name="app_info_drop_target_label">앱 정보</string>
     <string name="debug_restart_launcher">Lawnchair 다시 시작</string>
@@ -177,8 +177,6 @@
     <string name="gesturenavcontract_label">GestureNavContract API</string>
     <string name="gesturenavcontract_description">Render launcher animations without root, does not work with heavily modified AOSP</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract may cause artifacting during animations</string>
-    <string name="recents_lock_unlock">잠금/잠금 해제</string>
-    <string name="recents_lock_unlock_description">\"모두 지우기\" 사용 시 선택한 앱이 지워지지 않도록 방지</string>
     <!--Overlay-->
     <string name="overlay_fade_in">페이드 인</string>
     <string name="overlay_suck_in">빨아들이기</string>
@@ -506,8 +504,6 @@
     <string name="status_bar_label">상태 표시줄</string>
     <string name="show_status_bar">상태 표시줄 표시</string>
     <string name="dark_status_bar_label">어두운 상태 표시줄</string>
-    <string name="status_bar_clock_label">상태 표시줄 시계</string>
-    <string name="status_bar_clock_description">능동적으로 첫 화면에서 상태 표시줄에 있는 시계를 가립니다</string>
     <string name="home_screen_text_color">텍스트 색상</string>
     <string name="color_light">라이트</string>
     <string name="color_dark">다크</string>
@@ -539,12 +535,6 @@
     <string name="hotseat_bg_color_label">배경색</string>
     <string name="hotseat_bg_alpha">배경 투명도</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">일시정지</string>
-    <string name="pause_apps_dialog_title">%1$s 앱을 일시정지할까요?</string>
-    <string name="pause_apps_dialog_message">%1$s 앱의 알림도 일시정지됩니다.</string>
-    <string name="paused_apps_dialog_title">앱 일시정지됨</string>
-    <string name="paused_apps_dialog_message">%1$s 앱을 직접 일시정지했습니다.</string>
-    <string name="paused_apps_drop_target_label">앱 일시정지</string>
     <string name="dock_icons">독 아이콘</string>
     <string name="hotseat_bottom_space_label">하단 패딩</string>
     <string name="page_indicator_height">페이지 표시기 높이</string>
@@ -583,21 +573,9 @@
     <string name="max_folder_columns">최대 폴더 열</string>
     <string name="max_folder_rows">최대 폴더 행</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">Lawnchair 가 최근 앱 보기 화면 제공자로 지정되지 않았으므로 이 설정은 무시됩니다</string>
-    <string name="quickstep_incompatible">호환되지 않는 시스템 통합</string>
-    <string name="quickstep_incompatible_description">기기가 %1$s에서 제공하는 시스템 제스처(Quickstep으로 알려져 있음)가 설정되어 있지만 %1$s의 이 버전은 사용하고 계신 Android 버전과 호환되지 않습니다. 장치를 계속 사용하려면 %1$s 업데이트를 제거하거나 %1$s을(를) 시스템 제스처 공급자에서 비활성화하십시오.</string>
-    <string name="translucent_background">반투명 배경</string>
-    <string name="translucent_background_alpha">배경 투명도</string>
     <string name="recents_actions_label">빠른 바로가기</string>
     <string name="action_share">공유</string>
-    <string name="action_lens">렌즈</string>
-    <string name="recents_clear_all">모두 지우기</string>
     <string name="task_menu_force_stop">강제 종료</string>
-    <string name="window_corner_radius_label">가장자리 둥글기</string>
-    <string name="override_window_corner_radius_label">화면 가장자리 둥글기 사용자 정의</string>
-    <string name="window_corner_radius_description">위로 스와이프하여 최근 앱 화면을 열면 현재 사용 중인 앱이 손가락을 따라 카드 모양으로 줄어듭니다. 이 슬라이더를 사용하여 카드가 거의 전체 화면을 덮는 정도로 키우고, 화면 모서리에 맞춰 모서리 반경을 조정하십시오.</string>
-    <string name="taskbar_label">작업 표시줄</string>
-    <string name="enable_taskbar_experimental">작업 표시줄 표시 (실험적 기능)</string>
     <!--
 
     All Apps search
@@ -624,7 +602,6 @@
     <string name="fuzzy_search_title">유사 검색어 검색</string>
     <string name="fuzzy_search_desc">앱을 검색할 때 검색어와 유사한 앱을 찾아줍니다</string>
     <string name="suggestion_pref_screen_title">제안</string>
-    <string name="show_suggested_apps_at_drawer_top">앱 서랍 상단에 추천 앱 표시</string>
     <string name="perform_wide_search_title">장치 검색</string>
     <string name="perform_wide_search_description">휴대전화의 연락처, 파일, 설정 검색</string>
     <string name="show_hidden_apps_in_search_results">검색 결과에 숨겨진 앱 표시</string>
@@ -636,7 +613,6 @@
     <string name="app_search_algorithm">검색 알고리즘</string>
     <string name="search_algorithm_app_search">앱 검색</string>
     <string name="search_algorithm_global_search_on_device">글로벌 검색(기기 내)</string>
-    <string name="search_algorithm_global_search_via_asi">글로벌 검색 (ASI를 통해)</string>
     <string name="custom_search_label">검색 엔진 이름</string>
     <string name="custom_search_url">검색 엔진 URL</string>
     <string name="custom_search_suggestions_url">검색 제안 URL</string>
@@ -645,9 +621,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">검색 결과에 보여주기</string>
     <string name="search_pref_result_apps_and_shortcuts_title">앱과 바로가기</string>
-    <string name="search_pref_result_shortcuts_title">앱 바로가기</string>
     <string name="search_pref_result_people_title">사람</string>
-    <string name="search_pref_result_tips_title">Pixel 도움말</string>
     <string name="search_pref_result_settings_title">Android 설정</string>
     <string name="search_pref_result_files_title">파일</string>
     <string name="search_pref_result_visual_media_title">사진과 비디오</string>

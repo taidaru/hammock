@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- PreferenceDashboard -->
     <string name="settings">Mpangilio</string>
@@ -33,8 +36,6 @@
     <string name="folders_description">Hesabu ya Safu Mlalo na Safu Wima</string>
     <string name="gestures_label">Ishara</string>
     <string name="gestures_description">Gonga na Swipes</string>
-    <string name="quickstep_label">Hivi Karibuni</string>
-    <string name="quickstep_description">Kitufe cha kufuta yote, Radi ya Kona</string>
     <string name="about_label">Kuhusu</string>
     <!-- <string name="version" /> (unknown source) -->
     <!-- PreferencesOverflowMenu() in PreferencesDashboard -->
@@ -307,17 +308,9 @@
     <!-- QuickstepPreferences -->
     <!-- <string name="quickstep_label" /> -->
     <!-- <string name="general_label" /> -->
-    <string name="translucent_background">Mandharinyuma angavu</string>
     <string name="recents_actions_label">Vitendo vya Haraka</string>
     <!-- <string name="screenshot" /> (unknown source) -->
     <string name="action_share">Gawa</string>
-    <string name="action_lens">Lenzi</string>
-    <string name="recents_clear_all">Futa Yote</string>
-    <string name="window_corner_radius_label">Kipenyo cha Kona ya skrini</string>
-    <string name="override_window_corner_radius_label">Kipenyo cha Kona ya skrini</string>
-    <string name="window_corner_radius_description">Unapotelezesha kidole juu ili kufungua Ya Hivi Karibuni, programu ya sasa inafuata kidole chako, ikipungua hadi kadi. Tumia kitelezi hiki kurekebisha sehemu ya kona ya kadi ikiwa karibu na skrini nzima ili ilingane na pembe za skrini yako.</string>
-    <string name="taskbar_label">Upau wa kazi</string>
-    <string name="enable_taskbar_experimental">Washa Upau wa Kazi (Majaribio)</string>
     <!-- about/About.kt -->
     <string name="news">Habari</string>
     <string name="support">Msaada</string>
@@ -370,8 +363,6 @@
     <!-- Search ig -->
     <string name="show_search_result_types">Onyesha katika Matokeo ya Utafutaji</string>
     <string name="search_pref_result_people_title">Watu</string>
-    <string name="search_pref_result_shortcuts_title">Njia za mkato za programu</string>
-    <string name="search_pref_result_tips_title">Vidokezo vya Pixel</string>
     <string name="all_apps_device_search_hint">Tafuta</string>
     <string name="search_input_action_clear_results">Futa Sanduku la Utafutaji</string>
     <string name="label_search">Tafuta</string>
@@ -379,8 +370,6 @@
     <string name="label_voice_search">Utafutaji wa sauti</string>
     <string name="all_apps_search_market_message">Tafuta Programu Zaidi</string>
     <string name="error_no_market_or_browser_installed">Hakuna duka la programu au kivinjari kilichosakinishwa.</string>
-    <string name="quickstep_incompatible">Ujumuishaji wa Mfumo Usiooana</string>
-    <string name="quickstep_incompatible_description">Kifaa chako kimesanidiwa kuwa na ishara za mfumo (Quickstep) zinazotolewa na%1$s, lakini toleo hili la %1$s haioani na toleo lako la Android. Ili kuendelea kutumia kifaa chako, tafadhali sanidua%1$s sasisho au kuzima%1$s kama mtoaji wa ishara ya mfumo.</string>
     <string name="delete">Futa</string>
     <!-- Backup -->
     <string name="create_backup">Unda Hifadhi Nakala</string>

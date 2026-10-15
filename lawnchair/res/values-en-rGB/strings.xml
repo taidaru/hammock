@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
@@ -31,7 +34,6 @@
     <string name="action_reset">Reset</string>
 
     <string name="action_unlock">Unlock</string>
-    <string name="action_lock">Lock</string>
 
     <string name="action_apply">Apply</string>
     <string name="action_customize">Customize</string>
@@ -119,8 +121,6 @@
     <string name="gestures_label">Gestures</string>
     <string name="gestures_description">Taps and swipes</string>
 
-    <string name="quickstep_label">Recents</string>
-    <string name="quickstep_description">Clear All button, corner radius</string>
 
     <string name="about_label">About</string>
 
@@ -141,8 +141,6 @@
     <string name="always_reload_icons_label">Always reload icons</string>
     <string name="always_reload_icons_description">Avoid using cached icons from icon packs</string>
 
-    <string name="recents_lock_unlock">Lock/unlock</string>
-    <string name="recents_lock_unlock_description">Prevent selected app from closing when pressing \"Clear all\"</string>
 
     <!--
 
@@ -579,26 +577,14 @@
     <string name="max_folder_rows">Maximum folder rows</string>
 
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">These settings will be ignored as Lawnchair isn\'t set as the Recents provider</string>
 
-    <string name="quickstep_incompatible">Incompatible system integration</string>
-    <string name="quickstep_incompatible_description">Your device is configured to have system gestures (known as Quickstep) provided by %1$s, but this version of %1$s isn\'t compatible with your Android version. To continue using your device, please uninstall %1$s updates or disable %1$s as a system gesture provider.</string>
 
-    <string name="translucent_background">Translucent background</string>
-    <string name="translucent_background_alpha">Background opacity</string>
 
     <string name="recents_actions_label">Quick actions</string>
     <string name="action_share">Share</string>
-    <string name="action_lens">Lens</string>
-    <string name="recents_clear_all">Clear all</string>
     <string name="task_menu_force_stop">Force close</string>
 
-    <string name="window_corner_radius_label">Screen corner radius</string>
-    <string name="override_window_corner_radius_label">Custom screen corner radius</string>
-    <string name="window_corner_radius_description">When you swipe up to open Recents, the current app follows your finger, shrinking into a card. Use this slider to adjust the corner radius of the card when it\'s nearly full screen so it matches the corners of your screen.</string>
 
-    <string name="taskbar_label">Taskbar</string>
-    <string name="enable_taskbar_experimental">Show taskbar (experimental)</string>
 
     <!--
 
@@ -632,7 +618,6 @@
     <string name="fuzzy_search_desc">Approximate matching for app searches</string>
 
     <string name="suggestion_pref_screen_title">Suggestions</string>
-    <string name="show_suggested_apps_at_drawer_top">Show suggested apps at the top of the drawer</string>
 
     <string name="perform_wide_search_title">Device search</string>
     <string name="perform_wide_search_description">Search your phone contacts, files, and settings</string>
@@ -643,15 +628,12 @@
     <string name="app_search_algorithm">Search algorithm</string>
     <string name="search_algorithm_app_search">App Search</string>
     <string name="search_algorithm_global_search_on_device">Global search (on-device)</string>
-    <string name="search_algorithm_global_search_via_asi">Global search (via ASI)</string>
 
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">Show in search results</string>
 
     <string name="search_pref_result_apps_and_shortcuts_title">Apps &amp; Shortcuts</string>
-    <string name="search_pref_result_shortcuts_title">App shortcuts</string>
     <string name="search_pref_result_people_title">People</string>
-    <string name="search_pref_result_tips_title">Pixel tips</string>
     <string name="search_pref_result_settings_title">Android settings</string>
     <string name="search_pref_result_files_title">Files</string>
     <string name="search_pref_result_web_title">Web suggestions</string>

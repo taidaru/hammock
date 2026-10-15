@@ -20,7 +20,7 @@
 <resources>
     <string name="app_filter_class" translatable="false">app.lawnchair.DefaultAppFilter</string>
     <string name="calendar_component_name" translatable="false">com.google.android.calendar/com.android.calendar.AllInOneActivity</string>
-    <dimen name="settingslib_preferred_minimum_touch_target">48dp</dimen>
+    <!-- hammock: removed settingslib_preferred_minimum_touch_target, only Quickstep and its settings used it -->
     <string-array name="dynamic_calendar_components_name">
         <item>com.android.calendar</item>
         <item>com.blackberry.calendar</item>
@@ -120,7 +120,7 @@
     <bool name="config_default_widget_unlimited_size">false</bool>
     <bool name="config_default_show_status_bar">true</bool>
     <bool name="config_default_remember_position">false</bool>
-    <bool name="config_default_dynamic_hide_status_bar_clock">false</bool>
+    <!-- hammock: removed config_default_dynamic_hide_status_bar_clock, only Quickstep and its settings used it -->
     <bool name="config_default_search_bar_background">true</bool>
     <bool name="config_default_show_scrollbar">true</bool>
     <bool name="config_default_show_top_shadow">true</bool>
@@ -131,7 +131,7 @@
     <bool name="config_default_hide_app_drawer_search_bar">false</bool>
     <bool name="config_default_show_hidden_apps_in_search">false</bool>
     <bool name="config_default_enable_smart_hide">false</bool>
-    <bool name="config_default_show_suggested_apps_at_drawer_top">true</bool>
+    <!-- hammock: removed config_default_show_suggested_apps_at_drawer_top, only Quickstep and its settings used it -->
     <bool name="config_default_enable_font_selection">true</bool>
     <bool name="config_default_enable_smartspace_calendar_selection">true</bool>
     <bool name="config_default_dts2">true</bool>

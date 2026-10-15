@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: rename Lawnchair to Hammock in user-facing strings -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
@@ -34,7 +35,6 @@
     <string name="action_reset">Reset</string>
 
     <string name="action_unlock">Unlock</string>
-    <string name="action_lock">Lock</string>
 
     <string name="action_apply">Apply</string>
     <string name="action_customize">Customize</string>
@@ -193,8 +193,6 @@
     <string name="gestures_label">Gestures</string>
     <string name="gestures_description">Taps and swipes</string>
 
-    <string name="quickstep_label">Recents screen</string>
-    <string name="quickstep_description">Clear All button, corner radius</string>
 
     <string name="about_label">About</string>
 
@@ -224,8 +222,6 @@
     <string name="gesturenavcontract_label">Use GestureNavContract API</string>
     <string name="gesturenavcontract_description">Support Android\'s enhanced animations when using gesture navigation. Not all devices support this. May cause animation bugs when in use.</string>
 
-    <string name="recents_lock_unlock">Lock/unlock</string>
-    <string name="recents_lock_unlock_description">Prevent selected app from closing when pressing \"Clear all\"</string>
 
     <!--Overlay-->
     <string name="overlay_fade_in">Fade In</string>
@@ -641,8 +637,6 @@
     <string name="status_bar_label">Status bar</string>
     <string name="show_status_bar">Show status bar</string>
     <string name="dark_status_bar_label">Dark status bar</string>
-    <string name="status_bar_clock_label">Status bar clock</string>
-    <string name="status_bar_clock_description">Dynamically hide status bar clock in first screen</string>
 
     <string name="home_screen_text_color">Text color</string>
     <string name="color_light">Light</string>
@@ -685,12 +679,6 @@
 
 
     <!-- Pause apps shortcut -->
-    <string name="pause">Pause</string>
-    <string name="pause_apps_dialog_title">Pause %1$s?</string>
-    <string name="pause_apps_dialog_message">Notifications for %1$s will be paused</string>
-    <string name="paused_apps_dialog_title">App paused</string>
-    <string name="paused_apps_dialog_message">%1$s was directly paused from the launcher</string>
-    <string name="paused_apps_drop_target_label">Pause app</string>
 
     <string name="dock_icons">Dock icons</string>
     <string name="hotseat_bottom_space_label">Bottom padding</string>
@@ -763,26 +751,14 @@
     <string name="max_folder_rows">Maximum folder rows</string>
 
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">These settings will be ignored as Hammock isn\'t set as the Recents screen provider</string>
 
-    <string name="quickstep_incompatible">Incompatible system integration</string>
-    <string name="quickstep_incompatible_description">Your device is configured to have system gestures (known as Quickstep) provided by %1$s, but this version of %1$s isn\'t compatible with your Android version. To continue using your device, please uninstall %1$s updates or disable %1$s as a system gesture provider.</string>
 
-    <string name="translucent_background">Translucent background</string>
-    <string name="translucent_background_alpha">Background opacity</string>
 
     <string name="recents_actions_label">Quick actions</string>
     <string name="action_share">Share</string>
-    <string name="action_lens">Lens</string>
-    <string name="recents_clear_all">Clear all</string>
     <string name="task_menu_force_stop">Force close</string>
 
-    <string name="window_corner_radius_label">Screen corner radius</string>
-    <string name="override_window_corner_radius_label">Custom screen corner radius</string>
-    <string name="window_corner_radius_description">When you swipe up to open the Recents screen, the current app follows your finger, shrinking into a card. Use this slider to adjust the corner radius of the card when it\'s nearly full screen so it matches the corners of your screen.</string>
 
-    <string name="taskbar_label">Taskbar</string>
-    <string name="enable_taskbar_experimental">Show taskbar (experimental)</string>
 
     <!--
 
@@ -817,7 +793,6 @@
     <string name="fuzzy_search_desc">Approximate matching for app searches</string>
 
     <string name="suggestion_pref_screen_title">Suggestions</string>
-    <string name="show_suggested_apps_at_drawer_top">Show suggested apps at the top of the drawer</string>
 
     <string name="perform_wide_search_title">Device search</string>
     <string name="perform_wide_search_description">Search your phone contacts, files, and settings</string>
@@ -834,7 +809,6 @@
     <string name="app_search_algorithm">Search algorithm</string>
     <string name="search_algorithm_app_search">App Search</string>
     <string name="search_algorithm_global_search_on_device">Global search (on-device)</string>
-    <string name="search_algorithm_global_search_via_asi">Global search (via ASI)</string>
 
     <string name="custom_search_label">Search engine name</string>
     <string name="custom_search_url">Search engine URL</string>
@@ -847,9 +821,7 @@
     <string name="show_search_result_types">Show in search results</string>
 
     <string name="search_pref_result_apps_and_shortcuts_title">Apps and shortcuts</string>
-    <string name="search_pref_result_shortcuts_title">App shortcuts</string>
     <string name="search_pref_result_people_title">People</string>
-    <string name="search_pref_result_tips_title">Pixel tips</string>
     <string name="search_pref_result_settings_title">Android settings</string>
     <string name="search_pref_result_files_title">Files</string>
     <string name="search_pref_result_visual_media_title">Photos and videos</string>

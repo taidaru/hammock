@@ -4,7 +4,6 @@
 
 package app.lawnchair.ui.preferences.destinations
 
-import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
@@ -26,9 +25,6 @@ import com.android.launcher3.Utilities
 import com.android.launcher3.util.OnboardingPrefs.ALL_APPS_VISITED_COUNT
 import com.android.launcher3.util.OnboardingPrefs.HOME_BOUNCE_COUNT
 import com.android.launcher3.util.OnboardingPrefs.HOME_BOUNCE_SEEN
-import com.android.launcher3.util.OnboardingPrefs.HOTSEAT_DISCOVERY_TIP_COUNT
-import com.android.launcher3.util.OnboardingPrefs.HOTSEAT_LONGPRESS_TIP_SEEN
-import com.android.launcher3.util.OnboardingPrefs.TASKBAR_EDU_TOOLTIP_STEP
 
 @Composable
 fun FeatureFlagsPreference(modifier: Modifier = Modifier) {
@@ -47,17 +43,7 @@ fun FeatureFlagsPreference(modifier: Modifier = Modifier) {
             )
         }
 
-        preferenceCategory("Gesture Navigation Sandbox", null)
-        items(
-            gestureSandboxActions,
-            key = { it.title },
-        ) {
-            IntentPreference(
-                label = it.title,
-                intent = it.intent,
-            )
-        }
-
+        // hammock: removed the Gesture Navigation Sandbox, it launched the removed Quickstep tutorial
         preferenceCategory(
             "Onboarding Flows",
             "Reset these if you want to see the education again.",
@@ -112,11 +98,7 @@ private val onboardingPrefs = listOf(
         "All Apps Bounce",
         listOf(HOME_BOUNCE_SEEN.sharedPrefKey, HOME_BOUNCE_COUNT.sharedPrefKey),
     ),
-    OnboardingPref(
-        "Hybrid Hotseat Education",
-        listOf(HOTSEAT_DISCOVERY_TIP_COUNT.sharedPrefKey, HOTSEAT_LONGPRESS_TIP_SEEN.sharedPrefKey),
-    ),
-    OnboardingPref("Taskbar Education", listOf(TASKBAR_EDU_TOOLTIP_STEP.sharedPrefKey)),
+    // hammock: removed the Hybrid Hotseat and Taskbar education resets, those features were Quickstep
     OnboardingPref("All Apps Visited Count", listOf(ALL_APPS_VISITED_COUNT.sharedPrefKey)),
 )
 
@@ -135,53 +117,7 @@ fun OnboardingPreference(
     }
 }
 
-// gesture sandbox
-private data class GestureSandboxDebugAction(
-    val title: String,
-    val intent: Intent,
-)
-
-private val launchSandboxIntent =
-    Intent("com.android.quickstep.action.GESTURE_SANDBOX")
-        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
-private val gestureSandboxActions: List<GestureSandboxDebugAction> =
-    listOf(
-        GestureSandboxDebugAction(
-            title = "Launch Gesture Tutorial Steps menu",
-            intent = Intent(launchSandboxIntent).putExtra("use_tutorial_menu", true),
-        ),
-        GestureSandboxDebugAction(
-            title = "Launch Back Tutorial",
-            intent = Intent(launchSandboxIntent).putExtra("use_tutorial_menu", false)
-                .putExtra("tutorial_steps", arrayOf("BACK_NAVIGATION")),
-        ),
-        GestureSandboxDebugAction(
-            title = "Launch Home Tutorial",
-            intent = Intent(launchSandboxIntent).putExtra("use_tutorial_menu", false)
-                .putExtra("tutorial_steps", arrayOf("HOME_NAVIGATION")),
-        ),
-        GestureSandboxDebugAction(
-            title = "Launch Overview Tutorial",
-            intent = Intent(launchSandboxIntent).putExtra("use_tutorial_menu", false)
-                .putExtra("tutorial_steps", arrayOf("OVERVIEW_NAVIGATION")),
-        ),
-    )
-
-@Composable
-private fun IntentPreference(
-    label: String,
-    intent: Intent,
-    modifier: Modifier = Modifier,
-) {
-    val context = LocalContext.current
-    ClickablePreference(
-        label = label,
-        modifier = modifier,
-    ) {
-        context.startActivity(intent)
-    }
-}
+// hammock: removed the Quickstep gesture sandbox actions and IntentPreference
 
 private fun LazyListScope.preferenceCategory(heading: String, description: String? = null) {
     item(key = heading) {

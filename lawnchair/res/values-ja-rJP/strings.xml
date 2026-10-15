@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -28,7 +31,6 @@
     <string name="action_delete">削除</string>
     <string name="action_reset">リセット</string>
     <string name="action_unlock">ロック解除</string>
-    <string name="action_lock">ロックする</string>
     <string name="action_apply">適用</string>
     <string name="action_customize">カスタマイズ</string>
     <string name="always_choice">常に表示</string>
@@ -148,8 +150,6 @@
     <string name="folders_description">行と列の数</string>
     <string name="gestures_label">ジェスチャー</string>
     <string name="gestures_description">タップとスワイプ</string>
-    <string name="quickstep_label">タスク管理画面</string>
-    <string name="quickstep_description">「すべてクリア」ボタン、角の丸み</string>
     <string name="about_label">このアプリについて</string>
     <string name="app_info_drop_target_label">アプリ情報</string>
     <string name="debug_restart_launcher">Lawnchairを再起動</string>
@@ -182,8 +182,6 @@
     <string name="gesturenavcontract_label">GestureNavContract API</string>
     <string name="gesturenavcontract_description">Render launcher animations without root, does not work with heavily modified AOSP</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract may cause artifacting during animations</string>
-    <string name="recents_lock_unlock">ロック/ロック解除</string>
-    <string name="recents_lock_unlock_description">「すべてクリア」を押したときに選択したアプリを閉じないようにします</string>
     <!--Overlay-->
     <string name="overlay_fade_in">フェードイン</string>
     <string name="overlay_suck_in">吸い込まれる</string>
@@ -524,8 +522,6 @@
     <string name="status_bar_label">ステータスバー</string>
     <string name="show_status_bar">ステータスバーを表示</string>
     <string name="dark_status_bar_label">ダークステータスバー</string>
-    <string name="status_bar_clock_label">ステータスバーの時計</string>
-    <string name="status_bar_clock_description">最初の画面でステータスバーの時計を動的に隠す</string>
     <string name="home_screen_text_color">テキストの色</string>
     <string name="color_light">ライト</string>
     <string name="color_dark">ダーク</string>
@@ -557,12 +553,6 @@
     <string name="hotseat_bg_color_label">背景色</string>
     <string name="hotseat_bg_alpha">背景の透明度</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">一時停止</string>
-    <string name="pause_apps_dialog_title">%1$s を一時停止しますか？</string>
-    <string name="pause_apps_dialog_message">%1$s の通知は一時停止されます</string>
-    <string name="paused_apps_dialog_title">アプリを一時停止中</string>
-    <string name="paused_apps_dialog_message">%1$s はランチャーから直接一時停止しました</string>
-    <string name="paused_apps_drop_target_label">アプリを一時停止</string>
     <string name="dock_icons">ドックアイコン</string>
     <string name="hotseat_bottom_space_label">下の余白</string>
     <string name="page_indicator_height">ページインジケーターの高さ</string>
@@ -603,21 +593,9 @@
     <string name="max_folder_columns">最大のフォルダー列数</string>
     <string name="max_folder_rows">フォルダーの行の最大値</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">Lawnchair がアプリ履歴画面のプロバイダーとして設定されていないため、これらの設定は無視されます</string>
-    <string name="quickstep_incompatible">互換性のないシステム統合</string>
-    <string name="quickstep_incompatible_description">お使いのデバイスは %1$s が提供するシステムジェスチャー ( Quickstep として知られています) が設定されていますが %1$s のこのバージョンはお使いの Android のバージョンと互換性がありません。デバイスを引き続き使用するには、%1$s の更新をアンインストールするか、システムジェスチャープロバイダとして %1$s を無効にしてください。</string>
-    <string name="translucent_background">半透明の背景</string>
-    <string name="translucent_background_alpha">背景の透明度</string>
     <string name="recents_actions_label">クイックアクション</string>
     <string name="action_share">共有する</string>
-    <string name="action_lens">レンズ</string>
-    <string name="recents_clear_all">すべてクリア</string>
     <string name="task_menu_force_stop">強制的に閉じる</string>
-    <string name="window_corner_radius_label">画面の角の半径</string>
-    <string name="override_window_corner_radius_label">画面の角の半径</string>
-    <string name="window_corner_radius_description">アプリ履歴画面を開くために上にスワイプすると、現在のアプリは指に従ってカードに縮小します。 このスライダーを使用して、画面の角に合うようにカードの角の半径を調節します。</string>
-    <string name="taskbar_label">タスクバー</string>
-    <string name="enable_taskbar_experimental">タスクバーを表示(実験的な機能)</string>
     <!--
 
     All Apps search
@@ -644,7 +622,6 @@
     <string name="fuzzy_search_title">あいまい検索</string>
     <string name="fuzzy_search_desc">アプリ検索でおおよその検索ができます</string>
     <string name="suggestion_pref_screen_title">サジェスト</string>
-    <string name="show_suggested_apps_at_drawer_top">ドロワーの上部に提案されたアプリを表示</string>
     <string name="perform_wide_search_title">デバイスを探す</string>
     <string name="perform_wide_search_description">連絡先、ファイル、設定を検索</string>
     <string name="show_hidden_apps_in_search_results">検索結果に非表示のアプリを表示する</string>
@@ -656,7 +633,6 @@
     <string name="app_search_algorithm">検索のアルゴリズム</string>
     <string name="search_algorithm_app_search">アプリ検索</string>
     <string name="search_algorithm_global_search_on_device">グローバル検索 (デバイス上)</string>
-    <string name="search_algorithm_global_search_via_asi">グローバル検索 (ASI 経由)</string>
     <string name="custom_search_label">検索エンジン名</string>
     <string name="custom_search_url">検索エンジンのURL</string>
     <string name="custom_search_suggestions_url">検索候補のURL</string>
@@ -665,9 +641,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">検索結果を表示</string>
     <string name="search_pref_result_apps_and_shortcuts_title">アプリとショートカット</string>
-    <string name="search_pref_result_shortcuts_title">アプリのショートカット</string>
     <string name="search_pref_result_people_title">人物</string>
-    <string name="search_pref_result_tips_title">Pixel のヒント</string>
     <string name="search_pref_result_settings_title">Android 設定</string>
     <string name="search_pref_result_files_title">ファイル</string>
     <string name="search_pref_result_visual_media_title">画像と動画</string>

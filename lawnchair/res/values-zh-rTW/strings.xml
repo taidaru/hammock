@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -28,7 +31,6 @@
     <string name="action_delete">刪除</string>
     <string name="action_reset">重設</string>
     <string name="action_unlock">解鎖</string>
-    <string name="action_lock">鎖定</string>
     <string name="action_apply">套用</string>
     <string name="action_customize">自訂</string>
     <string name="always_choice">永遠顯示</string>
@@ -148,8 +150,6 @@
     <string name="folders_description">行列數</string>
     <string name="gestures_label">手勢</string>
     <string name="gestures_description">輕觸和滑動</string>
-    <string name="quickstep_label">最近使用畫面</string>
-    <string name="quickstep_description">清除全部按鈕、圓角大小</string>
     <string name="about_label">關於</string>
     <string name="app_info_drop_target_label">應用程式資訊</string>
     <string name="debug_restart_launcher">重啟 Lawnchair</string>
@@ -177,8 +177,6 @@
     <string name="gesturenavcontract_label">GestureNavContract API</string>
     <string name="gesturenavcontract_description">Render launcher animations without root, does not work with heavily modified AOSP</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract may cause artifacting during animations</string>
-    <string name="recents_lock_unlock">鎖定/解鎖</string>
-    <string name="recents_lock_unlock_description">按下 \"全部清除\" 時略過已選取的應用程式</string>
     <!--Overlay-->
     <string name="overlay_fade_in">淡入</string>
     <string name="overlay_suck_in">淡出</string>
@@ -506,8 +504,6 @@
     <string name="status_bar_label">狀態列</string>
     <string name="show_status_bar">顯示狀態列</string>
     <string name="dark_status_bar_label">深色狀態列</string>
-    <string name="status_bar_clock_label">狀態列時鐘</string>
-    <string name="status_bar_clock_description">在首頁動態隱藏狀態列時鐘</string>
     <string name="home_screen_text_color">文字顏色</string>
     <string name="color_light">淺色</string>
     <string name="color_dark">深色</string>
@@ -539,12 +535,6 @@
     <string name="hotseat_bg_color_label">背景顏色</string>
     <string name="hotseat_bg_alpha">背景不透明度</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">暫停</string>
-    <string name="pause_apps_dialog_title">暫停 %1$s？</string>
-    <string name="pause_apps_dialog_message">將會暫停 %1$s 的通知</string>
-    <string name="paused_apps_dialog_title">已暫停應用程式</string>
-    <string name="paused_apps_dialog_message">已直接從啟動器暫停 %1$s</string>
-    <string name="paused_apps_drop_target_label">暫停應用程式</string>
     <string name="dock_icons">底欄圖示</string>
     <string name="hotseat_bottom_space_label">底部邊距</string>
     <string name="page_indicator_height">頁面指示器高度</string>
@@ -583,21 +573,9 @@
     <string name="max_folder_columns">最大資料夾列數</string>
     <string name="max_folder_rows">最大資料夾列數</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">Lawnchair 未設為最近使用畫面提供者時將會略過這些設定</string>
-    <string name="quickstep_incompatible">系統整合不相容</string>
-    <string name="quickstep_incompatible_description">您的裝置已設定使用 %1$s 提供的手勢系統 (稱為 Quickstep)，但這個版本的 %1$s 與您的 Android 不相容。如要繼續使用您的裝置，請解除安裝 %1$s 更新或停用手勢系統提供者 %1$s。</string>
-    <string name="translucent_background">半透明背景</string>
-    <string name="translucent_background_alpha">背景不透明度</string>
     <string name="recents_actions_label">快速操作</string>
     <string name="action_share">分享</string>
-    <string name="action_lens">智慧鏡頭</string>
-    <string name="recents_clear_all">清除全部</string>
     <string name="task_menu_force_stop">強制關閉</string>
-    <string name="window_corner_radius_label">螢幕圓角半徑</string>
-    <string name="override_window_corner_radius_label">自訂螢幕圓角</string>
-    <string name="window_corner_radius_description">當您向上滑動開啟最近使用畫面時，目前的應用程式將會感應您的軌跡並退縮為卡片樣式。若卡片佔據整個螢幕，您可透過滑桿調整邊緣使其符合畫面。</string>
-    <string name="taskbar_label">工作列</string>
-    <string name="enable_taskbar_experimental">顯示工作列 (實驗性)</string>
     <!--
 
     All Apps search
@@ -624,7 +602,6 @@
     <string name="fuzzy_search_title">模糊搜尋</string>
     <string name="fuzzy_search_desc">以近似比對搜尋應用程式</string>
     <string name="suggestion_pref_screen_title">建議</string>
-    <string name="show_suggested_apps_at_drawer_top">抽屜頂端顯示應用程式建議</string>
     <string name="perform_wide_search_title">裝置搜尋</string>
     <string name="perform_wide_search_description">搜尋您裝置中的聯絡人、檔案和設定</string>
     <string name="show_hidden_apps_in_search_results">搜尋結果顯示隱藏的應用程式</string>
@@ -636,7 +613,6 @@
     <string name="app_search_algorithm">搜尋演算法</string>
     <string name="search_algorithm_app_search">應用程式搜尋</string>
     <string name="search_algorithm_global_search_on_device">全域搜尋 (僅裝置)</string>
-    <string name="search_algorithm_global_search_via_asi">全域搜尋 (透過 ASI)</string>
     <string name="custom_search_label">搜尋引擎名稱</string>
     <string name="custom_search_url">搜尋引擎網址</string>
     <string name="custom_search_suggestions_url">搜尋建議的網址</string>
@@ -645,9 +621,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">在搜尋結果中顯示</string>
     <string name="search_pref_result_apps_and_shortcuts_title">應用程式和捷徑</string>
-    <string name="search_pref_result_shortcuts_title">應用程式捷徑</string>
     <string name="search_pref_result_people_title">聯絡人</string>
-    <string name="search_pref_result_tips_title">Pixel 使用提示</string>
     <string name="search_pref_result_settings_title">Android 設定</string>
     <string name="search_pref_result_files_title">檔案</string>
     <string name="search_pref_result_visual_media_title">相片與影片</string>

@@ -36,7 +36,9 @@ so this code never runs. Removing it first gives a smaller codebase to build the
       all of `systemUI/` except `plugin_core/`, and the unused JARs in `prebuilts/libs/`. Kept: `framework-15.jar`
       and `framework-14.jar` (compile-only, for the core and the submodule libraries) and `SystemUI-statsd-15.jar`
       (`SysUiStatsLog`). Dropping `framework-*.jar` needs the hidden API audit from the backlog.
-- [ ] Remove settings and strings that only made sense with Quickstep.
+- [x] Remove settings and strings that only made sense with Quickstep: Recents actions and background,
+      window corner radius, taskbar on phone, suggested apps in the drawer, ASI search results, and the Lawnchair
+      resources only they used. AOSP strings in `res/` stay, as in the AOSP Launcher3 target.
 
 Inventory (as of the Phase 0 base). Each step above keeps the build green and the app working.
 - Core `src/`: `LauncherState` uses `uioverrides.states`, which `src_no_quickstep/` provides as in AOSP.

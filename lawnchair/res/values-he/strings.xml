@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="icon_pack">ערכת סמלים</string>
     <string name="settings">הגדרות</string>
@@ -88,17 +91,12 @@
     <string name="theme_dark">כהה</string>
     <string name="theme_system_default">מערכת</string>
     <string name="theme_follow_wallpaper">התאמה לרקע</string>
-    <string name="quickstep_label">אחרונים</string>
-    <string name="window_corner_radius_label">רדיוס פינות מסך</string>
-    <string name="override_window_corner_radius_label">רדיוס פינות מסך מותאם</string>
-    <string name="window_corner_radius_description">When you swipe up to open Recents, the current app follows your finger, shrinking into a card. Use this slider to adjust the corner radius of the card when it’s nearly full-screen such that it matches the corners of your screen.</string>
     <string name="system_icons">סמלי המערכת</string>
     <string name="accent_color">צבע הדגשה</string>
     <string name="loading">כעת בטעינה…</string>
     <string name="system">מערכת</string>
     <string name="wallpaper">רקע</string>
     <string name="custom">התאמה אישית</string>
-    <string name="quickstep_description">כפתור ניקוי הכל, רדיוס פינות</string>
     <string name="wallpaper_scrolling_label">גלילת טפט</string>
     <string name="show_sys_ui_scrim">הצגת צל</string>
     <string name="show_status_bar">סרגל מצב</string>
@@ -137,7 +135,6 @@
     <string name="icon_shape_squircle">Squircle</string>
     <string name="customize_button_text">התאמה אישית</string>
     <string name="hide_from_drawer">Hide from App Drawer</string>
-    <string name="action_lens">Lens</string>
     <string name="force_rounded_widgets">Rounded Corners</string>
     <string name="suggestion_pref_screen_title">המלצות</string>
     <string name="label">תוית</string>
@@ -164,8 +161,6 @@
     <string name="apply_accent_color_label">Apply Accent Color</string>
     <string name="show_search_result_types">הצגה בתוצאות החיפוש</string>
     <string name="search_pref_result_people_title">אנשים</string>
-    <string name="search_pref_result_shortcuts_title">App Shortcuts</string>
-    <string name="search_pref_result_tips_title">Pixel Tips</string>
     <string name="row_height_label">Row Height</string>
     <string name="all_apps_device_search_hint">חיפוש</string>
     <string name="dark_status_bar_label">שורת מצב כהה</string>

@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package com.android.launcher3;
 
 import static com.android.launcher3.config.FeatureFlags.SEPARATE_RECENTS_ACTIVITY;
@@ -18,14 +22,12 @@ import android.view.WindowInsets;
 import com.android.launcher3.graphics.SysUiScrim;
 import com.android.launcher3.statemanager.StatefulActivity;
 import com.hoko.blur.HokoBlur;
-import com.patrykmichalik.opto.core.PreferenceExtensionsKt;
 import com.android.launcher3.util.window.WindowManagerProxy;
 
 import java.util.Collections;
 import java.util.List;
 
 import app.lawnchair.preferences.PreferenceManager;
-import app.lawnchair.preferences2.PreferenceManager2;
 import app.lawnchair.util.FileAccessManager;
 import app.lawnchair.util.FileAccessState;
 
@@ -45,7 +47,7 @@ public class LauncherRootView extends InsettableFrameLayout {
     private boolean mForceHideBackArrow;
 
     private final SysUiScrim mSysUiScrim;
-    private final boolean mEnableTaskbarOnPhone;
+    // hammock: removed mEnableTaskbarOnPhone, it was never read
 
     private final PreferenceManager pref;
 
@@ -55,9 +57,7 @@ public class LauncherRootView extends InsettableFrameLayout {
         mSysUiScrim = new SysUiScrim(this);
 
         pref = PreferenceManager.getInstance(context);
-        PreferenceManager2 prefs2 = PreferenceManager2.getInstance(context);
-        
-        mEnableTaskbarOnPhone = PreferenceExtensionsKt.firstBlocking(prefs2.getEnableTaskbarOnPhone());
+        // hammock: removed the enableTaskbarOnPhone read, Hammock has no taskbar
 
         FileAccessManager fileAccessManager = FileAccessManager.getInstance(context);
         FileAccessState wallpaperAccessState = fileAccessManager.getWallpaperAccessState().getValue();

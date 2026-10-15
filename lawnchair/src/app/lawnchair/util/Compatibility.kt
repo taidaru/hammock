@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.util
 
 import android.annotation.SuppressLint
@@ -6,7 +10,7 @@ import com.android.launcher3.Utilities
 
 private const val TAG = "Compatibility"
 
-val isOnePlusStock = checkOnePlusStock()
+// hammock: removed isOnePlusStock, only the Quickstep Recents action prefs used it
 
 val isGestureNavContractCompatible = checkGestureNavContract()
 

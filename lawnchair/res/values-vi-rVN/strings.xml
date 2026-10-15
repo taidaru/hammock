@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -28,7 +31,6 @@
     <string name="action_delete">Xóa</string>
     <string name="action_reset">Cài lại</string>
     <string name="action_unlock">Mở khóa</string>
-    <string name="action_lock">Khóa</string>
     <string name="action_apply">Áp dụng</string>
     <string name="action_customize">Tùy chỉnh</string>
     <string name="always_choice">Luôn luôn</string>
@@ -148,8 +150,6 @@
     <string name="folders_description">Số hàng và cột</string>
     <string name="gestures_label">Cử chỉ</string>
     <string name="gestures_description">Cử chỉ và chạm</string>
-    <string name="quickstep_label">Màn hình gần đây</string>
-    <string name="quickstep_description">Xóa tất cả nút, bán kính góc</string>
     <string name="about_label">Giới thiệu</string>
     <string name="app_info_drop_target_label">Thông tin ứng dụng</string>
     <string name="debug_restart_launcher">Khởi chạy lại Lawnchair</string>
@@ -177,8 +177,6 @@
     <string name="gesturenavcontract_label">GestureNavContract API</string>
     <string name="gesturenavcontract_description">Render launcher animations without root, does not work with heavily modified AOSP</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract may cause artifacting during animations</string>
-    <string name="recents_lock_unlock">Khóa/mở</string>
-    <string name="recents_lock_unlock_description">Ngăn chứa ứng dụng đã chọn đóng khi nhấn \"Đóng tất cả\"</string>
     <!--Overlay-->
     <string name="overlay_fade_in">Mờ dần</string>
     <string name="overlay_suck_in">Hút vào</string>
@@ -506,8 +504,6 @@
     <string name="status_bar_label">Thanh trạng thái</string>
     <string name="show_status_bar">Hiển thị thanh trạng thái</string>
     <string name="dark_status_bar_label">Làm tối màu thanh trạng thái</string>
-    <string name="status_bar_clock_label">Đồng hồ ở thành trạng thái</string>
-    <string name="status_bar_clock_description">Ẩn động thanh trạng thái đồng hồ ở màn hình đầu tiên</string>
     <string name="home_screen_text_color">Màu chữ</string>
     <string name="color_light">Sáng</string>
     <string name="color_dark">Tối</string>
@@ -539,12 +535,6 @@
     <string name="hotseat_bg_color_label">Màu nền</string>
     <string name="hotseat_bg_alpha">Background opacity</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">Tạm Dừng</string>
-    <string name="pause_apps_dialog_title">Tạm dừng %1$s?</string>
-    <string name="pause_apps_dialog_message">Thông báo cho %1$s sẽ bị tạm dừng</string>
-    <string name="paused_apps_dialog_title">Ứng dụng đã tạm dừng</string>
-    <string name="paused_apps_dialog_message">%1$s đã được tạm dừng trực tiếp từ trình chạy</string>
-    <string name="paused_apps_drop_target_label">Tạm dừng ứng dụng</string>
     <string name="dock_icons">Ứng dụng ở khay</string>
     <string name="hotseat_bottom_space_label">Khoản trống phía dưới</string>
     <string name="page_indicator_height">Chiều cao của trang chủ</string>
@@ -583,21 +573,9 @@
     <string name="max_folder_columns">Số cột của thư mục tối đa</string>
     <string name="max_folder_rows">Số hàng thư mục tối đa</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">Những thiết lập này sẽ bị bỏ qua vì Lawnchair không được đặt làm nhà cung cấp màn hình Gần đây</string>
-    <string name="quickstep_incompatible">Tích hợp hệ thống không tương thích</string>
-    <string name="quickstep_incompatible_description">Thiết bị của bạn được cấu hình để có cử chỉ hệ thống (được gọi là Quickstep) được cung cấp bởi %1$s, nhưng phiên bản này của %1$s không tương thích với phiên bản Android của bạn. Để tiếp tục sử dụng thiết bị của bạn, vui lòng gỡ cài đặt các bản cập nhật cho %1$s hoặc vô hiệu hóa %1$s với tư cách là nhà cung cấp cử chỉ hệ thống.</string>
-    <string name="translucent_background">Nền trong suốt</string>
-    <string name="translucent_background_alpha">Độ mờ nền</string>
     <string name="recents_actions_label">Hành động nhanh chóng</string>
     <string name="action_share">Chia sẻ</string>
-    <string name="action_lens">Lens</string>
-    <string name="recents_clear_all">Đóng tất cả</string>
     <string name="task_menu_force_stop">Buộc đóng</string>
-    <string name="window_corner_radius_label">Độ bo tròn góc cửa sổ</string>
-    <string name="override_window_corner_radius_label">Tùy chỉnh độ bo tròn góc cửa sổ</string>
-    <string name="window_corner_radius_description">Khi bạn vuốt lên để mở màn hình Gần đây, ứng dụng hiện tại sẽ theo ngón tay của bạn, thu nhỏ lại thành một thẻ. Sử dụng thanh trượt này để điều chỉnh độ bo tròn góc thẻ khi nó lớn gần đầy màn hình để nó khớp với màn hình.</string>
-    <string name="taskbar_label">Thanh tác vụ</string>
-    <string name="enable_taskbar_experimental">Hiển thị thanh tác vụ (thử nghiệm)</string>
     <!--
 
     All Apps search
@@ -624,7 +602,6 @@
     <string name="fuzzy_search_title">Tìm kiếm mờ</string>
     <string name="fuzzy_search_desc">Phù hợp gần đúng cho tìm kiếm ứng dụng</string>
     <string name="suggestion_pref_screen_title">Gợi ý</string>
-    <string name="show_suggested_apps_at_drawer_top">Hiển thị các ứng dụng được đề xuất ở đầu ngăn chứa</string>
     <string name="perform_wide_search_title">Tìm kiếm thiết bị</string>
     <string name="perform_wide_search_description">Tìm kiếm danh bạ, tệp và cài đặt trên điện thoại của bạn</string>
     <string name="show_hidden_apps_in_search_results">Hiển thị các ứng dụng ẩn trong kết quả tìm kiếm</string>
@@ -636,7 +613,6 @@
     <string name="app_search_algorithm">Thuật toán tìm kiếm</string>
     <string name="search_algorithm_app_search">Tìm kiếm ứng dụng</string>
     <string name="search_algorithm_global_search_on_device">Tìm kiếm toàn thiết bị</string>
-    <string name="search_algorithm_global_search_via_asi">Tìm kiếm toàn thiết bị (thông qua ASI)</string>
     <string name="custom_search_label">Tên công cụ tìm kiếm</string>
     <string name="custom_search_url">URL công cụ tìm kiếm</string>
     <string name="custom_search_suggestions_url">URL gợi ý tìm kiếm</string>
@@ -645,9 +621,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">Hiển thị trong kết quả tìm kiếm</string>
     <string name="search_pref_result_apps_and_shortcuts_title">Ứng dụng và phím tắt</string>
-    <string name="search_pref_result_shortcuts_title">Phím tắt ứng dụng</string>
     <string name="search_pref_result_people_title">Mọi người</string>
-    <string name="search_pref_result_tips_title">Mẹo về Pixel</string>
     <string name="search_pref_result_settings_title">Cài đặt Android</string>
     <string name="search_pref_result_files_title">Các tệp</string>
     <string name="search_pref_result_visual_media_title">Hình ảnh và video</string>

@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -28,7 +31,6 @@
     <string name="action_delete">Poista</string>
     <string name="action_reset">Nollaa</string>
     <string name="action_unlock">Poista lukitus</string>
-    <string name="action_lock">Lukitse</string>
     <string name="action_apply">Käytä</string>
     <string name="action_customize">Mukauta</string>
     <string name="always_choice">Aina</string>
@@ -148,8 +150,6 @@
     <string name="folders_description">Palkkien ja pylväiden määrä</string>
     <string name="gestures_label">Eleet</string>
     <string name="gestures_description">Napautukset ja pyyhkäisyt</string>
-    <string name="quickstep_label">Viimeisimmät-näyttö</string>
-    <string name="quickstep_description">Tyhjennä kaikki -nappi, kulmien pyöreys</string>
     <string name="about_label">Tietoja</string>
     <string name="app_info_drop_target_label">Tietoa sovelluksesta</string>
     <string name="debug_restart_launcher">Uudelleenkäynnistä Lawnchair</string>
@@ -177,8 +177,6 @@
     <string name="gesturenavcontract_label">GestureNavContract API</string>
     <string name="gesturenavcontract_description">Render launcher animations without root, does not work with heavily modified AOSP</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract may cause artifacting during animations</string>
-    <string name="recents_lock_unlock">Lukitsee/avaa</string>
-    <string name="recents_lock_unlock_description">Estä valittua sovellusta sulkeutumaan kun painetaan: \"Poista kaikki\"</string>
     <!--Overlay-->
     <string name="overlay_fade_in">Himmennä sisään</string>
     <string name="overlay_suck_in">Imaise sisään</string>
@@ -506,8 +504,6 @@
     <string name="status_bar_label">Tilapalkki</string>
     <string name="show_status_bar">Näytä tilapalkki</string>
     <string name="dark_status_bar_label">Tumma Tilapalkki</string>
-    <string name="status_bar_clock_label">Tilapalkin kello</string>
-    <string name="status_bar_clock_description">Piilota tilarivin kello dynaamisesti ensimmäisellä näytöllä</string>
     <string name="home_screen_text_color">Tekstin väri</string>
     <string name="color_light">Vaalea</string>
     <string name="color_dark">Tumma</string>
@@ -539,12 +535,6 @@
     <string name="hotseat_bg_color_label">Taustan väri</string>
     <string name="hotseat_bg_alpha">Taustan läpinäkyvyys</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">Pysäytä</string>
-    <string name="pause_apps_dialog_title">Pysäytä %1$s?</string>
-    <string name="pause_apps_dialog_message">%1$sn ilmoitukset keskeytetään</string>
-    <string name="paused_apps_dialog_title">Sovellus pysäytetty</string>
-    <string name="paused_apps_dialog_message">%1$s keskeytettiin suoraan käynnistinsovelluksesta</string>
-    <string name="paused_apps_drop_target_label">Pysäytä sovellus</string>
     <string name="dock_icons">Telakan kuvakkeet</string>
     <string name="hotseat_bottom_space_label">Pohjan marginaali</string>
     <string name="page_indicator_height">Sivun ilmaisimen korkeus</string>
@@ -584,21 +574,9 @@
     <string name="max_folder_columns">Maximum folder columns</string>
     <string name="max_folder_rows">Maximum folder rows</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">These settings will be ignored as Lawnchair isn\'t set as the Recents screen provider</string>
-    <string name="quickstep_incompatible">Incompatible system integration</string>
-    <string name="quickstep_incompatible_description">Your device is configured to have system gestures (known as Quickstep) provided by %1$s, but this version of %1$s isn\'t compatible with your Android version. To continue using your device, please uninstall %1$s updates or disable %1$s as a system gesture provider.</string>
-    <string name="translucent_background">Translucent background</string>
-    <string name="translucent_background_alpha">Taustan läpinäkyvyys</string>
     <string name="recents_actions_label">Pikatoiminnot</string>
     <string name="action_share">Jaa</string>
-    <string name="action_lens">Linssi</string>
-    <string name="recents_clear_all">Tyhjennä kaikki</string>
     <string name="task_menu_force_stop">Pakota sulkeminen</string>
-    <string name="window_corner_radius_label">Näytön kulmien pyöristys</string>
-    <string name="override_window_corner_radius_label">Mukautettu näytön kulman pyöristys</string>
-    <string name="window_corner_radius_description">Kun pyyhkäiset ylös avataksesi Viimeisimmät-näytön, käytössä oleva sovellus seuraa sormeasi, kutistuen kortiksi. Käytä tätä liukusäädintä säätääksesi kulman pyöreyttä kun kortti on miltei koko näytössä, niin että se vastaisi näyttösi kulmien pyöreyttä.</string>
-    <string name="taskbar_label">Tehtäväpalkki</string>
-    <string name="enable_taskbar_experimental">Näytä tehtäväpalkki (kokeellinen)</string>
     <!--
 
     All Apps search
@@ -625,7 +603,6 @@
     <string name="fuzzy_search_title">Summittainen haku</string>
     <string name="fuzzy_search_desc">Arvioitu vastaavuus sovellushauille</string>
     <string name="suggestion_pref_screen_title">Ehdotukset</string>
-    <string name="show_suggested_apps_at_drawer_top">Näytä ehdotetut sovellukset valikon yläosassa</string>
     <string name="perform_wide_search_title">Laittehaku</string>
     <string name="perform_wide_search_description">Etsi puhelimen yhteystietoja, tiedostoja ja asetuksia</string>
     <string name="show_hidden_apps_in_search_results">Näytä piilotetut sovellukset hakutuloksissa</string>
@@ -637,7 +614,6 @@
     <string name="app_search_algorithm">Hakualgoritmi</string>
     <string name="search_algorithm_app_search">Sovellusten haku</string>
     <string name="search_algorithm_global_search_on_device">Globaali haku (laitteella)</string>
-    <string name="search_algorithm_global_search_via_asi">Globaali haku (ASI:n kautta)</string>
     <string name="custom_search_label">Hakukoneen nimi</string>
     <string name="custom_search_url">Hakukoneen URL</string>
     <string name="custom_search_suggestions_url">Search suggestions URL</string>
@@ -646,9 +622,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">Näytä hakutuloksissa</string>
     <string name="search_pref_result_apps_and_shortcuts_title">Sovellukset ja pikakuvakkeet</string>
-    <string name="search_pref_result_shortcuts_title">Sovellusten pikakuvakkeet</string>
     <string name="search_pref_result_people_title">Ihmiset</string>
-    <string name="search_pref_result_tips_title">Pixel-vinkit</string>
     <string name="search_pref_result_settings_title">Androidin asetukset</string>
     <string name="search_pref_result_files_title">Tiedostot</string>
     <string name="search_pref_result_visual_media_title">Valokuvat ja videot</string>

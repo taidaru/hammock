@@ -13,7 +13,10 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
   -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -28,7 +31,6 @@
     <string name="action_delete">Hapus</string>
     <string name="action_reset">Atur ulang</string>
     <string name="action_unlock">Buka kunci</string>
-    <string name="action_lock">Kunci</string>
     <string name="action_apply">Terapkan</string>
     <string name="action_customize">Kustomisasi</string>
     <string name="always_choice">Selalu</string>
@@ -148,8 +150,6 @@
     <string name="folders_description">Jumlah baris dan kolom</string>
     <string name="gestures_label">Isyarat</string>
     <string name="gestures_description">Ketukan dan usapan</string>
-    <string name="quickstep_label">Layar terbaru</string>
-    <string name="quickstep_description">Tombol Hapus Semua, radius sudut</string>
     <string name="about_label">Tentang</string>
     <string name="app_info_drop_target_label">Info aplikasi</string>
     <string name="debug_restart_launcher">Muat ulang Lawnchair</string>
@@ -177,8 +177,6 @@
     <string name="gesturenavcontract_label">API GestureNavContract</string>
     <string name="gesturenavcontract_description">Render animasi peluncur tanpa root, tidak akan bekerja pada AOSP dengan modifikasi berat</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract mungkin akan menyebabkan artifacting pada saat animasi</string>
-    <string name="recents_lock_unlock">Kunci/buka kunci</string>
-    <string name="recents_lock_unlock_description">Cegah aplikasi terpilih untuk ditutup saat menekan \"Bersihkan semua\"</string>
     <!--Overlay-->
     <string name="overlay_fade_in">Memudar</string>
     <string name="overlay_suck_in">Menyedot</string>
@@ -506,8 +504,6 @@
     <string name="status_bar_label">Bar status</string>
     <string name="show_status_bar">Tampilkan bar status</string>
     <string name="dark_status_bar_label">Bar status gelap</string>
-    <string name="status_bar_clock_label">Jam di bilah status</string>
-    <string name="status_bar_clock_description">Sembunyikan jam bilah status secara dinamis di layar pertama</string>
     <string name="home_screen_text_color">Warna teks</string>
     <string name="color_light">Terang</string>
     <string name="color_dark">Gelap</string>
@@ -539,12 +535,6 @@
     <string name="hotseat_bg_color_label">Warna latar belakang</string>
     <string name="hotseat_bg_alpha">Tingkat transparan latar belakang</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">Jeda</string>
-    <string name="pause_apps_dialog_title">Jeda %1$s?</string>
-    <string name="pause_apps_dialog_message">Notifikasi untuk %1$s akan dijeda</string>
-    <string name="paused_apps_dialog_title">Apl dijeda</string>
-    <string name="paused_apps_dialog_message">%1$s dijeda langsung dari peluncur</string>
-    <string name="paused_apps_drop_target_label">Jeda apl</string>
     <string name="dock_icons">Ikon dok</string>
     <string name="hotseat_bottom_space_label">Padding bawah</string>
     <string name="page_indicator_height">Ketinggian indikator halaman</string>
@@ -583,21 +573,9 @@
     <string name="max_folder_columns">Kolom folder maksimum</string>
     <string name="max_folder_rows">Baris folder maksimum</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">Pengaturan ini akan diabaikan karena Lawnchair tidak diatur sebagai penyedia layar terbaru</string>
-    <string name="quickstep_incompatible">Integrasi sistem tidak kompatibel</string>
-    <string name="quickstep_incompatible_description">Perangkat Anda dikonfigurasi untuk menggunakan gestur sistem (dikenal sebagai Quickstep) disediakan oleh %1$s, tetapi versi %1$s tidak kompatibel dengan versi Android Anda. Untuk melanjutkan menggunakan perangkat Anda, harap lepas pembarian %1$s atau nonaktifkan %1$s sebagai penyedia gestur sistem.</string>
-    <string name="translucent_background">Latar belakang transparan</string>
-    <string name="translucent_background_alpha">Transparansi latar belakang</string>
     <string name="recents_actions_label">Tindakan cepat</string>
     <string name="action_share">Bagikan</string>
-    <string name="action_lens">Lens</string>
-    <string name="recents_clear_all">Bersihkan semua</string>
     <string name="task_menu_force_stop">Tutup paksa</string>
-    <string name="window_corner_radius_label">Radius sudut layar</string>
-    <string name="override_window_corner_radius_label">Radius sudut layar kustom</string>
-    <string name="window_corner_radius_description">Saat Anda menggeser ke atas untuk membuka layar terbaru, aplikasi saat ini mengikuti jari Anda, mengecil menjadi kartu. Gunakan slider ini untuk menyesuaikan radius sudut kartu saat hampir memenuhi layar sehingga cocok dengan sudut layar Anda.</string>
-    <string name="taskbar_label">Bilah Tugas</string>
-    <string name="enable_taskbar_experimental">Tampilkan taskbar (eksperimental)</string>
     <!--
 
     All Apps search
@@ -624,7 +602,6 @@
     <string name="fuzzy_search_title">Pencarian acak</string>
     <string name="fuzzy_search_desc">Perkirakan kecocokan untuk pencarian aplikasi</string>
     <string name="suggestion_pref_screen_title">Saran</string>
-    <string name="show_suggested_apps_at_drawer_top">Tampilkan saran aplikasi di bagian atas laci</string>
     <string name="perform_wide_search_title">Pencarian perangkat</string>
     <string name="perform_wide_search_description">Cari kontak, berkas, dan pengaturan Anda</string>
     <string name="show_hidden_apps_in_search_results">Tampilkan aplikasi tersembunyi dalam hasil pencarian</string>
@@ -636,7 +613,6 @@
     <string name="app_search_algorithm">Algoritma pencarian</string>
     <string name="search_algorithm_app_search">Pencarian Aplikasi</string>
     <string name="search_algorithm_global_search_on_device">Pencarian global (dalam perangkat)</string>
-    <string name="search_algorithm_global_search_via_asi">Pencarian global (melalui ASI)</string>
     <string name="custom_search_label">Nama mesin pencari</string>
     <string name="custom_search_url">URL mesin pencari</string>
     <string name="custom_search_suggestions_url">URL saran penelusuran</string>
@@ -645,9 +621,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">Tampilkan dalam hasil pencarian</string>
     <string name="search_pref_result_apps_and_shortcuts_title">Aplikasi dan pintasan</string>
-    <string name="search_pref_result_shortcuts_title">Pintasan apli</string>
     <string name="search_pref_result_people_title">Orang</string>
-    <string name="search_pref_result_tips_title">Tips Pixel</string>
     <string name="search_pref_result_settings_title">Pengaturan Android</string>
     <string name="search_pref_result_files_title">File</string>
     <string name="search_pref_result_visual_media_title">Foto dan video</string>

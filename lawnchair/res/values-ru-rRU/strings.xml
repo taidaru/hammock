@@ -17,6 +17,7 @@
   ~ Modifications copyright 2026, Taidaru
   -->
 <!-- hammock: rename Lawnchair to Hammock in user-facing strings -->
+<!-- hammock: removed the strings that only Quickstep, its settings and the root features used -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- TODO: Rename all strings to follow CONTRIBUTING.md guidelines -->
     <!--
@@ -31,7 +32,6 @@
     <string name="action_delete">Удалить</string>
     <string name="action_reset">Сбросить</string>
     <string name="action_unlock">Разблокировать</string>
-    <string name="action_lock">Заблокировать</string>
     <string name="action_apply">Применить</string>
     <string name="action_customize">Настроить</string>
     <string name="always_choice">Всегда</string>
@@ -151,8 +151,6 @@
     <string name="folders_description">Кол-во строк и столбцов</string>
     <string name="gestures_label">Жесты</string>
     <string name="gestures_description">Касания и Свайп-жесты</string>
-    <string name="quickstep_label">Экран недавних приложений</string>
-    <string name="quickstep_description">Кнопка \"Очистить всё\", радиус углов</string>
     <string name="about_label">О программе</string>
     <string name="app_info_drop_target_label">О приложении</string>
     <string name="debug_restart_launcher">Перезапустить Hammock</string>
@@ -183,8 +181,6 @@
     <string name="gesturenavcontract_label">GestureNavContract API</string>
     <string name="gesturenavcontract_description">Render launcher animations without root, does not work with heavily modified AOSP</string>
     <string name="gesturenavcontract_warning_incompatibility">GestureNavContract may cause artifacting during animations</string>
-    <string name="recents_lock_unlock">Блокировка/разблокировка</string>
-    <string name="recents_lock_unlock_description">Запретить закрытие выбранного приложения при нажатии кнопки \"Очистить всё\"</string>
     <!--Overlay-->
     <string name="overlay_fade_in">Затухание</string>
     <string name="overlay_suck_in">Втягивание</string>
@@ -525,8 +521,6 @@
     <string name="status_bar_label">Строка состояния</string>
     <string name="show_status_bar">Показывать строку состояния</string>
     <string name="dark_status_bar_label">Темная строка состояния</string>
-    <string name="status_bar_clock_label">Часы в строке состояния</string>
-    <string name="status_bar_clock_description">Динамически скрывать часы в строке состояния на главной странице</string>
     <string name="home_screen_text_color">Цвет текста</string>
     <string name="color_light">Светлая</string>
     <string name="color_dark">Тёмная</string>
@@ -558,12 +552,6 @@
     <string name="hotseat_bg_color_label">Цвет фона</string>
     <string name="hotseat_bg_alpha">Прозрачность фона</string>
     <!-- Pause apps shortcut -->
-    <string name="pause">Приостановить</string>
-    <string name="pause_apps_dialog_title">Приостановить приложение %1$s?</string>
-    <string name="pause_apps_dialog_message">Уведомления для приложения %1$s будут приостановлены</string>
-    <string name="paused_apps_dialog_title">Приложение приостановлено</string>
-    <string name="paused_apps_dialog_message">Приложение %1$s было приостановлено напрямую из лаунчера</string>
-    <string name="paused_apps_drop_target_label">Приостановить приложение</string>
     <string name="dock_icons">Иконки док-панели</string>
     <string name="hotseat_bottom_space_label">Нижний отступ</string>
     <string name="page_indicator_height">Высота индикатора страниц</string>
@@ -607,21 +595,9 @@
     <string name="max_folder_columns">Макс. кол-во столбцов в папке</string>
     <string name="max_folder_rows">Макс. кол-во строк в папке</string>
     <!-- Quickstep settings -->
-    <string name="quickswitch_ignored_warning">Эти настройки будут проигнорированы, так как Hammock не установлен в качестве провайдера Экрана недавних приложений</string>
-    <string name="quickstep_incompatible">Несовместимая системная интеграция</string>
-    <string name="quickstep_incompatible_description">Ваше устройство настроено на использование системных жестов (известных как Quickstep), предоставляемых %1$s, но эта версия %1$s не совместима с вашей версией Android. Чтобы продолжить использование вашего устройства, удалите обновления %1$s или отключите %1$s как поставщика системных жестов.</string>
-    <string name="translucent_background">Полупрозрачный фон</string>
-    <string name="translucent_background_alpha">Прозрачность фона</string>
     <string name="recents_actions_label">Быстрые действия</string>
     <string name="action_share">Поделиться</string>
-    <string name="action_lens">Lens</string>
-    <string name="recents_clear_all">Очистить всё</string>
     <string name="task_menu_force_stop">Закрыть принудительно </string>
-    <string name="window_corner_radius_label">Радиус скругления краёв экрана</string>
-    <string name="override_window_corner_radius_label">Польз. радиус углов экрана</string>
-    <string name="window_corner_radius_description">При жесте \"Смахнуть Вверх\" для открытия Экрана недавних приложений, текущее приложение следует за пальцем, сворачиваясь в карточку. Используйте этот ползунок для настройки радиуса угла карточки, когда она почти развернута, чтобы соответствовать углам экрана.</string>
-    <string name="taskbar_label">Панель задач</string>
-    <string name="enable_taskbar_experimental">Показать панель задач (экспериментально)</string>
     <!--
 
     All Apps search
@@ -648,7 +624,6 @@
     <string name="fuzzy_search_title">Поиск по совпадению</string>
     <string name="fuzzy_search_desc">Поиск приложений по схожему запросу</string>
     <string name="suggestion_pref_screen_title">Рекомендации</string>
-    <string name="show_suggested_apps_at_drawer_top">Показывать рекомендации в верх. части Меню приложений</string>
     <string name="perform_wide_search_title">Поиск по устройству</string>
     <string name="perform_wide_search_description">Поиск контактов, файлов и настроек вашего телефона</string>
     <string name="show_hidden_apps_in_search_results">Показывать скрытые приложения в результатах поиска</string>
@@ -660,7 +635,6 @@
     <string name="app_search_algorithm">Алгоритм поиска</string>
     <string name="search_algorithm_app_search">Поиск приложений</string>
     <string name="search_algorithm_global_search_on_device">Глобальный поиск (на устройстве)</string>
-    <string name="search_algorithm_global_search_via_asi">Глобальный поиск (с помощью ASI)</string>
     <string name="custom_search_label">Имя поисковой системы</string>
     <string name="custom_search_url">URL поисковой системы</string>
     <string name="custom_search_suggestions_url">URL поисковых подсказок</string>
@@ -669,9 +643,7 @@
     <!-- Labels of each search result types -->
     <string name="show_search_result_types">Показывать в результатах поиска</string>
     <string name="search_pref_result_apps_and_shortcuts_title">Приложения и Ярлыки</string>
-    <string name="search_pref_result_shortcuts_title">Ярлыки приложений</string>
     <string name="search_pref_result_people_title">Люди</string>
-    <string name="search_pref_result_tips_title">Советы Pixel</string>
     <string name="search_pref_result_settings_title">Настройки Android</string>
     <string name="search_pref_result_files_title">Файл</string>
     <string name="search_pref_result_visual_media_title">Фото и видео</string>

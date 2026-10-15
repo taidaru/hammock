@@ -1,3 +1,7 @@
+/*
+ * Modifications copyright 2026, Taidaru
+ */
+
 package app.lawnchair.theme.color.tokens
 
 import androidx.compose.runtime.Composable
@@ -89,12 +93,8 @@ object ColorTokens {
 
     @JvmField val OverviewScrimColor = DayNightColorToken(Neutral2_500.setLStar(87.0), Neutral1_800)
 
+    // hammock: removed the translucent Recents background prefs, they belonged to the Quickstep settings
     @JvmField val OverviewScrim = DayNightColorToken(Neutral2_500.setLStar(87.0), Neutral1_800)
-        .withPreferences { prefs ->
-            val translucent = prefs.recentsTranslucentBackground.get()
-            val translucentIntensity = prefs.recentsTranslucentBackgroundAlpha.get()
-            if (translucent) setAlpha(translucentIntensity) else this
-        }
 
     @JvmField val SearchboxHighlight = DayNightColorToken(Neutral2_600.setLStar(98.0), Neutral1_800)
 
