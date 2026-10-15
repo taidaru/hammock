@@ -1,7 +1,7 @@
 # Roadmap
 
 The goal of the first release (0.1) is the three Hammock features on top of a Lawnchair 15 base
-without Quickstep. Everything else is post-MVP.
+without Quickstep, with Pixel Launcher app animations. Everything else is post-MVP.
 
 Phases are done in order. A phase is done when its acceptance criteria are verified on a real Pixel
 (see "Build and verification" in `CLAUDE.md`).
@@ -59,7 +59,27 @@ Inventory (as of the Phase 0 base). Each step above keeps the build green and th
 Acceptance: no references to Quickstep classes; app launch and close animations, widgets, drag and drop,
 work profile, Private Space and predictive back on home all work as before.
 
-## Phase 2. App drawer sections
+## Phase 2. Pixel Launcher animations
+
+The app open and close animations and the return to home differ from Pixel Launcher, which hurts
+the experience too much to leave for later.
+
+Decisions:
+- Public APIs only. Pixel Launcher's open animation is a remote animation that needs the system permission
+  `CONTROL_REMOTE_APP_TRANSITION_ANIMATIONS`, so the goal is the closest match with public `ActivityOptions`
+  and launcher-side animation, not a copy of the remote transition.
+- The close animation (swipe or Home from an app) is driven by Pixel Launcher through the Gesture Nav Contract;
+  Hammock animates its side of it (`LawnchairFloatingSurfaceView`) to match.
+
+Tasks:
+- [ ] Return to home: remove the brief blur of the dock when Home is pressed in an app (Lawnchair has the same
+      issue). First check whether it is still there: Phase 1 removed the depth animation from the swipe-home path.
+- [ ] Restore the Pixel Launcher app open and close animations as closely as public APIs allow.
+
+Acceptance: side-by-side comparison with Pixel Launcher on the same phone: opening from the home screen,
+the dock, the drawer and search; closing with Home and with the swipe gesture; work profile apps.
+
+## Phase 3. App drawer sections
 
 The drawer is split into up to 5 swipeable sections, like the Personal / Work tabs.
 
@@ -90,7 +110,7 @@ Tasks:
 Acceptance: 1 and 5 sections, swipe and tab switching, search, install and uninstall of an app,
 work profile pause, Private Space, rotation, launcher restart.
 
-## Phase 3. Optional app drawer
+## Phase 4. Optional app drawer
 
 A "home screens only" mode, off by default.
 
@@ -114,7 +134,7 @@ Tasks:
 Acceptance: enable and disable with 0, a few and many apps; install and uninstall; work profile;
 restart; rotation; no app missing in either direction.
 
-## Phase 4. Choosable home page
+## Phase 5. Choosable home page
 
 Decisions:
 - Chosen in workspace edit mode (long-press on the home screen, `LauncherState.EDIT_MODE`):
@@ -129,7 +149,7 @@ Tasks:
 
 Acceptance: Home button, returning from apps, launcher restart, page add and remove, rotation.
 
-## Phase 5. Release 0.1
+## Phase 6. Release 0.1
 
 - [ ] Own versioning (`0.1.0`), version shown on the About screen.
 - [ ] Release signing key, stored as GitHub secrets.
@@ -140,13 +160,13 @@ Acceptance: Home button, returning from apps, launcher restart, page add and rem
 
 - Hidden API audit: remove hidden API use in `src/` and Lawnchair (`Unseal`, ChickenHook RestrictionBypass,
   `framework-15.jar` on the compile classpath), as `CLAUDE.md` requires public APIs only.
-- Return-to-home animation: remove the brief blur of the dock when Home is pressed in an app,
-  to match Pixel Launcher (Lawnchair has the same issue).
-- Restore the original Pixel Launcher app open and close animations.
 - Background blur in transitions and the drawer through the public `Window.setBackgroundBlurRadius` (API 31).
   Wallpaper zoom has no public API.
 - Closing Recents with Home: remove the last app "hanging" on screen before home appears. Recents belongs
   to Pixel Launcher, so first check whether a third-party home can affect this at all.
+- Icon customization: improve per-app icon customization.
+- Themed (adaptive color) icons: some icons are not recolored in the mode where all icons share one
+  color palette; make them follow it.
 - Manual app order in sections: alphabetical until the first manual move, new apps go to the end,
   "Sort alphabetically" action in the section menu. Needs a solution for the long-press conflict
   (long-press currently drags the icon to the home screen).
