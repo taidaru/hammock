@@ -128,6 +128,8 @@ Tasks:
 - [x] Core hook: generalize the two adapters (`AdapterHolder.MAIN` / `WORK`) in
       `ActivityAllAppsContainerView` and the Personal / Work tab bar to N tabs: extension points
       `getExtraSectionCount`, `getSectionFilter`, `onBindSectionTabs`, `onSectionsChanged`.
+- [x] Sections in the drawer: a tab and a page per section (`DrawerSectionsController`), the scrolling
+      tab strip (`DrawerSectionTabStrip`); changes apply live.
 - [ ] "Move to…" system shortcut.
 - [ ] Settings screen for sections (Compose).
 - [x] Remove Lawnchair drawer folders and categories (drawer list, settings, routes, strings). The core keeps

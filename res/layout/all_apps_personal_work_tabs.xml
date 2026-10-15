@@ -12,9 +12,12 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
+  ~
+  ~ Modifications copyright 2026, Taidaru
 -->
 
-<com.android.launcher3.workprofile.PersonalWorkSlidingTabStrip
+<!-- hammock: drawer sections; equal tabs while they fit, a scrolling strip otherwise -->
+<app.lawnchair.sections.DrawerSectionTabStrip
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:launcher="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tabs"
@@ -51,4 +54,4 @@
         android:textColor="@color/all_apps_tab_text"
         android:textSize="14sp"
         style="?android:attr/borderlessButtonStyle" />
-</com.android.launcher3.workprofile.PersonalWorkSlidingTabStrip>
+</app.lawnchair.sections.DrawerSectionTabStrip>
