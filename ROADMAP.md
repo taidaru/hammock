@@ -27,7 +27,7 @@ so this code never runs. Removing it first gives a smaller codebase to build the
       the QuickSwitch check in `LawnchairApp`, ASI search, the Pause apps shortcut, the status bar clock toggle;
       `isRecentsEnabled` branches keep their "false" side. `isRecentsEnabled` itself stays, hardwired to `false`,
       while Quickstep still reads it.
-- [ ] Cut the Launcher3 core (`src/`, `res/`) loose from `quickstep/`.
+- [x] Cut the Launcher3 core (`src/`, `res/`) loose from `quickstep/`.
 - [ ] Make `LawnchairLauncher` extend `Launcher`.
 - [ ] Build through `src_no_quickstep/` without the `withQuickstep` flavor dimension; the variant becomes `lawnGithubDebug`.
 - [ ] Remove modules that only Quickstep needed (`quickstep/`, `wmshell/`, `systemUI/`, `hidden-api/`, `prebuilts/`, `compatLib/`),
@@ -35,10 +35,10 @@ so this code never runs. Removing it first gives a smaller codebase to build the
 - [ ] Remove settings and strings that only made sense with Quickstep.
 
 Inventory (as of the Phase 0 base). Each step above keeps the build green; Quickstep still compiles until the build switch.
-- Core `src/`: `LauncherState` (`uioverrides.states`, stubs exist in `src_no_quickstep/`), `DeviceProfile`
-  (`uioverrides.ApiWrapper`), `Hotseat` (`taskbar.BlurredBitmapDrawable`), `Launcher`
-  (`QuickstepLauncher`), `FloatingIconView` and `ClipIconView` (`TaskView`).
-  `res/layout/floating_{split_select,app_pair,widget}_view.xml` inflate `com.android.quickstep.views`.
+- Core `src/`: `LauncherState` uses `uioverrides.states`, which `src_no_quickstep/` provides as in AOSP.
+  Mentions of `QuickstepLauncher`, `QuickstepTransitionManager` and `TaskView` in `Launcher`, `BaseActivity`,
+  `FloatingIconView` and `ClipIconView` are javadoc only. `res/layout/floating_{split_select,app_pair,widget}_view.xml`
+  name `com.android.quickstep.views` classes but only Quickstep inflates them, as in AOSP.
 - Lawnchair: `LawnchairLauncher` (base class, Overview/BackgroundApp states, `QuickStepContract` window corner
   radius, `LawnchairQuickstepCompat` launch options), `LawnchairApp` (`RecentsActivity`), `LawnchairProcessInitializer`,
   `ReloadHelper` (`TouchInteractionService`), `LawnchairFloatingSurfaceView` (`QuickstepTransitionManager`),

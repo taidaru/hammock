@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  * Modifications copyright 2022 Lawnchair
+ *
+ * Modifications copyright 2026, Taidaru
  */
 
 package com.android.launcher3;
@@ -40,7 +42,6 @@ import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.android.launcher3.taskbar.BlurredBitmapDrawable;
 import com.hoko.blur.HokoBlur;
 import com.patrykmichalik.opto.core.PreferenceExtensionsKt;
 
