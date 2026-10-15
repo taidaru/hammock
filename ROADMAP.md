@@ -125,8 +125,9 @@ Tasks:
 - [x] Data: Room entities for sections and app-to-section mapping (keyed by component and user):
       `DrawerSections` and `DrawerSectionApps` (database version 4), `DrawerSectionsRepository`. The main section
       is implicit: apps without a row belong to it, its title is a `PreferenceManager2` setting.
-- [ ] Core hook: generalize the two adapters (`AdapterHolder.MAIN` / `WORK`) in
-      `ActivityAllAppsContainerView` and the Personal / Work tab bar to N tabs.
+- [x] Core hook: generalize the two adapters (`AdapterHolder.MAIN` / `WORK`) in
+      `ActivityAllAppsContainerView` and the Personal / Work tab bar to N tabs: extension points
+      `getExtraSectionCount`, `getSectionFilter`, `onBindSectionTabs`, `onSectionsChanged`.
 - [ ] "Move to…" system shortcut.
 - [ ] Settings screen for sections (Compose).
 - [x] Remove Lawnchair drawer folders and categories (drawer list, settings, routes, strings). The core keeps

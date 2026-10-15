@@ -147,6 +147,8 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
 
     protected final T mActivityContext;
     protected final List<AdapterHolder> mAH;
+    // hammock: adapter holder index of every pager page: the main section, extra sections, work
+    private int[] mPageHolders = {AdapterHolder.MAIN};
     protected final Predicate<ItemInfo> mPersonalMatcher = ItemInfoMatcher.ofUser(
             Process.myUserHandle());
     protected WorkProfileManager mWorkManager;
@@ -244,7 +246,8 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
                 UserCache.INSTANCE.get(mActivityContext));
         mPrivateSpaceBottomExtraSpace = context.getResources().getDimensionPixelSize(
                 R.dimen.ps_extra_bottom_padding);
-        mAH = Arrays.asList(null, null, null);
+        // hammock: growable, extra drawer sections get holders from AdapterHolder.FIRST_SECTION
+        mAH = new ArrayList<>(Arrays.asList(null, null, null));
         mNavBarScrimPaint = new Paint();
         mNavBarScrimPaint.setColor(Themes.getNavBarScrimColor(mActivityContext));
 
@@ -440,7 +443,8 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
                 /* onEndRunnable = */ () -> {
                     mIsSearching = goingToSearch;
                     updateSearchResultsVisibility();
-                    int previousPage = getCurrentPage();
+                    // hammock: a page index, getCurrentPage() returns an adapter holder index
+                    int previousPage = mViewPager == null ? 0 : mViewPager.getNextPage();
                     if (mRebindAdaptersAfterSearchAnimation) {
                         rebindAdapters(false);
                         mRebindAdaptersAfterSearchAnimation = false;
@@ -596,13 +600,15 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
             // Will be called at the end of the animation.
             return;
         }
-        if (mAH.get(currentActivePage).mRecyclerView != null) {
-            mAH.get(currentActivePage).mRecyclerView.bindFastScrollbar(mFastScroller);
+        // hammock: map the page to its adapter holder; extra sections act like the main one
+        int holder = pageToHolder(currentActivePage);
+        if (mAH.get(holder).mRecyclerView != null) {
+            mAH.get(holder).mRecyclerView.bindFastScrollbar(mFastScroller);
         }
         // Header keeps track of active recycler view to properly render header
         // protection.
-        mHeader.setActiveRV(currentActivePage);
-        mWorkManager.onActivePageChanged(currentActivePage);
+        mHeader.setActiveRV(holder);
+        mWorkManager.onActivePageChanged(holder == AdapterHolder.WORK ? holder : AdapterHolder.MAIN);
     }
 
     protected void rebindAdapters() {
@@ -617,9 +623,13 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
         updateSearchResultsVisibility();
 
         boolean showTabs = shouldShowTabs();
-        if (showTabs == mUsingTabs && !force) {
+        // hammock: also rebind when the set of section pages changes
+        int[] pageHolders = computePageHolders(showTabs);
+        if (showTabs == mUsingTabs && !force && Arrays.equals(pageHolders, mPageHolders)) {
             return;
         }
+        ensureSectionHolders();
+        mPageHolders = pageHolders;
 
         // replaceAppsRVcontainer() needs to use both mUsingTabs value to remove the old
         // view AND
@@ -629,47 +639,62 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
         replaceAppsRVContainer(showTabs);
         mUsingTabs = showTabs;
 
-        mAllAppsStore.unregisterIconContainer(mAH.get(AdapterHolder.MAIN).mRecyclerView);
-        mAllAppsStore.unregisterIconContainer(mAH.get(AdapterHolder.WORK).mRecyclerView);
-        mAllAppsStore.unregisterIconContainer(mAH.get(AdapterHolder.SEARCH).mRecyclerView);
+        // hammock: every holder, extra sections included
+        mAH.forEach(holder -> mAllAppsStore.unregisterIconContainer(holder.mRecyclerView));
 
         final AllAppsRecyclerView mainRecyclerView;
         final AllAppsRecyclerView workRecyclerView;
         if (mUsingTabs) {
-            mainRecyclerView = (AllAppsRecyclerView) mViewPager.getChildAt(0);
-            workRecyclerView = (AllAppsRecyclerView) mViewPager.getChildAt(1);
-            mAH.get(AdapterHolder.MAIN).setup(mainRecyclerView, mPersonalMatcher);
-            mAH.get(AdapterHolder.WORK).setup(workRecyclerView, mWorkManager.getItemInfoMatcher());
-            workRecyclerView.setId(R.id.apps_list_view_work);
-            if (enableExpandingPauseWorkButton()
-                    || FeatureFlags.ENABLE_EXPANDING_PAUSE_WORK_BUTTON.get()) {
+            // hammock: one recycler view and one tab per page; the work tab is the last one
+            for (int page = 0; page < mPageHolders.length; page++) {
+                mAH.get(mPageHolders[page]).setup(mViewPager.getChildAt(page),
+                        getHolderMatcher(mPageHolders[page]));
+            }
+            mainRecyclerView = mAH.get(AdapterHolder.MAIN).mRecyclerView;
+            boolean hasWorkPage = mPageHolders[mPageHolders.length - 1] == AdapterHolder.WORK;
+            workRecyclerView = hasWorkPage ? mAH.get(AdapterHolder.WORK).mRecyclerView : null;
+            if (!hasWorkPage) {
+                mAH.get(AdapterHolder.WORK).mRecyclerView = null;
+            }
+            if (workRecyclerView != null) {
+                workRecyclerView.setId(R.id.apps_list_view_work);
+            }
+            if (workRecyclerView != null && (enableExpandingPauseWorkButton()
+                    || FeatureFlags.ENABLE_EXPANDING_PAUSE_WORK_BUTTON.get())) {
                 mAH.get(AdapterHolder.WORK).mRecyclerView.addOnScrollListener(
                         mWorkManager.newScrollListener());
             }
-            mViewPager.getPageIndicator().setActiveMarker(AdapterHolder.MAIN);
-            findViewById(R.id.tab_personal)
-                    .setOnClickListener((View view) -> {
-                        if (mViewPager.snapToPage(AdapterHolder.MAIN)) {
-                            mActivityContext.getStatsLogManager().logger()
-                                    .log(LAUNCHER_ALLAPPS_TAP_ON_PERSONAL_TAB);
-                        }
-                    });
-            findViewById(R.id.tab_work)
-                    .setOnClickListener((View view) -> {
-                        if (mViewPager.snapToPage(AdapterHolder.WORK)) {
-                            mActivityContext.getStatsLogManager().logger()
-                                    .log(LAUNCHER_ALLAPPS_TAP_ON_WORK_TAB);
-                        }
-                    });
+            mViewPager.getPageIndicator().setActiveMarker(0);
             setDeviceManagementResources();
+            ViewGroup tabs = findViewById(R.id.tabs);
+            findViewById(R.id.tab_work).setVisibility(hasWorkPage ? VISIBLE : GONE);
+            onBindSectionTabs(tabs);
+            for (int page = 0; page < mPageHolders.length; page++) {
+                final int tabPage = page;
+                View tab = hasWorkPage && page == mPageHolders.length - 1
+                        ? findViewById(R.id.tab_work) : tabs.getChildAt(page);
+                tab.setOnClickListener((View view) -> {
+                    if (mViewPager.snapToPage(tabPage)) {
+                        mActivityContext.getStatsLogManager().logger()
+                                .log(pageToHolder(tabPage) == AdapterHolder.WORK
+                                        ? LAUNCHER_ALLAPPS_TAP_ON_WORK_TAB
+                                        : LAUNCHER_ALLAPPS_TAP_ON_PERSONAL_TAB);
+                    }
+                });
+            }
             if (mHeader.isSetUp()) {
                 onActivePageChanged(mViewPager.getNextPage());
             }
         } else {
             mainRecyclerView = findViewById(R.id.apps_list_view);
             workRecyclerView = null;
-            mAH.get(AdapterHolder.MAIN).setup(mainRecyclerView, mPersonalMatcher);
-            mAH.get(AdapterHolder.WORK).mRecyclerView = null;
+            mAH.get(AdapterHolder.MAIN).setup(mainRecyclerView, getHolderMatcher(AdapterHolder.MAIN));
+            // hammock: no tabs means no work and no extra section pages
+            for (int i = 0; i < mAH.size(); i++) {
+                if (i != AdapterHolder.MAIN && i != AdapterHolder.SEARCH) {
+                    mAH.get(i).mRecyclerView = null;
+                }
+            }
         }
         setUpCustomRecyclerViewPool(
                 mainRecyclerView,
@@ -685,9 +710,8 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
                             R.dimen.fastscroll_bottom_margin_floating_search);
         }
 
-        mAllAppsStore.registerIconContainer(mAH.get(AdapterHolder.MAIN).mRecyclerView);
-        mAllAppsStore.registerIconContainer(mAH.get(AdapterHolder.WORK).mRecyclerView);
-        mAllAppsStore.registerIconContainer(mAH.get(AdapterHolder.SEARCH).mRecyclerView);
+        // hammock: every holder, extra sections included
+        mAH.forEach(holder -> mAllAppsStore.registerIconContainer(holder.mRecyclerView));
     }
 
     /**
@@ -720,7 +744,11 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
     }
 
     private void replaceAppsRVContainer(boolean showTabs) {
-        for (int i = AdapterHolder.MAIN; i <= AdapterHolder.WORK; i++) {
+        // hammock: every page holder, extra sections included
+        for (int i = 0; i < mAH.size(); i++) {
+            if (i == AdapterHolder.SEARCH) {
+                continue;
+            }
             AdapterHolder adapterHolder = mAH.get(i);
             if (adapterHolder.mRecyclerView != null) {
                 adapterHolder.mRecyclerView.setLayoutManager(null);
@@ -735,6 +763,14 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
         addView(rvContainer, index);
         if (showTabs) {
             mViewPager = (AllAppsPagedView) rvContainer;
+            // hammock: the layout has two recycler views; make one per page
+            while (mViewPager.getChildCount() < mPageHolders.length) {
+                mViewPager.addView(getLayoutInflater().inflate(
+                        R.layout.all_apps_rv_layout, mViewPager, false));
+            }
+            while (mViewPager.getChildCount() > mPageHolders.length) {
+                mViewPager.removeViewAt(mViewPager.getChildCount() - 1);
+            }
             mViewPager.initParentViews(this);
             mViewPager.getPageIndicator().setOnActivePageChangedListener(this);
             mViewPager.setOutlineProvider(new ViewOutlineProvider() {
@@ -778,6 +814,12 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
         var hideHeader = PreferenceExtensionsKt.firstBlocking(pref2.getHideAppDrawerSearchBar());
         mHeader.setVisibility(hideHeader ? View.GONE : View.VISIBLE);
         boolean tabsHidden = !mUsingTabs;
+        // hammock: the header also tracks the extra section recycler views
+        List<AllAppsRecyclerView> sectionRVs = new ArrayList<>();
+        for (int i = AdapterHolder.FIRST_SECTION; i < mAH.size(); i++) {
+            sectionRVs.add(mAH.get(i).mRecyclerView);
+        }
+        mHeader.setSectionRVs(sectionRVs);
         mHeader.setup(
                 mAH.get(AdapterHolder.MAIN).mRecyclerView,
                 mAH.get(AdapterHolder.WORK).mRecyclerView,
@@ -1186,11 +1228,9 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
 
     /** The current apps recycler view in the container. */
     private AllAppsRecyclerView getActiveAppsRecyclerView() {
-        if (!mUsingTabs || isPersonalTab()) {
-            return mAH.get(AdapterHolder.MAIN).mRecyclerView;
-        } else {
-            return mAH.get(AdapterHolder.WORK).mRecyclerView;
-        }
+        // hammock: the holder of the current page, extra sections included
+        return mAH.get(mViewPager == null ? AdapterHolder.MAIN
+                : pageToHolder(mViewPager.getNextPage())).mRecyclerView;
     }
 
     /**
@@ -1208,7 +1248,8 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
     }
 
     protected boolean isPersonalTab() {
-        return mViewPager == null || mViewPager.getNextPage() == 0;
+        // hammock: extra sections are personal too
+        return mViewPager == null || pageToHolder(mViewPager.getNextPage()) != AdapterHolder.WORK;
     }
 
     /**
@@ -1217,8 +1258,10 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
      * nothing.
      */
     public void switchToTab(int tab) {
-        if (mUsingTabs) {
-            mViewPager.setCurrentPage(tab);
+        // hammock: tab is an adapter holder index; find its page
+        int page = holderToPage(tab);
+        if (mUsingTabs && page >= 0) {
+            mViewPager.setCurrentPage(page);
         }
     }
 
@@ -1331,7 +1374,85 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
      * Returns true if the container has work apps.
      */
     public boolean shouldShowTabs() {
-        return mHasWorkApps;
+        // hammock: extra drawer sections need tabs too
+        return mHasWorkApps || getExtraSectionCount() > 0;
+    }
+
+    // hammock: drawer section extension points; by default the personal apps are a single section
+    /** Number of personal drawer sections besides the main one. */
+    protected int getExtraSectionCount() {
+        return 0;
+    }
+
+    /** Filters the personal apps shown in {@code section}; section 0 is the main one. */
+    protected Predicate<ItemInfo> getSectionFilter(int section) {
+        return info -> true;
+    }
+
+    /**
+     * Adds the extra section tabs after the personal tab of {@code tabs} (the work tab stays
+     * last) and sets their titles.
+     */
+    protected void onBindSectionTabs(ViewGroup tabs) {
+    }
+
+    /** Applies changed section contents or a changed number of sections. */
+    public void onSectionsChanged() {
+        if (isSearching()) {
+            mRebindAdaptersAfterSearchAnimation = true;
+        } else {
+            rebindAdapters();
+        }
+        for (int page = 0; page < mPageHolders.length; page++) {
+            int holder = mPageHolders[page];
+            if (holder != AdapterHolder.WORK) {
+                mAH.get(holder).mAppsList.updateItemFilter(getHolderMatcher(holder));
+            }
+        }
+    }
+
+    private int[] computePageHolders(boolean showTabs) {
+        if (!showTabs) {
+            return new int[] {AdapterHolder.MAIN};
+        }
+        int extraSections = getExtraSectionCount();
+        int[] pages = new int[1 + extraSections + (mHasWorkApps ? 1 : 0)];
+        pages[0] = AdapterHolder.MAIN;
+        for (int i = 0; i < extraSections; i++) {
+            pages[1 + i] = AdapterHolder.FIRST_SECTION + i;
+        }
+        if (mHasWorkApps) {
+            pages[pages.length - 1] = AdapterHolder.WORK;
+        }
+        return pages;
+    }
+
+    private void ensureSectionHolders() {
+        while (mAH.size() < AdapterHolder.FIRST_SECTION + getExtraSectionCount()) {
+            mAH.add(new AdapterHolder(mAH.size(), new LawnchairAlphabeticalAppsList<>(
+                    mActivityContext, mAllAppsStore, null, null)));
+        }
+    }
+
+    private Predicate<ItemInfo> getHolderMatcher(int holder) {
+        if (holder == AdapterHolder.WORK) {
+            return mWorkManager.getItemInfoMatcher();
+        }
+        int section = holder == AdapterHolder.MAIN ? 0 : holder - AdapterHolder.FIRST_SECTION + 1;
+        return mPersonalMatcher.and(getSectionFilter(section));
+    }
+
+    private int pageToHolder(int page) {
+        return page >= 0 && page < mPageHolders.length ? mPageHolders[page] : AdapterHolder.MAIN;
+    }
+
+    private int holderToPage(int holder) {
+        for (int page = 0; page < mPageHolders.length; page++) {
+            if (mPageHolders[page] == holder) {
+                return page;
+            }
+        }
+        return -1;
     }
 
     // Used by tests only
@@ -1406,9 +1527,10 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
 
     /** The current page visible in all apps. */
     public int getCurrentPage() {
+        // hammock: an adapter holder index, also for extra section pages
         return isSearching()
                 ? SEARCH
-                : mViewPager == null ? AdapterHolder.MAIN : mViewPager.getNextPage();
+                : mViewPager == null ? AdapterHolder.MAIN : pageToHolder(mViewPager.getNextPage());
     }
 
     public PrivateProfileManager getPrivateProfileManager() {
@@ -1625,6 +1747,8 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
         public static final int MAIN = 0;
         public static final int WORK = 1;
         public static final int SEARCH = 2;
+        // hammock: holders of extra drawer sections start here
+        public static final int FIRST_SECTION = 3;
 
         private final int mType;
         public final BaseAllAppsAdapter<T> mAdapter;

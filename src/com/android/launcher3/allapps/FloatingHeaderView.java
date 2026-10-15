@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Modifications copyright 2026, Taidaru
  */
 package com.android.launcher3.allapps;
 
@@ -43,6 +45,7 @@ import com.patrykmichalik.opto.core.PreferenceExtensionsKt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import app.lawnchair.preferences2.PreferenceManager2;
@@ -91,6 +94,8 @@ public class FloatingHeaderView extends LinearLayout implements
     protected ViewGroup mTabLayout;
     private AllAppsRecyclerView mMainRV;
     private AllAppsRecyclerView mWorkRV;
+    // hammock: recycler views of extra drawer sections, by AdapterHolder index from FIRST_SECTION
+    private List<AllAppsRecyclerView> mSectionRVs = new ArrayList<>();
     private SearchRecyclerView mSearchRV;
     private AllAppsRecyclerView mCurrentRV;
     protected int mSnappedScrolledY;
@@ -242,6 +247,11 @@ public class FloatingHeaderView extends LinearLayout implements
         reset(false);
     }
 
+    // hammock: called before setup() with the extra drawer section recycler views
+    void setSectionRVs(List<AllAppsRecyclerView> sectionRVs) {
+        mSectionRVs = sectionRVs;
+    }
+
     /** Whether this header has been set up previously. */
     boolean isSetUp() {
         return mMainRV != null;
@@ -252,9 +262,12 @@ public class FloatingHeaderView extends LinearLayout implements
         if (mCurrentRV != null) {
             mCurrentRV.removeOnScrollListener(mOnScrollListener);
         }
+        // hammock: extra drawer sections too
         mCurrentRV =
                 rvType == AdapterHolder.MAIN ? mMainRV
-                : rvType == AdapterHolder.WORK ? mWorkRV : mSearchRV;
+                : rvType == AdapterHolder.WORK ? mWorkRV
+                : rvType == AdapterHolder.SEARCH ? mSearchRV
+                : mSectionRVs.get(rvType - AdapterHolder.FIRST_SECTION);
         mCurrentRV.addOnScrollListener(mOnScrollListener);
         maybeSetTabVisibility(rvType == AdapterHolder.SEARCH ? GONE : VISIBLE);
     }
@@ -347,6 +360,12 @@ public class FloatingHeaderView extends LinearLayout implements
         }
         if (mWorkRV != null) {
             mWorkRV.setClipBounds(mRVClip);
+        }
+        // hammock: extra drawer sections too
+        for (AllAppsRecyclerView sectionRV : mSectionRVs) {
+            if (sectionRV != null) {
+                sectionRV.setClipBounds(mRVClip);
+            }
         }
         if (mSearchRV != null) {
             mSearchRV.setClipBounds(mRVClip);
